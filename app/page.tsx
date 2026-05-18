@@ -54,7 +54,7 @@ export default async function Home() {
   return (
     <div className="space-y-14">
       <section>
-        <h1 className="font-serif text-4xl tracking-tight leading-tight max-w-3xl">
+        <h1 className="font-serif text-3xl sm:text-4xl tracking-tight leading-tight max-w-3xl">
           Welke wetten worden er momenteel gemaakt en behandeld?
         </h1>
         <p className="mt-4 max-w-2xl text-mute leading-relaxed">

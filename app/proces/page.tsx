@@ -18,7 +18,7 @@ export default function ProcesPagina() {
         >
           ← terug
         </Link>
-        <h1 className="font-serif text-4xl tracking-tight leading-tight">
+        <h1 className="font-serif text-3xl sm:text-4xl tracking-tight leading-tight">
           Hoe wordt een wet gemaakt?
         </h1>
         <p className="text-mute leading-relaxed">

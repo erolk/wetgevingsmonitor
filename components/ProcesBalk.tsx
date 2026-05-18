@@ -12,8 +12,8 @@ export function ProcesBalk({ fase, compact = false }: Props) {
 
   return (
     <div className="w-full">
-      {/* Desktop / horizontale variant */}
-      <ol className="hidden md:flex items-stretch gap-0">
+      {/* Desktop (≥lg) / horizontale variant met hover-tooltip */}
+      <ol className="hidden lg:flex items-stretch gap-0">
         {PROCES_STAPPEN.map((stap, i) => {
           const status = statussen[i];
           const isLaatste = i === PROCES_STAPPEN.length - 1;
@@ -37,11 +37,14 @@ export function ProcesBalk({ fase, compact = false }: Props) {
                   {stap.korteNaam}
                 </div>
                 {!compact && (
-                  <div className="hidden group-hover:block absolute top-full mt-2 z-10 bg-ink text-white text-xs rounded p-3 w-64 shadow-lg">
+                  <div
+                    className="hidden group-hover:block group-focus-within:block absolute top-full mt-2 z-10 bg-ink text-paper text-xs rounded p-3 w-64 shadow-lg pointer-events-none"
+                    role="tooltip"
+                  >
                     <div className="font-medium mb-1">
                       {stap.volledigeNaam}
                     </div>
-                    <div className="text-white/80 leading-relaxed">
+                    <div className="text-paper/80 leading-relaxed">
                       {stap.uitleg}
                     </div>
                   </div>
@@ -62,8 +65,8 @@ export function ProcesBalk({ fase, compact = false }: Props) {
         })}
       </ol>
 
-      {/* Mobile / verticale variant */}
-      <ol className="md:hidden space-y-2">
+      {/* Mobile / tablet — verticale variant met inline uitleg (werkt op touch) */}
+      <ol className="lg:hidden space-y-2">
         {PROCES_STAPPEN.map((stap, i) => {
           const status = statussen[i];
           return (

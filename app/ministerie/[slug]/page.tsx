@@ -109,7 +109,7 @@ export default async function MinisterieOverview({
         <div className="text-xs text-mute uppercase tracking-wider mb-1">
           Ministerie · {m.afkorting}
         </div>
-        <h1 className="font-serif text-3xl tracking-tight leading-tight">
+        <h1 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight break-words">
           {m.naam}
         </h1>
         <p className="mt-3 max-w-2xl text-mute">{m.beschrijving}</p>
@@ -137,7 +137,7 @@ export default async function MinisterieOverview({
         <div className="flex flex-wrap gap-2">
           <Link
             href={`/ministerie/${m.slug}`}
-            className={`text-sm px-3 py-1.5 rounded-full border transition ${
+            className={`text-sm px-3 py-2 rounded-full border transition inline-flex items-center min-h-[36px] ${
               !actieveFilter
                 ? "bg-ink text-paper border-ink"
                 : "bg-surface border-line hover:border-ink text-mute hover:text-ink"
@@ -156,7 +156,7 @@ export default async function MinisterieOverview({
                     ? `/ministerie/${m.slug}`
                     : `/ministerie/${m.slug}?fase=${opt.id}`
                 }
-                className={`text-sm px-3 py-1.5 rounded-full border transition ${
+                className={`text-sm px-3 py-2 rounded-full border transition inline-flex items-center min-h-[36px] ${
                   actief
                     ? "bg-ink text-paper border-ink"
                     : aantal === 0

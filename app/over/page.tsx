@@ -1,7 +1,7 @@
 export default function Over() {
   return (
     <article className="prose prose-sm max-w-2xl space-y-4">
-      <h1 className="font-serif text-3xl">Over deze site</h1>
+      <h1 className="font-serif text-2xl sm:text-3xl">Over deze site</h1>
 
       <p>
         Wetgevingsmonitor maakt zichtbaar welke wetten er op dit moment in

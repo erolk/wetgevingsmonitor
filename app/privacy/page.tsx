@@ -5,7 +5,7 @@ export const metadata = {
 export default function Privacy() {
   return (
     <article className="max-w-2xl prose prose-sm space-y-4 py-6">
-      <h1 className="font-serif text-3xl">Privacyverklaring</h1>
+      <h1 className="font-serif text-2xl sm:text-3xl">Privacyverklaring</h1>
 
       <p>
         Wetgevingsmonitor is een onafhankelijk, niet-commercieel project dat

@@ -77,12 +77,12 @@ export function SubscribeButton(props: Props) {
     return (
       <button
         onClick={() => setOpen(true)}
-        className={`inline-flex items-center gap-2 rounded-md border border-accent bg-accent text-paper hover:bg-accentDark transition px-4 py-2 ${
-          props.compact ? "text-sm" : "text-base"
+        className={`inline-flex items-center gap-2 rounded-md border border-accent bg-accent text-paper hover:bg-accentDark transition px-4 py-2 text-left max-w-full ${
+          props.compact ? "text-sm" : "text-sm sm:text-base"
         }`}
       >
-        <span aria-hidden>✉</span>
-        <span>{label}</span>
+        <span aria-hidden className="shrink-0">✉</span>
+        <span className="break-words">{label}</span>
       </button>
     );
   }

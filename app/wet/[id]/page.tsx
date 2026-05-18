@@ -68,7 +68,9 @@ export default async function WetDetail({ params }: Params) {
           {item.dossierNummer && <span>· dossier {item.dossierNummer}</span>}
           {item.vergaderjaar && <span>· vergaderjaar {item.vergaderjaar}</span>}
         </div>
-        <h1 className="font-serif text-3xl leading-tight">{item.titel}</h1>
+        <h1 className="font-serif text-2xl sm:text-3xl leading-tight break-words">
+          {item.titel}
+        </h1>
         <div className="flex flex-wrap gap-2 items-center">
           <span
             className={`text-xs px-2.5 py-1 rounded-full font-medium ${FASE_KLEUR[item.fase]}`}
@@ -231,9 +233,9 @@ export default async function WetDetail({ params }: Params) {
                           <span
                             className={
                               s.Soort === "Voor"
-                                ? "text-emerald-700 font-medium"
+                                ? "text-emerald-700 dark:text-emerald-300 font-medium"
                                 : s.Soort === "Tegen"
-                                  ? "text-rose-700 font-medium"
+                                  ? "text-rose-700 dark:text-rose-300 font-medium"
                                   : "text-mute"
                             }
                           >
