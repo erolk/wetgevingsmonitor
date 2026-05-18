@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * "Editorial Slate" — formeel-journalistiek, dieper papier dan voorheen.
+ * Per-ministerie tinten staan onderaan en zijn opgehangen aan CSS-variabelen
+ * zodat zowel light als dark mode dezelfde semantische tokens gebruiken.
+ */
+
+:root {
+  color-scheme: light;
+
+  /* Krantenpapier — iets warmer en dieper dan eerder #fafaf7 */
+  --paper: 238 232 216;        /* warm cream */
+  --surface: 252 248 238;      /* card achtergrond, iets lichter */
+  --ink: 14 22 50;             /* diep navy ink */
+  --mute: 88 99 122;            /* gedempt navy */
+  --line: 198 190 168;          /* warme border */
+  --accent: 44 90 106;          /* petrol — formeel, geen alarm */
+  --accent-dark: 28 64 78;
+}
+
+.dark {
+  color-scheme: dark;
+
+  --paper: 18 23 36;            /* diep navy-grijs */
+  --surface: 26 32 50;          /* card iets lichter */
+  --ink: 232 232 228;           /* warm cream tekst */
+  --mute: 154 164 184;
+  --line: 56 68 92;
+  --accent: 122 184 200;        /* petrol licht */
+  --accent-dark: 88 152 170;
+}
+
+html,
+body {
+  background: rgb(var(--paper));
+  color: rgb(var(--ink));
+}
+
+body {
+  background-image:
+    radial-gradient(at 28% 18%, rgb(var(--paper) / 0.55) 0%, transparent 55%),
+    radial-gradient(at 78% 88%, rgb(var(--line) / 0.18) 0%, transparent 60%);
+  background-attachment: fixed;
+}
+
+a {
+  color: inherit;
+}
+
+/* Sterkere rule line — krant-feel */
+hr {
+  border-top: 1px solid rgb(var(--line));
+}
+
+/*
+ * Ministerie-tegels — dieper kranten-cream met duidelijke hover-state.
+ * Tegels zijn merkbaar donkerder dan de papier-achtergrond, en bij hover
+ * trekken ze stevig de aandacht via border + lift + schaduw.
+ */
+.ministerie-tile {
+  background-color: rgb(220 212 188); /* dieper cream — duidelijk donkerder dan paper */
+  border-color: rgb(var(--ink) / 0.18);
+  border-width: 1px;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    transform 160ms ease,
+    box-shadow 160ms ease;
+}
+.ministerie-tile:hover {
+  background-color: rgb(206 196 168); /* nog iets dieper bij hover */
+  border-color: rgb(var(--accent));
+  transform: translateY(-3px);
+  box-shadow:
+    0 10px 24px -6px rgb(var(--ink) / 0.18),
+    0 4px 10px -2px rgb(var(--ink) / 0.1);
+}
+.dark .ministerie-tile {
+  background-color: rgb(36 44 64); /* duidelijk lichter dan paper voor contrast */
+  border-color: rgb(var(--line));
+}
+.dark .ministerie-tile:hover {
+  background-color: rgb(48 58 82);
+  border-color: rgb(var(--accent));
+  box-shadow:
+    0 10px 28px -4px rgb(0 0 0 / 0.6),
+    0 4px 10px -2px rgb(0 0 0 / 0.4);
+}

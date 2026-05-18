@@ -1,0 +1,16 @@
+node_modules
+.next
+out
+.DS_Store
+*.log
+.env*.local
+.vercel
+next-env.d.ts
+
+# Runtime data die alleen lokaal nut heeft of privé moet blijven.
+# explanations.json en ek-status.json wél committen — dat is statische
+# content die de site nodig heeft.
+data/outbox/
+data/subscriptions.json
+data/snapshot.json
+tsconfig.tsbuildinfo

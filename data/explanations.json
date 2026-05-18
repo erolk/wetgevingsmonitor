@@ -1,0 +1,2091 @@
+{
+  "9fd5c65c-ee62-4723-9733-0d45714eceec": {
+    "watRegelt": "Platforms zoals Airbnb moeten verhuurgegevens van Nederlandse adressen delen met de overheid, op basis van een Europese verordening.",
+    "raaktJou": "Verhuur je je woning af en toe via een platform? Dan worden je verhuurnachten zichtbaar voor je gemeente. Buurtbewoners en gemeenten kunnen makkelijker zien hoeveel toeristische verhuur er in hun straat plaatsvindt.",
+    "voorWie": [
+      "woningverhuurders",
+      "platforms",
+      "gemeenten",
+      "omwonenden"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "1af0fdb7-6489-461d-afcd-adf76e8ad852": {
+    "watRegelt": "Woningcorporaties gaan hun bezit waarderen op basis van beleidswaarde in plaats van actuele marktwaarde.",
+    "raaktJou": "Voor huurders van corporatiewoningen verandert er direct weinig, maar corporaties krijgen meer financiële ruimte om nieuwe sociale huurwoningen te bouwen en bestaand bezit te onderhouden.",
+    "voorWie": [
+      "huurders",
+      "woningcorporaties"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "c4aa3ce5-79fb-4b11-93fb-b6b121478d58": {
+    "watRegelt": "Het Rijk krijgt meer doorzettingsmacht om gemeenten te verplichten genoeg woningen te bouwen, met name betaalbare en sociale huur.",
+    "raaktJou": "Voor woningzoekenden moet dit de doorstroming verbeteren. Gemeenten die achterblijven met bouwen kunnen door de minister tot actie worden gedwongen. Effect zichtbaar over meerdere jaren.",
+    "voorWie": [
+      "woningzoekenden",
+      "gemeenten",
+      "projectontwikkelaars"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "b099fe90-35cc-44a5-a611-7b814408414a": {
+    "watRegelt": "Gemeenten mogen statushouders niet langer wettelijk voorrang geven op sociale huurwoningen.",
+    "raaktJou": "Reguliere woningzoekenden op de sociale huurmarkt krijgen iets meer kans. Statushouders moeten langer in azc's blijven, gemeenten moeten alternatieve huisvesting regelen.",
+    "voorWie": [
+      "woningzoekenden",
+      "statushouders",
+      "gemeenten"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "cfdd9dd5-c06a-41a8-9c05-8f8479e58532": {
+    "watRegelt": "Politieke reclame online moet transparant zijn: bij elke advertentie moet zichtbaar zijn wie hem betaalt en waarom jij hem ziet (Europese regel).",
+    "raaktJou": "Als je social media gebruikt zie je voortaan bij politieke advertenties wie ze sponsort en waarom je in de doelgroep zit. Misleidende of buitenlandse politieke reclame wordt aangepakt.",
+    "voorWie": [
+      "kiezers",
+      "politieke partijen",
+      "social media-gebruikers"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "665b1055-4d2b-4460-a147-9fd2712e080f": {
+    "watRegelt": "Lokale bestuurders (wethouders, gedeputeerden) worden vooraf gescreend op integriteitsrisico's.",
+    "raaktJou": "Voor inwoners van gemeenten betekent dit minder kans op bestuurders met criminele banden of belangenverstrengeling. De screening kan benoemingen vertragen.",
+    "voorWie": [
+      "inwoners",
+      "lokale politici",
+      "gemeenten"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "e71a00d9-c5ab-4028-8b20-aba66d8bf742": {
+    "watRegelt": "De gemeenten Hilversum en Wijdemeren worden samengevoegd tot één gemeente.",
+    "raaktJou": "Voor inwoners verandert het gemeentelijk bestuur, de identiteitskaarten, de WOZ-uitvoering en mogelijk lokale belastingen. Lokale voorzieningen worden door één bestuur georganiseerd.",
+    "voorWie": [
+      "inwoners Hilversum",
+      "inwoners Wijdemeren"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "ac2c145b-165c-4828-bf1d-9d535d879d0b": {
+    "watRegelt": "Strengere regels voor wanneer iemand in het stemhokje hulp mag krijgen bij het stemmen.",
+    "raaktJou": "Heb je hulp nodig om te stemmen (bv. door beperking of taal)? De mogelijkheden worden duidelijker maar ook beperkter geregeld. Doel: voorkomen dat mensen beïnvloed worden bij hun stem.",
+    "voorWie": [
+      "kiezers met beperking",
+      "ouderen",
+      "stembureaus"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "6f9ce0f0-5488-4a68-a3b7-79309a5170f4": {
+    "watRegelt": "Strengere regels voor de financiering van politieke partijen en transparantie over hun inkomsten en uitgaven.",
+    "raaktJou": "Als kiezer krijg je beter zicht op wie politieke partijen financiert en welke giften of buitenlandse betalingen er spelen. Partijen moeten openheid geven over hun interne organisatie.",
+    "voorWie": [
+      "kiezers",
+      "politieke partijen",
+      "donateurs"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "98447702-8149-4728-9f4c-6e7bf7b31442": {
+    "watRegelt": "De regels voor het verdelen van zogenoemde 'restzetels' in de Tweede Kamer worden aangescherpt.",
+    "raaktJou": "Bij verkiezingen kan de zetelverdeling iets anders uitpakken. Effect vooral bij kleinere partijen op het randje van een zetel. Voor de meeste kiezers nauwelijks merkbaar.",
+    "voorWie": [
+      "kiezers",
+      "kleine partijen"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "d6d2d52e-159c-4dbe-87de-c3699e54423c": {
+    "watRegelt": "Op de Nederlandse identiteitskaart komt geen geslachtsvermelding meer.",
+    "raaktJou": "Iedereen die een nieuwe ID-kaart aanvraagt krijgt er één zonder M/V. Voor non-binaire en transgender personen verdwijnt een dagelijks ongemak. Het paspoort houdt de vermelding wel.",
+    "voorWie": [
+      "alle ID-aanvragers",
+      "non-binaire/transgender personen"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "15b9ae05-da6b-4ea8-9fa3-11750232a465": {
+    "watRegelt": "De term 'hetero- of homoseksuele gerichtheid' in de wet wordt vervangen door de bredere term 'seksuele gerichtheid'.",
+    "raaktJou": "Bescherming tegen discriminatie geldt voortaan expliciet ook voor biseksuele, panseksuele en aseksuele personen — niet alleen voor homo's. Praktisch effect vooral bij rechtszaken.",
+    "voorWie": [
+      "lhbti+",
+      "rechtspraak"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "b41a50a7-78ef-4814-9768-1c79a6fe21bb": {
+    "watRegelt": "Eerste lezing van een grondwetswijziging: de Eerste Kamer krijgt de bevoegdheid om wetsvoorstellen terug te sturen naar de Tweede Kamer voor verbetering.",
+    "raaktJou": "Indirect: minder slecht doordachte wetten halen de eindstreep. De Eerste Kamer wordt iets machtiger in het corrigeren van haastige besluiten. Vereist twee lezingen, dus jaren te gaan.",
+    "voorWie": [
+      "alle burgers",
+      "Eerste Kamer"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "e2029c87-5a84-4066-b8d0-23c805ed164a": {
+    "watRegelt": "Technische aanpassing van wetten van Antilliaanse oorsprong voor Bonaire, Sint Eustatius en Saba.",
+    "raaktJou": "Vooral voor inwoners van de BES-eilanden: oude wetten worden formeel opgeschoond. Op het vasteland nauwelijks merkbaar.",
+    "voorWie": [
+      "inwoners BES-eilanden"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "c4e5ae6f-6975-4885-a381-65977afc665f": {
+    "watRegelt": "Eerste correctie op het nieuwe Wetboek van Strafvordering — fouten en onduidelijkheden in de nieuwe procedurewet worden hersteld.",
+    "raaktJou": "Voor verdachten, slachtoffers en advocaten worden enkele regels rondom strafzaken duidelijker. Vooral juridisch-technisch, raakt burgers vooral als ze met justitie te maken krijgen.",
+    "voorWie": [
+      "verdachten",
+      "slachtoffers",
+      "advocaten",
+      "politie"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "1df3727f-8b0e-4b25-b200-7ded5aa7e854": {
+    "watRegelt": "De tijdelijke wet die bestuurlijke maatregelen tegen terrorismeverdachten mogelijk maakt (meldplicht, gebiedsverbod) wordt permanent.",
+    "raaktJou": "Mensen die door de overheid worden gezien als terrorisme-risico krijgen blijvend strengere meldplichten en gebiedsverboden. Voor de meeste burgers niet merkbaar; juristen en mensenrechtenorganisaties zijn kritisch.",
+    "voorWie": [
+      "terrorismeverdachten",
+      "burgemeesters",
+      "politie"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "9356f4dc-8cf7-4247-aa83-a51594107803": {
+    "watRegelt": "Implementatie van EU-regels tegen mensensmokkel: zwaardere straffen en betere internationale samenwerking.",
+    "raaktJou": "Voor de meeste burgers niet direct merkbaar. Smokkelaars riskeren hogere straffen; slachtoffers van smokkel krijgen meer bescherming.",
+    "voorWie": [
+      "slachtoffers mensensmokkel",
+      "politie",
+      "OM"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "b58362a4-11f9-4363-9de9-a4be0c546fa4": {
+    "watRegelt": "Politie en justitie krijgen via Europese verstrekkingsbevelen sneller toegang tot digitale gegevens (e-mails, chats, accounts) in andere EU-landen.",
+    "raaktJou": "Bij strafrechtelijk onderzoek kan jouw provider in een ander EU-land sneller worden verplicht tot gegevensverstrekking. Voor burgers met niets te verbergen weinig effect; privacy-organisaties zijn kritisch op gebrek aan rechterlijke toets.",
+    "voorWie": [
+      "alle internet- en chat-gebruikers",
+      "politie",
+      "OM"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "1be320d1-0d1d-460e-b457-d9d3f3eaacdc": {
+    "watRegelt": "Modernisering van Europese productaansprakelijkheidsregels: ook digitale producten en software vallen er nu onder.",
+    "raaktJou": "Krijg je schade door een fout in een app, slim apparaat of AI-systeem? Dan kun je makkelijker de fabrikant of leverancier aansprakelijk stellen.",
+    "voorWie": [
+      "consumenten",
+      "fabrikanten",
+      "softwarebedrijven"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "8aa4345b-74ed-4664-84c2-761e02fdb800": {
+    "watRegelt": "Zwaardere strafrechtelijke aanpak van milieucriminaliteit: vervuiling, illegaal dumpen, ecocide-achtige feiten.",
+    "raaktJou": "Bedrijven die ernstig milieu vervuilen riskeren hogere straffen en boetes. Voor omwonenden van vervuilende bedrijven betekent dit betere bescherming.",
+    "voorWie": [
+      "bedrijven",
+      "omwonenden vervuilers",
+      "OM"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "1396ee8a-e4e3-4aa9-bfbb-4166758fe24a": {
+    "watRegelt": "Aangescherpte EU-regels tegen mensenhandel: meer vormen worden strafbaar, betere bescherming slachtoffers.",
+    "raaktJou": "Slachtoffers van uitbuiting (sekswerk, dwangarbeid, gedwongen criminaliteit) krijgen meer bescherming en recht op bijstand. Daders riskeren hogere straffen.",
+    "voorWie": [
+      "slachtoffers mensenhandel",
+      "sekswerkers",
+      "politie",
+      "hulpverleners"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "957e77bf-0c3c-468d-8c74-176af52af9f5": {
+    "watRegelt": "Politie mag bij verdenking van een ernstig misdrijf alvast DNA afnemen (conservatoire afname), ook vóór een veroordeling.",
+    "raaktJou": "Word je verdacht van een zwaar misdrijf, dan kan DNA eerder worden afgenomen en bewaard. Critici waarschuwen voor uitbreiding van de DNA-database; voorstanders wijzen op snellere opsporing.",
+    "voorWie": [
+      "verdachten",
+      "politie",
+      "OM"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "cc51be06-7dd2-4a72-b4bb-8ca8054e238d": {
+    "watRegelt": "Bescherming tegen 'SLAPP'-rechtszaken: misbruik van rechtszaken om journalisten en activisten monddood te maken.",
+    "raaktJou": "Journalisten, klokkenluiders en actievoerders krijgen meer mogelijkheden om kansloze procedures van machtige bedrijven snel te laten afwijzen. Goed voor de vrijheid van meningsuiting.",
+    "voorWie": [
+      "journalisten",
+      "activisten",
+      "klokkenluiders",
+      "bedrijven"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "00757fdd-08a6-4c4f-a640-e53afa9fa83f": {
+    "watRegelt": "Strenger straffen op handel, productie en in-/uitvoer van zware drugs (Opiumwet lijst I).",
+    "raaktJou": "Voor de meeste burgers niet merkbaar. Drugscriminelen riskeren hogere straffen; effect op drugsoverlast in wijken blijft afhankelijk van handhaving.",
+    "voorWie": [
+      "drugscriminelen",
+      "politie",
+      "OM"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "34ebed77-e89a-4b16-8990-659cef3479d9": {
+    "watRegelt": "De geldigheid van een asielvergunning voor bepaalde tijd wordt aangepast — meestal verkort.",
+    "raaktJou": "Statushouders moeten vaker een verlenging aanvragen. Voor gewone burgers niet merkbaar; voor de IND meer werk en voor statushouders meer onzekerheid.",
+    "voorWie": [
+      "statushouders",
+      "IND",
+      "asieladvocaten"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "ffcbf9f6-aa24-4033-80aa-d915026371aa": {
+    "watRegelt": "Aanpassing van regels voor vreemdelingenbewaring en terugkeer van uitgeprocedeerden.",
+    "raaktJou": "Uitgeprocedeerde asielzoekers kunnen vaker en langer in bewaring. Voor gemeenten met opvanglocaties verschuift de druk; voor reguliere burgers niet direct merkbaar.",
+    "voorWie": [
+      "uitgeprocedeerde asielzoekers",
+      "IND",
+      "DT&V"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "657c6420-5643-4fa8-ae22-39f79fe4a379": {
+    "watRegelt": "Studenten uit de 'pechgeneratie' (leenstelsel 2015-2023) krijgen een extra financiële tegemoetkoming.",
+    "raaktJou": "Heb je tussen 2015 en 2023 gestudeerd met het leenstelsel? Dan krijg je een extra bedrag bovenop de eerdere compensatie. Voor de schatkist: honderden miljoenen extra.",
+    "voorWie": [
+      "ex-studenten",
+      "DUO"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "3810d89c-5b45-4594-abe4-e9377bfb78ac": {
+    "watRegelt": "Versterking van lokale publieke media (regionale omroepen, lokale streekomroepen).",
+    "raaktJou": "Meer kwalitatieve regionale en lokale journalistiek over je gemeente en provincie. Voor inwoners van krimpregio's vooral merkbaar — betere lokale nieuwsvoorziening.",
+    "voorWie": [
+      "nieuwsconsumenten",
+      "lokale journalisten",
+      "gemeenten"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "4fda07fe-0af8-41f8-a8ea-e219aeb727f3": {
+    "watRegelt": "Gemeenten worden wettelijk verplicht een openbare bibliotheek aan te bieden.",
+    "raaktJou": "Gemeenten zonder eigen bieb moeten er een organiseren of aansluiten bij een regionale. Voor inwoners van kleinere gemeenten: gegarandeerde toegang tot een bibliotheek.",
+    "voorWie": [
+      "bibliotheekbezoekers",
+      "gemeenten",
+      "bibliotheken"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "e6f877e3-1c00-443b-b588-f4440943a74b": {
+    "watRegelt": "Wijzigingen in wetten voor primair en voortgezet onderwijs rond leerlingenregistratie en onderwijsdeelname.",
+    "raaktJou": "Voor ouders en scholen: aanpassing van administratieve regels rond inschrijving en verzuim. Praktisch effect vooral in scholen en bij DUO.",
+    "voorWie": [
+      "ouders",
+      "scholen",
+      "DUO"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "fb605e61-3e5d-484d-8c06-e505177be5b7": {
+    "watRegelt": "Archiefinstellingen krijgen meer ruimte om documenten met persoonsgegevens beschikbaar te stellen voor onderzoek.",
+    "raaktJou": "Voor (familie)onderzoekers en historici komen meer oude documenten beschikbaar. Voor mensen die in archieven voorkomen: hun gegevens worden sneller toegankelijk.",
+    "voorWie": [
+      "onderzoekers",
+      "historici",
+      "archieven"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "01abcc1e-92f1-4e98-97c2-4b67d2801ac2": {
+    "watRegelt": "Modernisering van de Wet educatie en beroepsonderwijs (mbo) — intrekken oude wet, vervangen door bijgewerkte versie.",
+    "raaktJou": "Voor mbo-studenten, docenten en scholen: heldere actuele kaders voor onderwijs, examens en stages. Praktisch effect vooral in scholen.",
+    "voorWie": [
+      "mbo-studenten",
+      "mbo-docenten",
+      "mbo-scholen"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "1a56637e-c0d7-48a7-83da-7ea1e593a398": {
+    "watRegelt": "Versterking van de positie van leerlingen, ouders en personeel in de medezeggenschap op scholen.",
+    "raaktJou": "Heb je kinderen op school of werk je in het onderwijs? Dan krijg je meer invloed op besluiten van het schoolbestuur — bijvoorbeeld over begroting, onderwijskwaliteit of fusie.",
+    "voorWie": [
+      "leerlingen",
+      "ouders",
+      "docenten",
+      "schoolbesturen"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "500a4c70-e114-44d0-b60d-a54d792d3a75": {
+    "watRegelt": "Strenger toezicht op de oprichting van niet-bekostigde (particuliere) scholen, mede n.a.v. zorgen rond informele scholen.",
+    "raaktJou": "Voor ouders die particulier onderwijs overwegen: meer kwaliteitswaarborgen. Doel is voorkomen dat scholen ontstaan die onvoldoende onderwijs of geen burgerschapsvorming geven.",
+    "voorWie": [
+      "ouders",
+      "particuliere scholen",
+      "inspectie"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "d7531f8e-f332-4cf5-8c10-87ac5eecb361": {
+    "watRegelt": "Regels voor onderwijs en onderzoek op universiteiten en hogescholen worden aangescherpt, onder andere rond internationalisering.",
+    "raaktJou": "Studenten kunnen merken dat sommige opleidingen minder vaak in het Engels worden gegeven. Buitenlandse studenten krijgen mogelijk meer toelatingsbeperkingen.",
+    "voorWie": [
+      "studenten",
+      "buitenlandse studenten",
+      "universiteiten"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "fcb67c29-3bc5-4057-89ba-9128630a0e90": {
+    "watRegelt": "Het verplicht eigen risico in de zorgverzekering gaat per 2027 omhoog.",
+    "raaktJou": "Iedereen met een Nederlandse zorgverzekering gaat meer zelf betalen bij zorgkosten. Mensen met chronische aandoeningen of veel zorggebruik voelen dit direct in de portemonnee.",
+    "voorWie": [
+      "alle volwassenen",
+      "chronisch zieken",
+      "zorgverzekeraars"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "8aaa3988-a348-4c11-ab08-4995b3cef00c": {
+    "watRegelt": "Tabaksverkoop wordt beperkt tot speciaalzaken — supermarkten, tankstations en bouwmarkten mogen geen sigaretten meer verkopen.",
+    "raaktJou": "Rokers moeten naar een tabakszaak voor hun sigaretten. Voor jongeren is het beoogde effect: minder makkelijke verleiding bij de boodschappen.",
+    "voorWie": [
+      "rokers",
+      "jongeren",
+      "supermarkten",
+      "tabakszaken"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "104bd893-4b39-4997-8c68-355620e80919": {
+    "watRegelt": "Strengere controle op leeftijd bij online verkoop van alcohol, plus regels voor kleine kansspelen in horeca.",
+    "raaktJou": "Bestel je drank online? Dan krijg je vaker een strenge leeftijdscheck. Cafés mogen onder voorwaarden een klein kansspel organiseren (bv. een loterij voor een goed doel).",
+    "voorWie": [
+      "online drankkopers",
+      "horeca",
+      "jongeren"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "9351a37f-dbc1-4106-aad4-a144e016b9c3": {
+    "watRegelt": "Familieleden mogen voor naasten een Wlz-indicatie (langdurige zorg) aanvragen.",
+    "raaktJou": "Heb je een ouder of partner die zelf geen indicatie kan aanvragen (bv. door dementie)? Dan kun jij dat voortaan formeel doen. Verlicht drempel om langdurige zorg te krijgen.",
+    "voorWie": [
+      "mantelzorgers",
+      "ouderen",
+      "mensen met dementie",
+      "CIZ"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "bb49eaab-9ff3-4043-aae4-9a871e95809f": {
+    "watRegelt": "Nieuwe medische beroepen (medisch hulpverlener acute zorg, klinisch fysicus) worden formeel erkend in de wet BIG.",
+    "raaktJou": "In de spoedzorg en ziekenhuizen werken nu erkende beroepsgroepen die voorheen geen formele status hadden. Voor patiënten betekent dit kwaliteits- en aansprakelijkheidsgaranties.",
+    "voorWie": [
+      "patiënten acute zorg",
+      "medisch hulpverleners",
+      "ziekenhuizen"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "58db2fa2-63b9-4222-9428-6a4b8e13900b": {
+    "watRegelt": "Implementatie van Europese regels voor grensoverschrijdende zorg en bijbehorende uitwisseling van medische gegevens.",
+    "raaktJou": "Krijg je medische zorg in een ander EU-land? Dan kan je dossier veiliger en sneller worden uitgewisseld. Privacywaarborgen worden hierbij Europees afgestemd.",
+    "voorWie": [
+      "EU-reizigers",
+      "expats",
+      "zorgverleners"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "0843bbd8-7cd4-4b5f-8f31-5c5a764a6a9a": {
+    "watRegelt": "Apothekers mogen digitale middelen (app, video) gebruiken om voorlichting te geven bij het uitgeven van medicijnen.",
+    "raaktJou": "Bij de apotheek krijg je voortaan vaker een uitleg via app of video — handig als je weinig tijd hebt, minder persoonlijk dan een gesprek.",
+    "voorWie": [
+      "medicijngebruikers",
+      "apothekers"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "20083470-0c0e-4a83-8c6a-025e7564d68d": {
+    "watRegelt": "Gemeenten krijgen meer ruimte om bij Wmo-voorzieningen een eigen bijdrage te vragen.",
+    "raaktJou": "Gebruik je gemeentelijke zorg of hulp (huishoudelijke hulp, hulpmiddelen, vervoer)? Je gemeente kan voor meer zaken een eigen bijdrage gaan vragen. Lokaal verschilt het sterk.",
+    "voorWie": [
+      "Wmo-gebruikers",
+      "ouderen",
+      "mensen met beperking",
+      "gemeenten"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "b7c6f355-8fd9-4c93-89d4-7de7a60ebf70": {
+    "watRegelt": "Digitale identificatie en authenticatie in de zorg en jeugdzorg worden gemoderniseerd.",
+    "raaktJou": "Inloggen bij je zorgverzekeraar, huisarts of jeugdzorg via DigiD of eHerkenning wordt veiliger en uniformer. Vooral een verbetering achter de schermen.",
+    "voorWie": [
+      "alle zorgconsumenten",
+      "DigiD-gebruikers",
+      "zorgverleners"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "44afdbc4-1ec4-4e55-83ee-3648807ff1ea": {
+    "watRegelt": "Strenger toezicht op de integriteit van bestuurders en eigenaren in de zorg, om fraude en zorgcowboys te weren.",
+    "raaktJou": "Voor patiënten en cliënten: minder kans dat je zorg krijgt van een aanbieder met fraudeverleden. Voor zorgaanbieders: zwaardere screening bij start of overname.",
+    "voorWie": [
+      "patiënten",
+      "cliënten jeugdzorg",
+      "zorgaanbieders",
+      "NZa"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "cda7a60a-6071-4e73-aa6b-08b1a9caef9f": {
+    "watRegelt": "Een nieuwe NOW/loonsubsidie-achtige regeling voor bedrijven om bij economische klappen werknemers in dienst te houden.",
+    "raaktJou": "Bij een volgende crisis kan je werkgever loonsubsidie krijgen om jou aan het werk te houden. Doel: minder massaontslagen, sneller herstel na schokken.",
+    "voorWie": [
+      "werknemers",
+      "werkgevers",
+      "UWV"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "43669e14-0a22-4728-af4b-8d59207aa550": {
+    "watRegelt": "In het tweede ziektejaar wordt re-integratie van zieke werknemers anders ingericht — minder verplichtingen voor de werkgever om bij eigen bedrijf te re-integreren.",
+    "raaktJou": "Ben je langer dan een jaar ziek? Dan wordt er sneller gekeken naar werk bij een andere werkgever in plaats van eindeloos passen in het eigen bedrijf. Bedoeld om mensen sneller weer aan het werk te helpen.",
+    "voorWie": [
+      "langdurig zieken",
+      "werkgevers",
+      "UWV",
+      "bedrijfsartsen"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "36dca8a6-4b59-4307-af45-ca10f38bf95f": {
+    "watRegelt": "Het afbouwpercentage van het kindgebonden budget gaat omhoog — vooral relevant bij scheidingen.",
+    "raaktJou": "Krijg je kindgebonden budget en heb je een hoger inkomen? Je toeslag bouwt sneller af. Vooral merkbaar voor gescheiden ouders met midden- of hoog inkomen.",
+    "voorWie": [
+      "gezinnen",
+      "alleenstaande ouders",
+      "Belastingdienst Toeslagen"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "29837620-23e2-464f-bddf-9ed27361fb6a": {
+    "watRegelt": "Verplichte basisverzekering tegen arbeidsongeschiktheid voor zzp'ers.",
+    "raaktJou": "Ben je zzp'er? Dan krijg je verplicht een AOV-achtige verzekering die je vangt als je arbeidsongeschikt wordt. Kost premie, maar geeft een vangnet dat er nu vaak niet is.",
+    "voorWie": [
+      "zzp'ers",
+      "freelancers",
+      "UWV"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "09bbccab-52bd-48cb-8894-dc8f8bf852ba": {
+    "watRegelt": "Aanpassingen rond kinderopvangtoeslag om uitvoering simpeler en eerlijker te maken.",
+    "raaktJou": "Ouders met kinderopvang merken hopelijk minder gedoe met de toeslag: minder terugvorderingen en duidelijkere regels. Effect afhankelijk van uitvoering.",
+    "voorWie": [
+      "ouders",
+      "kinderopvang",
+      "Belastingdienst Toeslagen"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "cc10ab36-06f8-4f41-b668-e572fee9e373": {
+    "watRegelt": "De compensatieregeling die werkgevers krijgen bij ontslag wegens langdurige ziekte wordt beperkt.",
+    "raaktJou": "Werkgevers krijgen niet altijd meer de volle transitievergoeding terug bij ontslag van een langdurig zieke. Kan invloed hebben op hoe snel werkgevers tot ontslag overgaan.",
+    "voorWie": [
+      "werkgevers",
+      "langdurig zieken",
+      "UWV"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "a9aa7f87-4671-44ee-8ca9-dea945955afa": {
+    "watRegelt": "Nieuwe vergunningplicht voor asbestwerkzaamheden, ter implementatie van Europese arbeidsregels.",
+    "raaktJou": "Voor bewoners en bedrijven met asbest: alleen gecertificeerde bedrijven mogen het verwijderen, mét vergunning. Hogere veiligheid, mogelijk iets hogere kosten.",
+    "voorWie": [
+      "huiseigenaren",
+      "asbestsaneerders",
+      "werknemers bouw"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "28d49d29-d114-4388-bce7-301935085371": {
+    "watRegelt": "UWV, SVB en gemeenten moeten proactief mensen wijzen op uitkeringen en regelingen waar ze recht op hebben.",
+    "raaktJou": "Krijg jij een uitkering of toeslag? Dan kan UWV of de gemeente jou voortaan benaderen als ze zien dat je ook ergens anders recht op hebt. Doel: niet-gebruik van regelingen tegengaan.",
+    "voorWie": [
+      "uitkeringsgerechtigden",
+      "AOW'ers",
+      "minima",
+      "UWV",
+      "SVB"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "9b0b11f3-92c6-4c84-a688-7658833ef000": {
+    "watRegelt": "Handhaving van bijstand en uitkeringen wordt menselijker — proportioneler en met minder automatische sancties.",
+    "raaktJou": "Maak je een fout in je bijstand (bv. boodschappen krijgen van familie)? De sanctie wordt voortaan proportioneel, geen automatische volledige terugvordering meer. Direct gevolg van de toeslagenaffaire-lessen.",
+    "voorWie": [
+      "bijstandsgerechtigden",
+      "gemeenten",
+      "UWV"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "fab3ce44-961f-4984-9ae4-bb38b3cec20e": {
+    "watRegelt": "Nederland zegt een verouderd deel van een Europees sociaal zekerheidsverdrag uit 1964 op.",
+    "raaktJou": "Geen directe gevolgen voor burgers — moderne sociale zekerheidsregels gelden al via andere verdragen. Vooral administratieve opschoning.",
+    "voorWie": [
+      "beleidsambtenaren"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "06187127-439e-4762-a741-bb2d4b4aa51e": {
+    "watRegelt": "Jaarlijkse fiscale aanpassingen specifiek voor Bonaire, Sint Eustatius en Saba (BES-eilanden).",
+    "raaktJou": "Voor inwoners van de BES-eilanden: kleine aanpassingen in belastingen. Op het vasteland niet merkbaar.",
+    "voorWie": [
+      "inwoners BES-eilanden",
+      "ondernemers BES"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "57949795-a750-4d06-b18b-fb361e944d04": {
+    "watRegelt": "Jaarlijkse 'verzamelwet' met kleine technische aanpassingen in belastingwetten voor 2027.",
+    "raaktJou": "Veel kleine technische correcties: weinig burgers merken hier individueel iets van. Belastingadviseurs en de Belastingdienst werken er volop mee.",
+    "voorWie": [
+      "belastingadviseurs",
+      "Belastingdienst",
+      "ondernemers"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "ce857a50-5aaa-4dfe-a02a-4f30297608a7": {
+    "watRegelt": "Implementatie van Europese regels voor accountants en het financieel toezicht op bedrijven.",
+    "raaktJou": "Voor de meeste burgers indirect: bedrijven moeten hun financiën transparanter rapporteren. Voor beleggers en spaarders betekent dit betere informatie over banken en grote bedrijven.",
+    "voorWie": [
+      "beleggers",
+      "accountants",
+      "grote bedrijven",
+      "AFM"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "3f931a5b-d304-47d3-a11b-e53934b1d611": {
+    "watRegelt": "Het 'partnerbegrip' voor toeslagen wordt vereenvoudigd — duidelijker wanneer twee mensen samen één toeslagpartner zijn.",
+    "raaktJou": "Maakt het makkelijker om te begrijpen of je voor de Belastingdienst als partner geldt — wat invloed heeft op zorgtoeslag, huurtoeslag, kindgebonden budget. Voorkomt fouten en terugvorderingen.",
+    "voorWie": [
+      "toeslag-ontvangers",
+      "samenwoners",
+      "Belastingdienst"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "d383b3f9-84a7-48df-8de4-815cddde1481": {
+    "watRegelt": "Europese regels die het makkelijker maken voor kleine bedrijven om aandelen naar de beurs te brengen.",
+    "raaktJou": "Niet direct merkbaar voor consumenten. Het mkb krijgt makkelijker toegang tot kapitaal via de beurs; beleggers krijgen meer keuze in kleinere bedrijven.",
+    "voorWie": [
+      "mkb",
+      "beleggers",
+      "AFM"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "efb039ec-e01a-4d44-a109-5c9e962f2ad6": {
+    "watRegelt": "Implementatie van een herziening van Europese regels voor beleggingsdiensten (MiFID II).",
+    "raaktJou": "Beleg je via een broker of bank? Dan veranderen sommige informatieverplichtingen en kostenrapportages. Doel: meer transparantie over wat je betaalt.",
+    "voorWie": [
+      "beleggers",
+      "banken",
+      "vermogensbeheerders"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "b2eb6770-8515-4cd6-926b-92d28c074250": {
+    "watRegelt": "Bescherming van consumenten bij financiële producten wordt versterkt — bv. transparantere kosten en informatieplichten.",
+    "raaktJou": "Sluit je een hypotheek, lening of belegging af? Dan krijg je duidelijker overzicht van kosten en risico's. Misleidende informatie wordt aangepakt.",
+    "voorWie": [
+      "consumenten",
+      "banken",
+      "AFM"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "5da1c987-6884-4968-9901-0c3ae6e7fc1b": {
+    "watRegelt": "Bijzondere btw-regeling voor ondernemers die digitale diensten leveren aan ondernemers in andere EU-landen.",
+    "raaktJou": "Vooral relevant voor zzp'ers en bedrijven in IT, design, marketing die EU-klanten hebben. Administratieve aanpassing in hoe je btw afdraagt.",
+    "voorWie": [
+      "zzp'ers met EU-klanten",
+      "online dienstverleners"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "c03956d0-7beb-4fb7-90e9-0b967e3b849b": {
+    "watRegelt": "Versterking van bankentoezicht: bestuurders en risicobeheer bij banken worden strenger gecontroleerd.",
+    "raaktJou": "Voor spaarders en bankklanten: banken worden beter bestuurd en hun risico's beter beheerd. Doel: een nieuwe bankencrisis voorkomen.",
+    "voorWie": [
+      "spaarders",
+      "banken",
+      "DNB"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "abf901b1-464a-41f2-8f1c-62b00481875e": {
+    "watRegelt": "Banken moeten periodiek rapporteren over hun hypotheekportefeuille aan de toezichthouder.",
+    "raaktJou": "Voor huizenkopers en huiseigenaren niet direct merkbaar. De toezichthouder krijgt beter inzicht in risico's op de hypotheekmarkt — vroege waarschuwing bij oververhitting.",
+    "voorWie": [
+      "DNB",
+      "banken"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "b95b888d-64b7-4546-8d1d-2c8d4dbb152b": {
+    "watRegelt": "Bedrijven die meedoen aan een aanbesteding van de overheid krijgen sterkere mogelijkheden om een onterecht verloren aanbesteding aan te vechten.",
+    "raaktJou": "Voor mkb en bouwbedrijven die werk voor de overheid willen doen: eerlijker speelveld, minder oneerlijke gunningen. Voor burgers: indirect betere kwaliteit van overheidsopdrachten.",
+    "voorWie": [
+      "mkb",
+      "bouwbedrijven",
+      "overheidsinkopers"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "39772ddc-ff6d-473f-a938-2df287de892b": {
+    "watRegelt": "Aanpassing van de regels die voorkomen dat overheidsbedrijven oneerlijk concurreren met private partijen.",
+    "raaktJou": "Voor ondernemers: eerlijker concurrentie als de overheid op hun markt actief is (bv. gemeentelijk zwembad versus particuliere sportschool).",
+    "voorWie": [
+      "ondernemers",
+      "ACM",
+      "gemeenten"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "8a9006bf-d799-4c63-96d6-80966b8b3a8b": {
+    "watRegelt": "Modernisering van de Postwet: het bezorgnetwerk van PostNL wordt anders gereguleerd en toegankelijker voor concurrenten.",
+    "raaktJou": "Op termijn mogelijk meer keus tussen postbezorgers, en aandacht voor betaalbare bezorging in krimpregio's. Op dit moment niet snel merkbaar voor consumenten.",
+    "voorWie": [
+      "postgebruikers",
+      "PostNL",
+      "postbedrijven",
+      "ACM"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "14767d8c-7a25-4e0f-856f-dc9bf4da73d2": {
+    "watRegelt": "Brandstofleveranciers worden verplicht jaarlijks een minimum aandeel groene waterstof te leveren ter vervanging van grijs (fossiel) waterstof in industrie en transport.",
+    "raaktJou": "Voor autorijders en consumenten niet direct merkbaar. Wel: investeringen in waterstof-infrastructuur, mogelijk hogere brandstofkosten op termijn, minder CO₂-uitstoot.",
+    "voorWie": [
+      "industrie",
+      "transportbedrijven",
+      "energiebedrijven"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "6f03e88d-a03d-4ef9-8604-456a8579324c": {
+    "watRegelt": "Strengere regels tegen methaanlekkage in de olie- en gassector, ter uitvoering van een Europese verordening.",
+    "raaktJou": "Niet direct merkbaar voor consumenten. Gas- en olieproducenten moeten beter meten en lekkages stoppen — relevant voor klimaat (methaan is een sterk broeikasgas).",
+    "voorWie": [
+      "energiebedrijven",
+      "klimaat",
+      "omwonenden"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "72425a38-d5c3-4b10-9d34-8a3796b03564": {
+    "watRegelt": "Implementatie van een herziene EU-richtlijn voor windenergie op zee.",
+    "raaktJou": "Voor de meeste burgers indirect: snellere uitrol van windparken op zee, op termijn meer Nederlandse stroom uit wind. Visserij en scheepvaart krijgen aangepaste gebieden.",
+    "voorWie": [
+      "energiebedrijven",
+      "vissers",
+      "klimaat"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "44c4ad6f-c3af-4b31-b4e9-fd1414d4719d": {
+    "watRegelt": "Implementatie van Europese energie-efficiëntierichtlijn: bedrijven en gebouweigenaren moeten energie besparen.",
+    "raaktJou": "Voor huiseigenaren betekent dit waarschijnlijk strengere isolatie- en energie-eisen bij verbouw of verkoop. Voor bedrijven: verplichte energiebesparing.",
+    "voorWie": [
+      "huiseigenaren",
+      "verhuurders",
+      "bedrijven"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "7b4fcce5-5d44-4de8-b3e7-7d9df9a89784": {
+    "watRegelt": "De kerncentrale Borssele mag langer openblijven door wettelijke verlenging van de bedrijfsduur.",
+    "raaktJou": "Borssele blijft de komende jaren stroom leveren — bijdrage aan stabiele energiemix. Omwonenden en milieuorganisaties zijn verdeeld over veiligheid en kernafval.",
+    "voorWie": [
+      "omwonenden Borssele",
+      "energieconsumenten",
+      "EPZ"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "6416c76b-0dc8-4aed-b543-4d6a6d2e9615": {
+    "watRegelt": "Je rijbewijs structureel digitaal kunnen aanvragen in plaats van fysiek bij de gemeente.",
+    "raaktJou": "Geen verplicht loketbezoek meer voor een nieuw of vernieuwd rijbewijs — voordat je hem ophaalt regel je alles online. Scheelt tijd en moeite.",
+    "voorWie": [
+      "rijbewijshouders",
+      "gemeenten",
+      "RDW"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "c133d425-26b0-45eb-bae9-34d135273ac5": {
+    "watRegelt": "Implementatie van een Europese verordening over de internationale overbrenging van afvalstoffen.",
+    "raaktJou": "Voor consumenten niet direct merkbaar. Belangrijk voor recyclingbedrijven en de aanpak van illegale afvalexport, vooral naar buiten Europa.",
+    "voorWie": [
+      "recyclingbedrijven",
+      "afvalvervoerders",
+      "ILT"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "5d8285bd-0a5f-4773-9d4a-b11ee358f4e8": {
+    "watRegelt": "Implementatie van de aangescherpte EU-luchtkwaliteitsrichtlijn — strengere normen voor fijnstof en stikstofdioxide.",
+    "raaktJou": "Op plekken met slechte lucht (snelwegen, havens, industriegebied) komt meer druk om de luchtkwaliteit te verbeteren. Voor inwoners daar: betere gezondheid op termijn.",
+    "voorWie": [
+      "omwonenden snelwegen/industrie",
+      "gemeenten",
+      "RIVM"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "0805b24c-6f6e-4199-9b82-a9e27eee8e07": {
+    "watRegelt": "Voor luchtvaartdiensten op de BES-eilanden komt er een grondslag voor 'openbare dienstverplichting' (subsidie om vluchten naar afgelegen plekken te garanderen).",
+    "raaktJou": "Voor inwoners van Saba en Statia: belangrijker — bereikbaarheid via vliegtuig kan beter geborgd worden. Op het vasteland niet merkbaar.",
+    "voorWie": [
+      "inwoners BES-eilanden",
+      "luchtvaartmaatschappijen"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "61370af5-21d1-4b76-883b-2d04da66db47": {
+    "watRegelt": "Implementatie van een herziene EU-richtlijn over energiebelasting in relatie tot milieu en klimaat.",
+    "raaktJou": "Op termijn waarschijnlijk: vervuilende energie duurder, schone energie gunstiger belast. Effect afhankelijk van de uitwerking — voor huishoudens en bedrijven beide merkbaar.",
+    "voorWie": [
+      "energieconsumenten",
+      "industrie",
+      "Belastingdienst"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "b6287446-aae2-4575-a57a-dde9c6bf745a": {
+    "watRegelt": "Goedkeuring van een luchtvaartverdrag tussen Nederland en Ivoorkust.",
+    "raaktJou": "Maakt directe vluchten tussen Nederland en Ivoorkust mogelijk. Niet veel reizigers, maar relevant voor handel en familiebanden.",
+    "voorWie": [
+      "reizigers",
+      "luchtvaartmaatschappijen"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "3ac776d9-281c-4455-8d20-6c3edc2ce9d9": {
+    "watRegelt": "Een volledig nieuwe Spoorwegwet die de oude vervangt: regels voor aanleg, beheer, toegang en veiligheid van het spoor.",
+    "raaktJou": "Op termijn: betere structuur voor wat ProRail, NS en andere vervoerders moeten doen. Voor reizigers: hopelijk meer betrouwbaarheid en betere toegankelijkheid van stations.",
+    "voorWie": [
+      "treinreizigers",
+      "ProRail",
+      "NS",
+      "vervoerders"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "154f3049-e692-406b-8b6b-0b0d08036949": {
+    "watRegelt": "Goedkeuring van een uitgebreid luchtvaartverdrag tussen de EU en de landen van Zuidoost-Azië (ASEAN).",
+    "raaktJou": "Maakt meer en makkelijker vluchten tussen Europa en landen als Vietnam, Indonesië en Thailand mogelijk. Voor reizigers en handel positief.",
+    "voorWie": [
+      "reizigers",
+      "luchtvaartmaatschappijen",
+      "exporteurs"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "deba7415-f517-43c0-8699-b79549a62807": {
+    "watRegelt": "Aanpassing van regels voor geluidsnormen en handhaving rondom Schiphol en andere luchthavens.",
+    "raaktJou": "Voor omwonenden van Schiphol: aangescherpte handhaving van geluidsoverlast. Mogelijk minder nachtvluchten of strenger beheer van vluchtbewegingen.",
+    "voorWie": [
+      "omwonenden Schiphol",
+      "luchtvaartmaatschappijen",
+      "ILT"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "49e26b07-6b48-4c4e-8a6a-4ec199e187e7": {
+    "watRegelt": "Hervorming van hoe ProRail (spoorbeheerder) bestuurd wordt en verantwoording aflegt aan de minister.",
+    "raaktJou": "Treinreizigers kunnen op termijn beter geïnformeerde keuzes verwachten van ProRail over onderhoud en investeringen. Voor de meeste reizigers niet direct zichtbaar.",
+    "voorWie": [
+      "treinreizigers",
+      "ProRail",
+      "ministerie I&W"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "d9181f69-b075-4247-9caa-0a9cd7709f82": {
+    "watRegelt": "Implementatie van Europese regels voor kwaliteitsaanduidingen (BOB, BGA) van landbouwproducten zoals kaas en wijn.",
+    "raaktJou": "Boodschappen met 'beschermde oorsprong' (zoals 'Boerenkaas' of streekproducten) krijgen sterker juridisch fundament — minder kans op nepproducten.",
+    "voorWie": [
+      "consumenten",
+      "boeren met streekproducten",
+      "supermarkten"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "a58e0bdf-515a-4e35-ac2e-78fcd6a33687": {
+    "watRegelt": "Hogere maximale boetes voor overtredingen door vissers, ter uitvoering van Europese visserijcontrole.",
+    "raaktJou": "Voor vissers: zwaardere sancties bij overtreden van quota of regels. Voor consumenten: indirect betere bescherming van visstanden.",
+    "voorWie": [
+      "vissers",
+      "consumenten",
+      "NVWA"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "cea988a5-aea0-4389-a417-f9d2cb1f648a": {
+    "watRegelt": "Sneller bekendmaken en in werking laten treden van noodmaatregelen tegen plantenziekten en plagen.",
+    "raaktJou": "Bij een plantenziekte-uitbraak (denk aan kastanjebloedingziekte, processierups) kan de overheid sneller ingrijpen. Voor tuinders en boeren mogelijk acute maatregelen, voor burgers beperkt zichtbaar.",
+    "voorWie": [
+      "boeren",
+      "tuinders",
+      "NVWA"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "5e43bd8b-32b8-4fa3-8465-6d10570181bf": {
+    "watRegelt": "Goedkeuring van een verdrag uit 1998 met het VK over samenwerking in de defensie-industrie.",
+    "raaktJou": "Niet merkbaar voor burgers. Vooral relevant voor defensiebedrijven die met Britse partners samenwerken. Erg oude formaliteit.",
+    "voorWie": [
+      "defensie-industrie"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "00393a26-6b6b-4440-bcf9-18514f179143": {
+    "watRegelt": "Goedkeuring van een internationaal verdrag over de schadevergoedingscommissie voor Oekraïne.",
+    "raaktJou": "Voor Oekraïners die schade leden door de Russische invasie: een internationaal mechanisme om vergoeding te krijgen. Voor Nederlandse burgers: politiek symbolisch en juridisch belangrijk, geen direct effect.",
+    "voorWie": [
+      "Oekraïners",
+      "internationale rechtsorde"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "168bcd2b-520f-4cab-b0a9-611fdb79bb18": {
+    "watRegelt": "Een nieuwe overzichtswet voor het uitvoeren van internationale sancties (bv. tegen Rusland of Iran).",
+    "raaktJou": "Voor de meeste burgers indirect: helderdere regels voor banken en bedrijven over wat ze wel en niet mogen met gesanctioneerde personen of landen. Zwartere lijsten worden makkelijker te handhaven.",
+    "voorWie": [
+      "banken",
+      "exporteurs",
+      "Belastingdienst"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "250c0324-c18e-46f3-a31d-f41b2ffe7db1": {
+    "watRegelt": "Goedkeuring van een partnerschapsovereenkomst tussen de EU en de landen in Afrika, het Caribisch gebied en de Stille Oceaan ('Samoa-akkoord').",
+    "raaktJou": "Voor Nederlandse burgers indirect: bepaalt hoe Nederland samenwerkt met 79 ontwikkelingslanden op handel, klimaat en migratie. Vervangt het oude Cotonou-verdrag.",
+    "voorWie": [
+      "ontwikkelingsorganisaties",
+      "exporteurs",
+      "klimaat"
+    ],
+    "bronHash": "manual-batch-1",
+    "gegenereerdOp": "2026-05-18T00:00:00Z"
+  },
+  "c50aa96c-5ffb-4b18-b0b6-3788513755c9": {
+    "watRegelt": "Gemeenten mogen vluchtelingen met een verblijfsvergunning niet meer met voorrang aan een sociale huurwoning helpen.",
+    "raaktJou": "Sta je op de wachtlijst voor sociale huur? Je opschuift iets makkelijker. Vluchtelingen blijven langer in een asielzoekerscentrum.",
+    "voorWie": [
+      "woningzoekenden",
+      "vluchtelingen",
+      "gemeenten"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "56cc4a04-48c0-42b2-9fb1-a4911a71faa6": {
+    "watRegelt": "De Huurcommissie krijgt simpelere procedures, zodat huurgeschillen sneller worden afgehandeld.",
+    "raaktJou": "Heb je ruzie met je verhuurder over de huurprijs? De Huurcommissie gaat sneller een uitspraak doen.",
+    "voorWie": [
+      "huurders",
+      "verhuurders"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "40a28216-64b9-4e5a-8a7a-d6cc9f56ce99": {
+    "watRegelt": "Het systeem waarmee de huurprijs van een woning wordt berekend wordt aangepast aan deze tijd.",
+    "raaktJou": "Voor huurders kan de toegestane maximumhuur veranderen, vooral in steden met krappe woningmarkt.",
+    "voorWie": [
+      "huurders",
+      "verhuurders"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "5bb3b98a-8bad-402d-a255-ca8e8d855bce": {
+    "watRegelt": "Drinkwaterbedrijven gaan informatie aanleveren over wat er onder de grond zit (bv. kabels, leidingen).",
+    "raaktJou": "Bij het graven (bouw, verbouw, tuin) is duidelijker waar leidingen lopen — minder kans dat de waterleiding wordt geraakt.",
+    "voorWie": [
+      "bouwbedrijven",
+      "huiseigenaren",
+      "drinkwaterbedrijven"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "aaf89620-6b2d-4858-9a70-a2354ea58d8d": {
+    "watRegelt": "Eerdere versie van de Wet versterking regie volkshuisvesting — geeft het Rijk meer macht om gemeenten te dwingen woningen te bouwen.",
+    "raaktJou": "Voor woningzoekenden zou dit op termijn meer aanbod betekenen. Zie ook de nieuwere versie van deze wet.",
+    "voorWie": [
+      "woningzoekenden",
+      "gemeenten"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "a4a66577-ff79-40cd-bf36-81e1260d3570": {
+    "watRegelt": "Extra maatregelen om gedupeerden van de aardbevingen in Groningen sneller en eerlijker schadevergoeding te geven.",
+    "raaktJou": "Voor Groningers met aardbevingsschade: snellere afhandeling, minder bureaucratie. Voor de rest van Nederland niet direct merkbaar.",
+    "voorWie": [
+      "Groningers",
+      "schade-eigenaren",
+      "IMG"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "c63c942f-0d27-4178-b283-fec619907bb4": {
+    "watRegelt": "Veiligheidsonderzoeken voor banen bij gevoelige overheidsinstellingen kunnen op één plek tegelijk worden afgegeven.",
+    "raaktJou": "Wil je werken bij een ministerie, AIVD of luchthaven? De veiligheidsscreening wordt slimmer geregeld.",
+    "voorWie": [
+      "sollicitanten gevoelige functies",
+      "AIVD"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "6947f960-ebaa-4aab-98ba-2bccbb77459d": {
+    "watRegelt": "De Nederlandse identiteitskaart wordt los van het paspoort geregeld in een eigen wet.",
+    "raaktJou": "Niet direct zichtbaar voor de burger. Voor de uitgifte bij de gemeente verandert er administratief wat.",
+    "voorWie": [
+      "ID-kaart aanvragers",
+      "gemeenten"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "3b67d6aa-12ed-4718-b15a-4dc5d847fc97": {
+    "watRegelt": "Een nieuwe, aparte wet voor de Nederlandse identiteitskaart — los van het paspoort.",
+    "raaktJou": "De ID-kaart krijgt eigen regels. Voor de burger meestal niet merkbaar bij aanvraag.",
+    "voorWie": [
+      "ID-kaart aanvragers",
+      "gemeenten"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "3f298b7d-a86e-427f-92e3-0d67b8e101c1": {
+    "watRegelt": "Hogere straffen voor mensen die volmachtstemmen ronselen (anderen overtuigen of dwingen hun stem aan jou te geven).",
+    "raaktJou": "Voor eerlijke verkiezingen — zorgt dat niemand jouw stem zomaar mag invullen. Voor 99% van de kiezers niet merkbaar.",
+    "voorWie": [
+      "kiezers",
+      "verkiezingen",
+      "politie"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "4a634bc1-c706-4edd-bff7-b8f82a052193": {
+    "watRegelt": "Kleine reparaties in de wet rond Groningse aardbevingsschade.",
+    "raaktJou": "Onduidelijkheden uit de eerdere wet worden opgelost. Voor Groningers met schadeclaims: iets soepelere afhandeling.",
+    "voorWie": [
+      "Groningers",
+      "IMG"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "0345e941-5952-4353-998c-b2c90026293a": {
+    "watRegelt": "Aanpassingen in regels voor gemeenten, provincies en waterschappen.",
+    "raaktJou": "Voor het meeste niet zichtbaar. Vooral technische aanpassingen voor ambtenaren.",
+    "voorWie": [
+      "gemeenten",
+      "provincies",
+      "waterschappen"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "29cf3214-5a6e-4ff2-883b-c15aa1fc007f": {
+    "watRegelt": "Regels die het mogelijk maken een verkiezing te houden tijdens een epidemie (denk aan corona).",
+    "raaktJou": "Mocht er weer een epidemie zijn, dan kan er toch gestemd worden — via vervroegd stemmen of extra stembureaus.",
+    "voorWie": [
+      "kiezers",
+      "gemeenten"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "0d270222-ec60-4e8b-a649-8ef5fd8b7f1e": {
+    "watRegelt": "Een verdrag met Marokko zodat verdachten van misdrijven uitgewisseld kunnen worden.",
+    "raaktJou": "Voor de meeste mensen niet merkbaar. Voor verdachten die naar Marokko zijn gevlucht: zij kunnen voortaan terug naar Nederland voor berechting.",
+    "voorWie": [
+      "verdachten",
+      "politie",
+      "OM"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "81f1db9b-685b-4933-a706-1d13f23b0425": {
+    "watRegelt": "Zwaardere straffen voor mensen die meerdere keren een ernstig verkeersmisdrijf plegen.",
+    "raaktJou": "Bekijk je veelvuldig roekeloos rijden, gevaarlijke inhalingen of rijden onder invloed? Bij herhaling volgt nu zwaardere straf.",
+    "voorWie": [
+      "recidiverende verkeersovertreders",
+      "weggebruikers"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "5589414e-83bd-49a3-b63c-5963c224c45f": {
+    "watRegelt": "Een 'alcoholmeter' (enkelband met alcoholmeting) kan worden ingezet om te controleren of iemand alcohol gebruikt.",
+    "raaktJou": "Voor mensen met een alcoholverbod als straf: zij krijgen een enkelband die alcoholgebruik meet. Houdt de straf controleerbaar.",
+    "voorWie": [
+      "veroordeelden met alcoholverbod",
+      "reclassering"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "4ce02c57-1cce-4f21-b5e7-d53b6f94546e": {
+    "watRegelt": "Hogere maximum­straffen voor mensensmokkelaars en uitbuiting van migranten.",
+    "raaktJou": "Voor de meeste burgers niet direct merkbaar. Pakkans en straffen voor smokkelaars worden hoger.",
+    "voorWie": [
+      "mensensmokkelaars",
+      "politie",
+      "OM"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "8a45b949-e225-41d2-a2fb-8836fa38fbb8": {
+    "watRegelt": "Regels voor draagmoederschap: hoe het juridisch geregeld is wie de ouders zijn van het kind.",
+    "raaktJou": "Voor ouders die een kind via een draagmoeder krijgen: duidelijke regels rond ouderschap. Voorkomt langdurige procedures.",
+    "voorWie": [
+      "wensouders",
+      "draagmoeders",
+      "kinderen"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "6948f169-d403-43d4-859f-91b85a5f4f40": {
+    "watRegelt": "Een tijdelijke wet die nieuwe vormen van strafproces uitprobeert wordt verlengd en aangepast.",
+    "raaktJou": "Voor de meeste mensen niet zichtbaar. Voor verdachten en advocaten: sommige proefnemingen in strafzaken gaan door.",
+    "voorWie": [
+      "verdachten",
+      "advocaten",
+      "rechters"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "5b7698e5-fe8a-4f3f-bedc-1292895d9177": {
+    "watRegelt": "Belangrijke bedrijven (energie, banken, ziekenhuizen, drinkwater) moeten beter beschermd zijn tegen aanslagen, brand of stroomuitval.",
+    "raaktJou": "Indirect: minder kans dat essentiële diensten uitvallen door incidenten. De bedrijven krijgen strengere veiligheidseisen.",
+    "voorWie": [
+      "consumenten",
+      "essentiële bedrijven",
+      "overheid"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "3f68c835-c55a-48dd-8115-34c7bacb969d": {
+    "watRegelt": "Belangrijke bedrijven en organisaties moeten zich beter beschermen tegen hackers en cyberaanvallen (NIS2-richtlijn).",
+    "raaktJou": "Indirect: jouw bank, energiebedrijf en ziekenhuis worden beter beveiligd tegen hacks. Bedrijven krijgen meer regels en boetes bij overtreding.",
+    "voorWie": [
+      "consumenten",
+      "bedrijven",
+      "overheid"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "8492dd9c-f47b-4951-a73f-b6490e802171": {
+    "watRegelt": "Vervoersdocumenten (cognossementen) voor zeevracht mogen voortaan digitaal in plaats van op papier.",
+    "raaktJou": "Niet merkbaar voor consumenten. Voor de logistiek- en havensector: sneller en goedkoper papierwerk.",
+    "voorWie": [
+      "havens",
+      "transportbedrijven"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "2bbbff95-b494-4fe6-991b-3632085cbe0f": {
+    "watRegelt": "Vastleggen waar Europese strafregistergegevens precies voor gebruikt mogen worden.",
+    "raaktJou": "Voor de meeste mensen niet merkbaar. Beschermt jouw oude strafblad tegen onterecht gebruik door andere EU-landen.",
+    "voorWie": [
+      "mensen met strafblad",
+      "politie",
+      "OM"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "bdbd8d6b-fbba-4992-8d40-d620ff1f8489": {
+    "watRegelt": "Kleine technische correcties in wetten van Justitie en Asiel.",
+    "raaktJou": "Voor burgers niet zichtbaar. Vooral juridische opschoning.",
+    "voorWie": [
+      "juristen",
+      "ambtenaren"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "ca3105cf-9512-494f-88ec-2f3595b3a3c4": {
+    "watRegelt": "Een nieuw, modern wetboek voor strafvordering wordt stap voor stap vastgesteld.",
+    "raaktJou": "Voor verdachten en slachtoffers worden de regels in strafzaken duidelijker en moderner. Geleidelijk effect over de komende jaren.",
+    "voorWie": [
+      "verdachten",
+      "slachtoffers",
+      "advocaten"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "75e72aa7-c7c2-4041-8c0f-1dfd9bdc6d1b": {
+    "watRegelt": "Extra maatregelen tegen criminele bendes vanuit de gevangenis. Aangepaste versie van een eerdere wet.",
+    "raaktJou": "Niet direct merkbaar. Beoogd: voorkomen dat zware criminelen vanuit hun cel hun bende blijven aansturen.",
+    "voorWie": [
+      "gevangenen",
+      "DJI",
+      "OM"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "dfd7cbd3-9f90-4b91-8be6-561de8dc3ee6": {
+    "watRegelt": "Het nieuwe Europese asiel- en migratiepact wordt in Nederland ingevoerd.",
+    "raaktJou": "Strenger en sneller asielproces, betere registratie aan de Europese buitengrens. Voor asielzoekers: snellere uitkomst, vaker een 'nee'.",
+    "voorWie": [
+      "asielzoekers",
+      "IND",
+      "gemeenten"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "1ddfaa87-c8be-4c91-b402-1e3ee3ceaf06": {
+    "watRegelt": "De IND mag voortaan altijd vingerafdrukken en gezichtsfoto's van vreemdelingen blijven verzamelen.",
+    "raaktJou": "Voor mensen die asiel zoeken of zonder geldige papieren in Nederland zijn: hun biometrie wordt structureel vastgelegd.",
+    "voorWie": [
+      "asielzoekers",
+      "vreemdelingen",
+      "IND"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "65a6dcc4-365e-482a-aea0-b4bd1200e73b": {
+    "watRegelt": "Aanpassingen om de asielketen (IND, COA, gemeenten) te ontlasten.",
+    "raaktJou": "Voor asielzoekers: snellere maar krappere procedures. Voor gemeenten: meer ruimte om asielopvang te organiseren.",
+    "voorWie": [
+      "asielzoekers",
+      "IND",
+      "COA",
+      "gemeenten"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "5ac89466-e75a-489d-a74e-217222177483": {
+    "watRegelt": "Er komen twee soorten asielstatus (waaronder een minder sterke 'subsidiair'), en familieleden mogen minder makkelijk naar Nederland komen.",
+    "raaktJou": "Voor asielzoekers: minder rechten dan voorheen, vaker een tijdelijke status. Voor reguliere burgers niet merkbaar.",
+    "voorWie": [
+      "asielzoekers",
+      "familieleden van statushouders",
+      "IND"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "e9d55293-84d0-4ebc-8752-d9b1bb1d2d75": {
+    "watRegelt": "Maatregelen om de instroom van asielzoekers te beperken en procedures te versnellen.",
+    "raaktJou": "Voor asielzoekers: snellere afhandeling, vaker afgewezen. Voor gemeenten met opvang: minder druk gehoopt.",
+    "voorWie": [
+      "asielzoekers",
+      "IND",
+      "gemeenten"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "ba8ecb9a-6d65-407c-9238-150ca6a4ac53": {
+    "watRegelt": "Het bedrag dat de publieke omroep (NPO) jaarlijks van het Rijk krijgt wordt aangepast.",
+    "raaktJou": "Voor kijkers/luisteraars van NPO: invloed op het aanbod aan programma's en hoeveel reclame er nodig is.",
+    "voorWie": [
+      "NPO-kijkers",
+      "NPO",
+      "media"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "fee09353-b395-41c5-bb3e-2f29ee0c3189": {
+    "watRegelt": "Schoonmaak van slordigheden en typfouten in onderwijswetten.",
+    "raaktJou": "Voor burgers niet merkbaar. Puur tekstcorrectie.",
+    "voorWie": [
+      "ambtenaren OCW"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "da44d052-e73e-4d32-afc9-ebfb1c8b9174": {
+    "watRegelt": "Aanpassingen in wetten voor basis- en voortgezet onderwijs en BES-onderwijs.",
+    "raaktJou": "Voor ouders en leraren: technische aanpassingen. Geen grote zichtbare veranderingen.",
+    "voorWie": [
+      "ouders",
+      "leerlingen",
+      "scholen"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "123d3dd5-0334-4cbd-a0ad-8aeb0ad02cfa": {
+    "watRegelt": "Gemeenten en scholen moeten beter plannen welke schoolgebouwen ze bouwen en onderhouden.",
+    "raaktJou": "Voor ouders en leerlingen: hopelijk betere, gezondere schoolgebouwen (minder schimmel, ventilatie, isolatie).",
+    "voorWie": [
+      "leerlingen",
+      "scholen",
+      "gemeenten"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "64c60f52-374f-4434-a9fc-977f738789eb": {
+    "watRegelt": "De huidige licenties van de publieke omroepen (NPO) worden met twee jaar verlengd.",
+    "raaktJou": "Geen directe verandering. NPO en regionale omroepen mogen 2 jaar langer doorgaan voordat er nieuwe afspraken komen.",
+    "voorWie": [
+      "NPO",
+      "regionale omroepen"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "99c33f64-2d29-4ea8-9eea-be143160fd9d": {
+    "watRegelt": "Mbo-opleidingen moeten beter aansluiten op wat werkgevers nu echt nodig hebben.",
+    "raaktJou": "Voor mbo-studenten: betere kans op werk na de opleiding. Voor werkgevers: medewerkers met passender skills.",
+    "voorWie": [
+      "mbo-studenten",
+      "werkgevers",
+      "mbo-scholen"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "149b7929-69d4-410c-b4a1-986e1d8b1354": {
+    "watRegelt": "Mbo-studenten krijgen betere begeleiding bij stages en bij de overstap naar werk.",
+    "raaktJou": "Mbo'ers krijgen meer hulp om een stageplek te vinden — vooral belangrijk voor studenten met een migratieachtergrond, die vaak vaker worden afgewezen.",
+    "voorWie": [
+      "mbo-studenten",
+      "stagebedrijven"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "9f22524e-f4da-4397-8e73-feb289078ef7": {
+    "watRegelt": "Strenger toezicht op spijbelen en thuiszitten in het primair en voortgezet onderwijs.",
+    "raaktJou": "Ouders van spijbelende kinderen krijgen sneller een gesprek of waarschuwing. Voor thuiszitters meer ondersteuning om terug naar school te gaan.",
+    "voorWie": [
+      "ouders",
+      "scholen",
+      "leerplichtambtenaren"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "54f2d4ed-7fa1-4178-bcff-1972e587f5f2": {
+    "watRegelt": "De wet over wat wel en niet mag met menselijke embryo's in onderzoek wordt geüpdatet.",
+    "raaktJou": "Voor onderzoekers en ouders met IVF: duidelijker regels. Maatschappelijk en ethisch een gevoelig dossier.",
+    "voorWie": [
+      "onderzoekers",
+      "wensouders",
+      "ziekenhuizen"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "99b00660-c7da-4e22-9377-7317d52a0d19": {
+    "watRegelt": "Zorginstellingen krijgen duidelijkere regels voor welke patiëntgegevens ze mogen verwerken.",
+    "raaktJou": "Voor patiënten: betere bescherming van je medische dossier. Voor zorgverleners: heldere kaders.",
+    "voorWie": [
+      "patiënten",
+      "zorginstellingen"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "7b5d016a-4789-4113-a91c-0794c3ba12c3": {
+    "watRegelt": "De minister van Volksgezondheid mag de directeur van de GGD-pandemie-organisatie direct opdrachten geven (n.a.v. corona-lessen).",
+    "raaktJou": "Bij een nieuwe pandemie: snellere besluitvorming. Voor de meeste burgers niet zichtbaar tot er weer crisis is.",
+    "voorWie": [
+      "GGD",
+      "burgers tijdens pandemie",
+      "ministerie VWS"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "13157554-ace4-4f6d-9b4f-84420a0c8d3b": {
+    "watRegelt": "Mensen met meerdere problemen tegelijk (schulden, verslaving, dakloosheid) krijgen één plan via de gemeente.",
+    "raaktJou": "Heb je grote problemen op meerdere vlakken? Eén hulpverlener regelt het, in plaats van vijf loketten.",
+    "voorWie": [
+      "kwetsbare burgers",
+      "gemeenten",
+      "hulpverleners"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "8449b7d8-5dec-49c2-baba-9880f7430691": {
+    "watRegelt": "De gemeente waar je woonde voordat je opvang nodig had, blijft verantwoordelijk voor jouw beschermde wonen (Wmo).",
+    "raaktJou": "Voor mensen met psychische problemen die in beschermd wonen zitten: duidelijker welke gemeente jou helpt en betaalt.",
+    "voorWie": [
+      "mensen in beschermd wonen",
+      "gemeenten"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "c8144e75-8771-4a4b-bb25-07ca0dc63679": {
+    "watRegelt": "Bij een tekort aan medische hulpmiddelen (bv. inhalers, hartstents) moeten leveranciers dit melden.",
+    "raaktJou": "Bij dreigend tekort kan de overheid sneller actie ondernemen — minder kans dat jij geen passend hulpmiddel meer kunt krijgen.",
+    "voorWie": [
+      "patiënten",
+      "zorgaanbieders",
+      "leveranciers"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "687dccfa-8f0a-45e9-a5f9-4bcadada8999": {
+    "watRegelt": "Verzamelpotje van kleine reparaties in zorg-wetten over 2024.",
+    "raaktJou": "Voor de meeste burgers niet merkbaar. Tekstcorrecties en kleine inhoudelijke aanpassingen.",
+    "voorWie": [
+      "zorgaanbieders",
+      "ambtenaren VWS"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "7a158338-ccea-4c0e-99ff-1c18c60e205b": {
+    "watRegelt": "Het verplicht eigen risico voor de zorgverzekering blijft in 2026 hetzelfde — geen verhoging.",
+    "raaktJou": "Je betaalt in 2026 nog steeds maximaal €385 zelf bij zorggebruik. Geen extra kosten dat jaar.",
+    "voorWie": [
+      "alle volwassenen",
+      "chronisch zieken"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "8169f53e-2625-4b07-bea7-f36e5052013e": {
+    "watRegelt": "Strenger Europees toezicht op de veiligheid van producten die je in de winkel koopt.",
+    "raaktJou": "Onveilige producten (speelgoed, kleine apparaten) worden sneller van de markt gehaald. Voor consumenten: meer veiligheid.",
+    "voorWie": [
+      "consumenten",
+      "winkels",
+      "fabrikanten"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "5df4abca-7237-4478-8704-65e274658d2b": {
+    "watRegelt": "Zorginstellingen krijgen duidelijkere regels voor welke patiëntgegevens ze mogen verwerken.",
+    "raaktJou": "Bescherming van je medische gegevens wordt steviger geregeld. Aanvulling op eerdere zorgwetten.",
+    "voorWie": [
+      "patiënten",
+      "zorginstellingen"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "c184ca3c-17de-4de5-ae6b-dcb17d341bc2": {
+    "watRegelt": "Zorgverzekeraars moeten makkelijker afspraken maken met zorgverleners over kwaliteit en prijs.",
+    "raaktJou": "Doel: minder onnodige zorgkosten, betere kwaliteit voor patiënten. Praktisch effect afhankelijk van uitvoering.",
+    "voorWie": [
+      "patiënten",
+      "zorgverzekeraars",
+      "zorgverleners"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "8c07e622-4bee-4d80-913c-bba4fec77014": {
+    "watRegelt": "Bestuurders in de jeugdzorg moeten zich aan strengere regels houden — minder vrijheid voor 'jeugdzorgcowboys'.",
+    "raaktJou": "Voor jongeren en ouders die jeugdzorg nodig hebben: kleinere kans op aanbieder met fraude­verleden.",
+    "voorWie": [
+      "jongeren",
+      "ouders",
+      "jeugdzorgaanbieders"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "fcb63a25-d37e-4c6a-802c-bb12f5056c3a": {
+    "watRegelt": "Verkooppunten van tabak (winkels die sigaretten verkopen) moeten zich registreren.",
+    "raaktJou": "Voor rokers en consumenten: niet direct zichtbaar. Voor de overheid: beter overzicht van waar tabak wordt verkocht.",
+    "voorWie": [
+      "rokers",
+      "winkels",
+      "NVWA"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "159adee9-28f4-4c3b-983b-da6c5984127f": {
+    "watRegelt": "Bij scheidingen wordt het opgebouwde pensioen automatisch verdeeld tussen ex-partners.",
+    "raaktJou": "Ga je scheiden? Je krijgt automatisch je deel van het pensioen van je ex — je hoeft het zelf niet meer aan te vragen.",
+    "voorWie": [
+      "scheidende stellen",
+      "pensioenfondsen"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "b5e45eda-ba3d-42d8-9928-fa5372ecfb95": {
+    "watRegelt": "Een aanpassing van een ouder verdrag met een ander land.",
+    "raaktJou": "Niet zichtbaar voor burgers. Vooral een diplomatieke formaliteit.",
+    "voorWie": [
+      "diplomaten"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "428cc116-4720-49d4-967c-79563a156d7d": {
+    "watRegelt": "Verzamelpotje van kleine wijzigingen in wetten van Sociale Zaken.",
+    "raaktJou": "Voor de meeste mensen niet merkbaar. Reparaties hier en daar.",
+    "voorWie": [
+      "ambtenaren SZW"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "d828c5d4-5da6-4a2b-a7e7-1e0615fd2859": {
+    "watRegelt": "Als je werkgever overneemt of stopt, kan de nieuwe werkgever de subsidie voor jouw werkplek overnemen.",
+    "raaktJou": "Werk je via een loonkostenvoordeel (bv. na arbeidsongeschiktheid)? Bij overname behoud je je werkplek beter.",
+    "voorWie": [
+      "werknemers met loonkostenvoordeel",
+      "werkgevers"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "12a8935a-9cac-4816-a5e1-99618f3f2fbd": {
+    "watRegelt": "Bij een laag uurtarief wordt iemand aangenomen als werknemer in plaats van zzp'er.",
+    "raaktJou": "Werk je als zzp'er voor een laag tarief? Je werkt eigenlijk in loondienst — met meer rechten, maar minder fiscaal voordeel.",
+    "voorWie": [
+      "zzp'ers",
+      "opdrachtgevers",
+      "Belastingdienst"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "532fff64-6f91-478c-8c9a-72e9eac27e08": {
+    "watRegelt": "Bedrijven die uitzendkrachten inhuren moeten checken dat de uitzender veilig werkt en arbeidsongevallen direct melden.",
+    "raaktJou": "Voor uitzendkrachten en flexwerkers: betere bescherming tegen onveilige werkplekken.",
+    "voorWie": [
+      "uitzendkrachten",
+      "uitzendbureaus",
+      "inhurende bedrijven"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "92bb9052-1c06-4dfb-9b38-4b87e37d0b8f": {
+    "watRegelt": "Schijnzelfstandigheid aanpakken — als je in feite werknemer bent, geldt dat ook formeel.",
+    "raaktJou": "Werk je als zzp'er voor één opdrachtgever? Mogelijk word je werknemer met meer rechten (vakantiegeld, pensioen, doorbetaling bij ziekte).",
+    "voorWie": [
+      "zzp'ers",
+      "opdrachtgevers",
+      "Belastingdienst"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "af1ccc37-e7cf-4eb9-8b57-2571106296f6": {
+    "watRegelt": "Iemand die voor jou thuis werkt (schoonmaakster, oppas, tuinman) krijgt iets meer rechten.",
+    "raaktJou": "Heb je een schoonmaker of oppas in huis? Houd rekening met aangepaste regels rond doorbetaling, ziekte en vakantie.",
+    "voorWie": [
+      "huishoudelijke werkers",
+      "particuliere werkgevers"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "d31d4f3a-935a-4b29-b1e2-6f2fd99e8e53": {
+    "watRegelt": "Nederland tekent een internationaal verdrag tegen geweld en intimidatie op het werk.",
+    "raaktJou": "Voor werknemers: extra rechten als je op werk wordt lastiggevallen of mishandeld. Werkgevers krijgen verplichtingen om te beschermen.",
+    "voorWie": [
+      "werknemers",
+      "werkgevers"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "1d1de690-2837-427f-9343-231e18799af2": {
+    "watRegelt": "De maximale uurprijs van kinderopvang waar je toeslag voor krijgt blijft in 2026 hetzelfde — geen automatische verhoging.",
+    "raaktJou": "Ouders met kinderopvang: als je opvang duurder wordt dan deze maximumprijs, betaal je het verschil zelf.",
+    "voorWie": [
+      "ouders",
+      "kinderopvang",
+      "Belastingdienst Toeslagen"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "0d452b70-ee44-44b0-99b4-5b272708be5e": {
+    "watRegelt": "Aanpassing van regels voor financieel toezicht en consumentenbescherming (EU-richtlijn).",
+    "raaktJou": "Voor consumenten: extra bescherming bij financiële producten. Niet direct zichtbaar.",
+    "voorWie": [
+      "consumenten",
+      "banken",
+      "AFM"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "35b05c3e-95de-4396-93de-e8346500644f": {
+    "watRegelt": "Strengere regels voor beleggingsfondsen (Europees, AIFMD/UCITS).",
+    "raaktJou": "Voor beleggers in fondsen: meer transparantie en betere bescherming.",
+    "voorWie": [
+      "beleggers",
+      "fondsbeheerders",
+      "AFM"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "a9b3f099-3c70-48df-82fe-ba89c4f3f1dd": {
+    "watRegelt": "Banken die in problemen komen kunnen makkelijker geredderd worden zonder belastinggeld.",
+    "raaktJou": "Voor spaarders: jouw spaargeld blijft veilig (tot €100.000 per bank gegarandeerd). Bij bankenpaniek snellere ingreep mogelijk.",
+    "voorWie": [
+      "spaarders",
+      "banken",
+      "DNB"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "0fe9ed71-48b4-45a1-a882-07d49fd6dd83": {
+    "watRegelt": "Lange-afstandsvluchten worden zwaarder belast dan korte vluchten.",
+    "raaktJou": "Vlieg je veel naar verre bestemmingen? Tickets worden duurder. Korteafstandvluchten worden iets goedkoper.",
+    "voorWie": [
+      "vliegtuigreizigers",
+      "luchtvaartmaatschappijen"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "c4fb5759-dabb-4243-ad09-0ab54a69e773": {
+    "watRegelt": "Belastingdiensten van EU-landen wisselen gegevens uit over grote bedrijven.",
+    "raaktJou": "Niet zichtbaar voor burgers. Maakt belastingontwijking door multinationals moeilijker.",
+    "voorWie": [
+      "multinationals",
+      "Belastingdienst"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "85d30389-d4c9-4a33-a7be-0d636dbf619f": {
+    "watRegelt": "Grote bedrijven betalen wereldwijd minstens 15% winstbelasting (internationale Pillar 2-regel).",
+    "raaktJou": "Niet zichtbaar voor burgers. Multinationals kunnen niet meer met trucs onder de 15% winstbelasting komen.",
+    "voorWie": [
+      "multinationals",
+      "schatkist",
+      "OESO"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "343fef8f-47f8-4335-a18c-1142ecfcd62f": {
+    "watRegelt": "Een 'CO₂-heffing aan de grens' voor producten die vanuit niet-EU landen Nederland binnenkomen.",
+    "raaktJou": "Importproducten zoals staal of cement kunnen iets duurder worden. Doel: eerlijke concurrentie voor Europese fabrieken die wél CO₂-belasting betalen.",
+    "voorWie": [
+      "importeurs",
+      "consumenten",
+      "EU-industrie"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "fd5ae5ac-4a00-4c83-8aec-216555d74e02": {
+    "watRegelt": "Allerlei kleine fiscale aanpassingen voor 2026 in één wet bij elkaar.",
+    "raaktJou": "Veel kleine veranderingen — een belastingadviseur kan zeggen of jouw situatie geraakt wordt.",
+    "voorWie": [
+      "belastingplichtigen",
+      "ondernemers",
+      "Belastingdienst"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "adb6839b-ef00-4438-8b28-26ad8eaaa81f": {
+    "watRegelt": "Aanpassing van belastingafspraken tussen Nederland en Sint Maarten.",
+    "raaktJou": "Voor mensen of bedrijven met inkomen in beide landen: nieuwe regels over wie wat mag belasten.",
+    "voorWie": [
+      "NL-SXM ondernemers",
+      "expats"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "b3ae05a8-280e-4a19-a181-c76ea7962e0e": {
+    "watRegelt": "Accountants die jaarverslagen controleren krijgen strengere regels.",
+    "raaktJou": "Niet direct zichtbaar. Voor beleggers in beursgenoteerde bedrijven: betrouwbaardere jaarcijfers.",
+    "voorWie": [
+      "beleggers",
+      "accountants",
+      "bedrijven"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "5c9df655-ab75-4e1b-aa25-365a82af2c97": {
+    "watRegelt": "Strenger optreden tegen 'groenwassen' — bedrijven die liegen over hoe duurzaam hun product is.",
+    "raaktJou": "Vage claims als 'milieuvriendelijk' zonder bewijs worden verboden. Consumenten krijgen eerlijkere productinformatie.",
+    "voorWie": [
+      "consumenten",
+      "fabrikanten",
+      "ACM"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "87906873-a7fc-4ab8-a6c8-fd6cb93495a6": {
+    "watRegelt": "Bedrijven uit landen die EU-bedrijven niet eerlijk laten meedingen, kunnen geweerd worden bij overheidsopdrachten.",
+    "raaktJou": "Niet zichtbaar voor consumenten. Beschermt Europese mkb tegen oneerlijke buitenlandse concurrentie.",
+    "voorWie": [
+      "mkb",
+      "overheidsopdrachtgevers"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "840932c6-e057-4d9b-bd0e-8aeae04724f5": {
+    "watRegelt": "Buitenlandse bedrijven die door hun overheid worden gesubsidieerd, mogen niet zomaar Europese bedrijven overnemen of EU-opdrachten winnen.",
+    "raaktJou": "Niet zichtbaar. Doel: eerlijke concurrentie tegen bv. Chinese staatsbedrijven.",
+    "voorWie": [
+      "EU-bedrijven",
+      "overheidsopdrachten"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "8a568c0e-15c0-4c43-84a5-73390fcaeef2": {
+    "watRegelt": "Aanpassing van regels rond subsidies van Economische Zaken en Landbouw.",
+    "raaktJou": "Voor ondernemers en boeren die subsidies aanvragen: updates in hoe en wanneer dat kan.",
+    "voorWie": [
+      "ondernemers",
+      "boeren",
+      "RVO"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "a383c304-4b2f-491f-9a98-f563fc3895c2": {
+    "watRegelt": "Een onafhankelijk adviescollege gaat checken of nieuwe wetten ondernemers niet onnodig belasten met regels.",
+    "raaktJou": "Voor ondernemers: minder onnodige administratieve rompslomp door nieuwe wetten.",
+    "voorWie": [
+      "ondernemers",
+      "mkb"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "4e42f285-095a-4a1a-8c79-e1ea0d59dd7e": {
+    "watRegelt": "Inwoners die zelf het beheer over hun buurt willen overnemen krijgen daar het recht op.",
+    "raaktJou": "Wil je samen met buren zorgen voor een park, sociale voorziening of energieproject? Je kunt dat opeisen bij de gemeente.",
+    "voorWie": [
+      "actieve burgers",
+      "buurtinitiatieven",
+      "gemeenten"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "2bde136d-ba63-40d2-9b4c-b80243979bd8": {
+    "watRegelt": "Schoonmaakronde van klimaat- en energiewetten — kleine correcties.",
+    "raaktJou": "Voor burgers niet merkbaar. Tekstaanpassingen.",
+    "voorWie": [
+      "ambtenaren KGG"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "316282d3-c881-4a7c-ba16-512f955e51b5": {
+    "watRegelt": "Nieuwe regels voor wijken die warmte krijgen via één centrale leiding (warmtenet) i.p.v. gas.",
+    "raaktJou": "Woon je in een wijk met warmtenet (of komt er een)? Duidelijkere prijsregels en wie er verantwoordelijk is bij storing.",
+    "voorWie": [
+      "bewoners warmtenet-wijken",
+      "warmtebedrijven",
+      "gemeenten"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "527e537c-c5c5-4658-87e5-fadb5776993c": {
+    "watRegelt": "Luchtverkeersregels op de BES-eilanden worden aangepast aan internationale eisen.",
+    "raaktJou": "Voor inwoners en bezoekers van Bonaire, Saba en Statia: hopelijk veiligere luchtvaart. Niet zichtbaar op het vasteland.",
+    "voorWie": [
+      "luchtvaart BES",
+      "reizigers"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "054ee315-1744-4d8e-899f-c4440d49244c": {
+    "watRegelt": "Duidelijker wie verantwoordelijk is voor buitenlandse vluchten naar Nederlandse luchthavens.",
+    "raaktJou": "Niet zichtbaar voor reizigers. Vooral juridische verduidelijking.",
+    "voorWie": [
+      "luchthavens",
+      "luchtvaartmaatschappijen"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "52da729a-a6ea-49a7-be32-5c60a4063b40": {
+    "watRegelt": "Hogere bijmengverplichting voor groene brandstof in benzine en diesel (Europese regel).",
+    "raaktJou": "Tankt je auto benzine of diesel? Bijmenging van duurzame brandstof gaat omhoog — mogelijk iets hogere prijs aan de pomp.",
+    "voorWie": [
+      "automobilisten",
+      "brandstofbedrijven"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "1e3407fe-7e99-4805-af4d-c8c317a5bd0e": {
+    "watRegelt": "Strenger toezicht op vervuiling door schepen in de Noordzee en Nederlandse havens.",
+    "raaktJou": "Niet zichtbaar voor de meeste burgers. Schoner kustwater en lucht in havensteden.",
+    "voorWie": [
+      "scheepvaart",
+      "havens",
+      "kustbewoners"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "7cffe650-f041-418b-9f8b-fcd9e05b0625": {
+    "watRegelt": "Modernisering van regels voor scheepseigenaren — verplichtingen rond onderhoud en veiligheid.",
+    "raaktJou": "Voor scheepseigenaren: nieuwe verplichtingen. Voor passagiers en bemanning: veiligere schepen.",
+    "voorWie": [
+      "scheepseigenaren",
+      "ILT"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "87406a73-1e02-4653-acb2-ea7e5c218331": {
+    "watRegelt": "Aangepaste tarieven voor vrachtwagentol (Maut) op Nederlandse wegen.",
+    "raaktJou": "Niet direct merkbaar voor automobilisten. Vrachtwagens betalen hogere tol op snelwegen.",
+    "voorWie": [
+      "vrachtwagenbedrijven",
+      "transport"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "41e26d16-bbb7-4eb5-b5d4-7816f2157463": {
+    "watRegelt": "Tegen sommige overheidsbesluiten met grote gevolgen kun je rechtstreeks bij de Raad van State in beroep.",
+    "raaktJou": "Bij grote infrastructuur- of milieubesluiten waar veel mensen last van hebben: één snellere rechtsgang.",
+    "voorWie": [
+      "omwonenden",
+      "Raad van State",
+      "ministerie I&W"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "69a5e874-7d3e-4f54-9253-c2937b0571ab": {
+    "watRegelt": "Gemeenten en provincies moeten milieubesluiten direct doorsturen aan de minister.",
+    "raaktJou": "Voor burgers indirect: betere coördinatie tussen lokale en landelijke milieuregels.",
+    "voorWie": [
+      "gemeenten",
+      "provincies",
+      "ministerie I&W"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "cfce61df-5cbb-4651-ae7b-d349f3e984df": {
+    "watRegelt": "Voor specifieke stikstof-projecten (PAS) komt een maatwerkregeling — om vergunningen los te trekken.",
+    "raaktJou": "Vooral voor boeren en bouwprojecten die nu vastlopen op stikstofregels: meer ruimte. Voor natuur: kritiek mogelijk.",
+    "voorWie": [
+      "boeren",
+      "bouwsector",
+      "natuurorganisaties"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "87093165-07c4-467b-9bea-a9a56d0618ba": {
+    "watRegelt": "Aanpassing van regels rond hoeveel mest een boer mag produceren (verband met Europese derogatie).",
+    "raaktJou": "Voor melkveehouders: strengere mestregels, mogelijk minder koeien. Voor consumenten: kan invloed hebben op melkprijs.",
+    "voorWie": [
+      "boeren",
+      "natuur",
+      "consumenten"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "10178065-7efa-4de4-aaa9-c8bea20b3439": {
+    "watRegelt": "Een militair samenwerkingsverdrag met Israël.",
+    "raaktJou": "Niet zichtbaar voor burgers. Politiek gevoelig dossier.",
+    "voorWie": [
+      "defensie",
+      "buitenlandse betrekkingen"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "71a18c04-0d21-4e81-9974-169742f6e411": {
+    "watRegelt": "De geldigheidsduur van besluiten over militaire vliegvelden wordt verlengd.",
+    "raaktJou": "Voor omwonenden van Vliegbasis Volkel, Leeuwarden e.d.: huidige regels rond geluidshinder/vluchten blijven van kracht.",
+    "voorWie": [
+      "omwonenden militaire vliegvelden"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "8a9fdd17-b74f-4f33-bcd1-7c14f4f91440": {
+    "watRegelt": "Defensie krijgt een apart geld-potje voor langetermijn-investeringen in materieel (wapens, voertuigen, schepen).",
+    "raaktJou": "Niet direct merkbaar. Doel: defensie kan planmatig kopen in plaats van per jaar improviseren.",
+    "voorWie": [
+      "defensie",
+      "defensie-industrie"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "62de5ce5-5d7a-4f0e-86d4-ea29b9686b08": {
+    "watRegelt": "Een militair-technisch samenwerkingsverdrag met de VS.",
+    "raaktJou": "Niet zichtbaar voor burgers.",
+    "voorWie": [
+      "defensie",
+      "buitenlandse betrekkingen"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "0aecacdc-89cd-4ff7-83a2-3612e8d3d213": {
+    "watRegelt": "Verlenging van bestaande besluiten over militaire vliegvelden.",
+    "raaktJou": "Voor omwonenden militaire vliegvelden: huidige regels blijven gelden tot een nieuw besluit.",
+    "voorWie": [
+      "omwonenden militaire vliegvelden"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "9970e59f-e9ca-4344-9310-44a04e040fac": {
+    "watRegelt": "Sinds deze wet geldt de (sluimerende) dienstplicht ook voor vrouwen.",
+    "raaktJou": "Alle 17-jarige Nederlanders (mannen én vrouwen) krijgen een dienstplichtbrief. In de praktijk wordt niemand opgeroepen — symbolische gelijkheid.",
+    "voorWie": [
+      "17-jarigen",
+      "defensie"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "6bd82167-f84d-4b6e-9b37-3617567677f4": {
+    "watRegelt": "Verlenging van bestaande besluiten over militaire vliegvelden.",
+    "raaktJou": "Voor omwonenden militaire vliegvelden: huidige regels blijven gelden.",
+    "voorWie": [
+      "omwonenden militaire vliegvelden"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "06169c67-81c2-44f2-9f96-2bc4686df160": {
+    "watRegelt": "Samenwerkingsverdrag met België en Luxemburg op een militair onderwerp.",
+    "raaktJou": "Niet zichtbaar voor burgers.",
+    "voorWie": [
+      "defensie",
+      "Benelux"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "3e5b1e35-12ab-45f8-a098-107328e2acbe": {
+    "watRegelt": "De officiële verzameling van Nederlandse verdragen wordt online beter toegankelijk.",
+    "raaktJou": "Niet direct merkbaar. Voor onderzoekers en journalisten makkelijker om verdragen op te zoeken.",
+    "voorWie": [
+      "onderzoekers",
+      "journalisten",
+      "diplomaten"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "758bedfb-ad17-45b1-8d27-f652c0de6240": {
+    "watRegelt": "Een Europees verdrag met een ander land over samenwerking.",
+    "raaktJou": "Diplomatieke formaliteit. Niet zichtbaar voor burgers.",
+    "voorWie": [
+      "diplomaten"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "36759f82-f6f3-4c80-822f-509ca36a32d5": {
+    "watRegelt": "Een Europees verdrag met een ander land over breder partnerschap.",
+    "raaktJou": "Diplomatieke formaliteit.",
+    "voorWie": [
+      "diplomaten"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "1554c311-7b07-4c41-a621-a25c0902d389": {
+    "watRegelt": "Een ouder Europees verdrag met een derde land.",
+    "raaktJou": "Diplomatieke formaliteit.",
+    "voorWie": [
+      "diplomaten"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "e1dceb20-5393-40ce-8b05-3d377cac7cf3": {
+    "watRegelt": "Een EU-noodreisdocument voor situaties waar je vastzit in het buitenland zonder paspoort.",
+    "raaktJou": "Verlies je in het buitenland je paspoort? Je krijgt sneller een noodpapier om naar huis te kunnen. EU-burger heeft toegang tot consulaat van élk EU-land.",
+    "voorWie": [
+      "reizigers",
+      "ambassades"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "606b95ba-7b05-4dac-8d05-0c0237a9e776": {
+    "watRegelt": "Goedkeuring van de toetreding van Finland en Zweden tot de NAVO.",
+    "raaktJou": "Voor de meeste burgers symbolisch. NAVO uitgebreid met twee Nordic landen na de Russische invasie.",
+    "voorWie": [
+      "defensie",
+      "buitenlandse betrekkingen"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "67781941-2b85-4dc8-936b-76c972aa5856": {
+    "watRegelt": "Een VN-verdrag uit 2004 over wanneer staten ergens niet aansprakelijk voor gesteld kunnen worden.",
+    "raaktJou": "Diplomatieke en juridische formaliteit. Niet zichtbaar.",
+    "voorWie": [
+      "juristen",
+      "diplomaten"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  },
+  "8b873e10-9068-4088-982e-eb9ab42d7ec6": {
+    "watRegelt": "Maritiem verdrag met de Dominicaanse Republiek.",
+    "raaktJou": "Niet zichtbaar.",
+    "voorWie": [
+      "diplomaten",
+      "zeevaart"
+    ],
+    "bronHash": "manual-batch-2",
+    "gegenereerdOp": "2026-05-18T19:13:46.160Z"
+  }
+}
