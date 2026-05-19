@@ -20,6 +20,7 @@ import {
   heeftMogelijkVideo,
   type DebatMatch,
 } from "@/lib/debat-direct";
+import { getWetContext } from "@/lib/wet-context";
 import { getDict, tpl } from "@/lib/i18n";
 import type { Locale } from "@/lib/i18n";
 
@@ -95,6 +96,30 @@ export default async function WetDetail({ params }: Params) {
       .filter((m): m is { id: string; match: DebatMatch } => m.match !== null)
       .map((m) => [m.id, m.match]),
   );
+
+  // Stilstand-detectie: laatste activiteit > 6 maanden geleden EN niet
+  // afgerond (geen wet/verworpen/ingetrokken/aangenomen_ek).
+  const STILSTAND_MAANDEN_DREMPEL = 6;
+  const laatsteAct = activiteiten[0]; // gesorteerd nieuw→oud
+  const laatsteActDatum = laatsteAct?.Datum
+    ? new Date(laatsteAct.Datum)
+    : null;
+  const isAfgerondeFase =
+    item.fase === "wet" ||
+    item.fase === "verworpen" ||
+    item.fase === "ingetrokken" ||
+    item.fase === "aangenomen_ek";
+  const maandenStilstand = laatsteActDatum
+    ? Math.floor(
+        (Date.now() - laatsteActDatum.getTime()) / (1000 * 60 * 60 * 24 * 30),
+      )
+    : null;
+  const isStilstand =
+    !isAfgerondeFase &&
+    maandenStilstand !== null &&
+    maandenStilstand >= STILSTAND_MAANDEN_DREMPEL;
+  const handmatigeContext = getWetContext(item.id);
+  const toonStilstandKader = isStilstand || handmatigeContext !== null;
 
   const stemmingBesluiten: BesluitWeergave[] = [];
   const procedureleBesluiten: BesluitWeergave[] = [];
@@ -250,6 +275,43 @@ export default async function WetDetail({ params }: Params) {
           <div className="text-sm text-mute mt-1">
             {item.volgendeActiviteit.onderwerp}
           </div>
+        </section>
+      )}
+
+      {toonStilstandKader && (
+        <section className="rounded-md border border-amber-200 bg-amber-50 dark:border-amber-900/60 dark:bg-amber-950/30 p-5 space-y-2">
+          <div className="flex items-center gap-2 text-amber-900 dark:text-amber-200">
+            <span aria-hidden>⏸</span>
+            <h2 className="font-serif text-lg">{t.stilstandTitle}</h2>
+          </div>
+          {isStilstand && laatsteActDatum && (
+            <p className="text-xs text-amber-900/80 dark:text-amber-200/80">
+              {tpl(t.stilstandAutoNote, {
+                datum: formatDate(laatsteActDatum.toISOString(), locale),
+                maanden: maandenStilstand ?? 0,
+              })}
+            </p>
+          )}
+          {handmatigeContext && (
+            <>
+              {handmatigeContext.samenvatting && (
+                <p className="text-sm leading-relaxed font-medium text-ink">
+                  {handmatigeContext.samenvatting}
+                </p>
+              )}
+              <p className="text-sm leading-relaxed text-ink/90">
+                {handmatigeContext.waarom}
+              </p>
+              <div className="text-[10px] text-mute pt-1">
+                {tpl(t.stilstandUpdated, {
+                  datum: formatDate(
+                    handmatigeContext.laatsteUpdate,
+                    locale,
+                  ),
+                })}
+              </div>
+            </>
+          )}
         </section>
       )}
 

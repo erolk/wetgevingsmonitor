@@ -230,6 +230,10 @@ export const nl: Dictionary = {
     fieldDossier: "dossier",
     fieldVergaderjaar: "vergaderjaar",
     fieldVoortouw: "Voortouw:",
+    stilstandTitle: "Waarom ligt deze wet stil?",
+    stilstandAutoNote:
+      "Geen activiteit sinds {datum} (~{maanden} maanden geleden).",
+    stilstandUpdated: "Laatste update van deze notitie: {datum}",
   },
 
   subscribe: {

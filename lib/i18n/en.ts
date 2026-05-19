@@ -227,6 +227,10 @@ export const en: Dictionary = {
     fieldDossier: "dossier",
     fieldVergaderjaar: "parliamentary year",
     fieldVoortouw: "Lead:",
+    stilstandTitle: "Why is this bill stuck?",
+    stilstandAutoNote:
+      "No activity since {datum} (~{maanden} months ago).",
+    stilstandUpdated: "Note last updated: {datum}",
   },
 
   subscribe: {

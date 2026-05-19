@@ -161,6 +161,9 @@ export interface Dictionary {
     fieldDossier: string;
     fieldVergaderjaar: string;
     fieldVoortouw: string;
+    stilstandTitle: string; // "Waarom ligt deze wet stil?"
+    stilstandAutoNote: string; // "Geen activiteit sinds {datum} — ~{maanden} maanden"
+    stilstandUpdated: string; // "Laatste update notitie: {datum}"
   };
 
   subscribe: {
