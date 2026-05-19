@@ -82,7 +82,9 @@ export default async function Home() {
       <section>
         <h2 className="font-serif text-2xl mb-4">Kies een ministerie</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-          {MINISTERIES.map((m) => {
+          {[...MINISTERIES]
+            .sort((a, b) => a.naam.localeCompare(b.naam, "nl"))
+            .map((m) => {
             const t = tellingMap.get(m.slug);
             const heeftAgenda = t?.volgendeDatum;
             return (
@@ -118,7 +120,7 @@ export default async function Home() {
                 )}
               </Link>
             );
-          })}
+            })}
         </div>
       </section>
 
