@@ -112,9 +112,15 @@ export function normalize(z: TkZaak): WetVoorstel {
   const laatsteBesluit = pickLaatsteBesluit(z.Besluit ?? []);
   let fase = bepaalFase(z, laatsteBesluit, z.Activiteit ?? []);
 
-  // Verfijn met EK-status indien beschikbaar (overschrijft 'aangenomen_tk'
-  // met de werkelijke EK-fase: schriftelijk → plenair → aangenomen → wet).
-  if (fase === "aangenomen_tk") {
+  // Verfijn met EK-status indien beschikbaar. De TK-data weet alleen dat
+  // TK het heeft afgedaan; de EK-pagina heeft de echte vervolgfase:
+  // schriftelijk → plenair → aangenomen_ek → wet, of een terminale state
+  // als verworpen / ingetrokken (door minister of EK).
+  //
+  // We overrulen ook bij fase=wet, want bepaalFase() valt voor elke
+  // afgedaan-zaak zonder duidelijke aangenomen-flag terug op 'wet' — dat is
+  // te grof: een ingetrokken of verworpen zaak heeft ook Afgedaan=true.
+  if (z.Afgedaan) {
     const ek = getEkStatus(z.Id);
     if (ek?.gevonden && ek.fase) fase = ek.fase;
   }

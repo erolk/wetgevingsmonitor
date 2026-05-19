@@ -9,6 +9,8 @@ export type EkStatus = {
   fase?: Fase;
   label?: string;
   blokken?: Array<"vol" | "geblokt" | "leeg" | null>;
+  /** Fase-labels per blok (bv. "Ingetrokken", "Verworpen", "Afkondiging"). */
+  blokLabels?: Array<string | null>;
   gegenereerdOp: string;
 };
 

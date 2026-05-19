@@ -75,33 +75,54 @@ async function ekUrlVoorDossier(nummer) {
 }
 
 function parseEkVoortgang(html) {
-  // Zoek per voortgangBlok of het 'vol', 'geblokt' of 'leeg' is.
-  // Blokken: 1=Voorbereiding, 2=Schriftelijke voorbereiding,
-  //          3=Plenair, 4=Afkondiging/Staatsblad
+  // Per voortgangBlok lezen we (a) de state-class (vol/geblokt/leeg) én
+  // (b) het fase-label uit <span class="fase ellip">. Het label is meestal
+  // beschrijvend ("Schriftelijke voorbereiding", "Plenair", "Afkondiging")
+  // maar bij terminale states bevat het <strong>Ingetrokken</strong> of
+  // <strong>Verworpen</strong>. Die labels zijn essentieel voor correcte
+  // fase-classificatie.
+  //
+  // Blokken: 1=Indiening EK / ontvangst, 2=Schriftelijke voorbereiding,
+  //          3=Plenair, 4=Afkondiging/Staatsblad.
   const states = [null, null, null, null];
+  const labels = [null, null, null, null];
   for (let i = 1; i <= 4; i++) {
-    const re = new RegExp(
-      `voortgangBlok${i}"><div class="(vol|geblokt|leeg)"`,
+    const blokRe = new RegExp(
+      `voortgangBlok${i}[^>]*>\\s*<div class="(vol|geblokt|leeg)"[^>]*>` +
+        `[\\s\\S]*?<span class="fase ellip">\\s*(?:<strong>)?\\s*([^<]*?)\\s*(?:</strong>)?\\s*</span>`,
       "i",
     );
-    const m = html.match(re);
-    states[i - 1] = m ? m[1] : null;
+    const m = html.match(blokRe);
+    if (m) {
+      states[i - 1] = m[1];
+      labels[i - 1] = (m[2] || "").trim();
+    }
   }
-  // Indicators welke kamer: tweedekamer / eerstekamer1 / eerstekamer2 / staatsblad
+
+  // Detecteer terminale states uit labels.
+  const ingetrokken = labels.some((l) => l && /ingetrokken/i.test(l));
+  const verworpen = labels.some((l) => l && /verworpen/i.test(l));
+
   const inTK = /class="tweedekamer ellip voortgangM/.test(html);
   const inEK = /class="eerstekamer[12] ellip voortgangM/.test(html);
   const inStaatsblad = /class="staatsblad ellip voortgangM/.test(html);
 
-  // Mapping naar onze fase:
-  // - Blok 4 = vol → 'wet' (Staatsblad)
-  // - Blok 3 = vol of geblokt → 'aangenomen_ek' of 'in_eerste_kamer' (plenair)
-  // - Blok 2 = geblokt of vol (en blok3 leeg) → 'in_eerste_kamer' (schriftelijk)
-  // - Blok 1 = vol en niets daarna → 'aangenomen_tk' (klaar bij TK, EK nog niet begonnen)
+  // Fase-mapping (volgorde van checken matters — terminale eerst):
   let fase = "aangenomen_tk";
   let label = "Aangenomen door TK";
-  if (states[3] === "vol") {
+  if (ingetrokken) {
+    fase = "ingetrokken";
+    label = "Ingetrokken";
+  } else if (verworpen) {
+    fase = "verworpen";
+    label = "Verworpen door Eerste Kamer";
+  } else if (states[3] === "vol") {
     fase = "wet";
     label = "In Staatsblad gepubliceerd";
+  } else if (states[3] === "geblokt") {
+    // EK heeft aangenomen, wacht nu op bekrachtiging (Afkondiging-fase loopt)
+    fase = "aangenomen_ek";
+    label = "Aangenomen door Eerste Kamer (in afkondiging)";
   } else if (states[2] === "vol") {
     fase = "aangenomen_ek";
     label = "Aangenomen door Eerste Kamer";
@@ -111,11 +132,16 @@ function parseEkVoortgang(html) {
   } else if (states[1] === "geblokt" || states[1] === "vol") {
     fase = "in_eerste_kamer";
     label = "Schriftelijke voorbereiding Eerste Kamer";
+  } else if (states[0] === "geblokt") {
+    // Blok 1 actief zonder bekend terminaal label: ontvangst bij EK loopt
+    fase = "in_eerste_kamer";
+    label = "Ontvangen door Eerste Kamer";
   }
   return {
     fase,
     label,
     blokken: states,
+    blokLabels: labels,
     indicators: { inTK, inEK, inStaatsblad },
   };
 }
@@ -145,13 +171,14 @@ async function main() {
   console.log(`unieke wetten: ${seen.size}`);
 
   // Stap 2: voor elk: EK URL vinden + voortgang parsen
+  const forceAll = process.argv.includes("--force");
   let nieuw = 0;
   let skip = 0;
   let now = Date.now();
   for (const [tkId, info] of seen) {
     const prev = existing[tkId];
-    // Skip als minder dan 12 uur oud
-    if (prev?.gegenereerdOp) {
+    // Skip als minder dan 12 uur oud (tenzij --force)
+    if (!forceAll && prev?.gegenereerdOp) {
       const age = now - new Date(prev.gegenereerdOp).getTime();
       if (age < 12 * 60 * 60 * 1000) {
         skip++;
