@@ -304,22 +304,22 @@ function DezeWeekStrip({
   return (
     <section className="rounded-md border border-line bg-surface">
       <div className="flex items-baseline justify-between gap-3 px-3 pt-2 pb-1.5 border-b border-line/60">
-        <h2 className="font-medium text-xs text-ink">
+        <h2 className="font-medium text-sm text-ink">
           Deze week op de TK-agenda{" "}
           <span className="text-mute font-normal">— week {wkNr}</span>
         </h2>
-        <span className="text-[11px] text-mute shrink-0">
+        <span className="text-xs text-mute shrink-0">
           {items.length === 0
             ? "geen behandeling"
             : `${items.length} ${items.length === 1 ? "wet" : "wetten"}`}
         </span>
       </div>
       {items.length === 0 ? (
-        <p className="px-3 py-2 text-[11px] text-mute">
+        <p className="px-3 py-2 text-xs text-mute">
           Geen wetsvoorstellen op de Tweede Kamer-agenda deze week.
         </p>
       ) : (
-        <ul className="divide-y divide-line/60 text-[11px]">
+        <ul className="divide-y divide-line/60 text-xs">
           <UitklapLijst
             initialCount={3}
             meerTemplate="Toon overige {aantal} debaten deze week ↓"
