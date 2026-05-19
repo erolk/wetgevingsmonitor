@@ -192,9 +192,10 @@ export default async function Home() {
       </section>
 
       <section className="text-sm text-mute">
-        Brondata: Tweede Kamer Open Data (CC0). Burger-uitleg per wet wordt
-        automatisch gegenereerd met behulp van AI op basis van de officiële
-        titel en het onderwerp. Geen officiële site van de overheid.
+        Brongegevens: Tweede Kamer Open Data (CC0). Burger-uitleg per wet
+        wordt automatisch gegenereerd met behulp van AI op basis van de
+        officiële titel en het onderwerp. Deze website is geen officiële
+        website van de Rijksoverheid.
       </section>
     </div>
   );

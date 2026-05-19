@@ -126,6 +126,6 @@ Veilig om dagelijks te draaien (idempotent, cachet 24u oud is goed genoeg).
 
 ## Disclaimer
 
-Geen officiële uiting van de Nederlandse overheid. Brondata is open en CC0.
-Burger-uitleg is AI-gegenereerd op basis van openbare titels — gebruik
-officiële Kamerstukken voor juridische zekerheid.
+Brongegevens zijn open en CC0. Burger-uitleg is AI-gegenereerd op basis
+van openbare titels — gebruik officiële Kamerstukken voor juridische
+zekerheid. Deze website is geen officiële website van de Rijksoverheid.

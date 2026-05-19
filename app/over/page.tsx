@@ -64,10 +64,10 @@ export default function Over() {
 
       <h2 className="font-serif text-xl mt-8">Disclaimer</h2>
       <p className="text-sm text-mute">
-        Geen officiële uiting van de Nederlandse overheid. Hoewel de
-        brondata open en betrouwbaar is, kan er vertraging of een
-        weergavefout in zitten. Voor besluitvorming altijd de officiële bron
-        raadplegen.
+        Hoewel de brongegevens open en betrouwbaar zijn, kan er vertraging
+        of een weergavefout in zitten. Voor besluitvorming altijd de
+        officiële bron raadplegen. Deze website is geen officiële website
+        van de Rijksoverheid.
       </p>
     </article>
   );
