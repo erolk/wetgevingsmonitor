@@ -97,7 +97,7 @@ export default async function MinisterieOverview({
   }
 
   return (
-    <div className="space-y-10">
+    <div className="space-y-8">
       <Link
         href="/"
         className="text-sm text-mute hover:text-ink inline-flex items-center gap-1"
@@ -105,15 +105,29 @@ export default async function MinisterieOverview({
         ← alle ministeries
       </Link>
 
-      <header>
-        <div className="text-xs text-mute uppercase tracking-wider mb-1">
-          Ministerie · {m.afkorting}
-        </div>
-        <h1 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight break-words">
-          {m.naam}
-        </h1>
-        <p className="mt-3 max-w-2xl text-mute">{m.beschrijving}</p>
-      </header>
+      <section className="grid gap-6 sm:grid-cols-[1fr_auto] sm:items-start">
+        <header>
+          <div className="text-xs text-mute uppercase tracking-wider mb-1">
+            Ministerie · {m.afkorting}
+          </div>
+          <h1 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight break-words">
+            {m.naam}
+          </h1>
+          <p className="mt-3 max-w-2xl text-mute">{m.beschrijving}</p>
+        </header>
+        <aside className="rounded-md border border-line bg-surface p-3 sm:w-64 sm:shrink-0">
+          <SubscribeButton
+            target="ministerie"
+            slug={m.slug}
+            naam={m.naam}
+            compact
+          />
+          <p className="mt-2 text-[11px] text-mute leading-relaxed">
+            Mail bij elk debat, stemming of besluit op een wet van dit
+            ministerie.
+          </p>
+        </aside>
+      </section>
 
       {error && (
         <div className="rounded-md border border-rose-200 bg-rose-50 p-4 text-sm text-rose-900 dark:border-rose-800 dark:bg-rose-950/40 dark:text-rose-200">
@@ -121,88 +135,35 @@ export default async function MinisterieOverview({
         </div>
       )}
 
-      <FaseTotalen items={items} />
-
-      <section className="flex flex-wrap items-center gap-3">
-        <SubscribeButton target="ministerie" slug={m.slug} naam={m.naam} compact />
-        <span className="text-xs text-mute">
-          Krijg een mailtje bij elk debat, stemming of besluit op een van de wetten van dit ministerie.
-        </span>
-      </section>
-
-      <section aria-label="Filter op fase">
-        <div className="text-xs uppercase tracking-wider text-mute mb-2">
-          Filter op fase
-        </div>
-        <div className="flex flex-wrap gap-2">
-          <Link
-            href={`/ministerie/${m.slug}`}
-            className={`text-sm px-3 py-2 rounded-full border transition inline-flex items-center min-h-[36px] ${
-              !actieveFilter
-                ? "bg-ink text-paper border-ink"
-                : "bg-surface border-line hover:border-ink text-mute hover:text-ink"
-            }`}
-          >
-            Alles ({items.length})
-          </Link>
-          {FILTER_OPTIES.map((opt) => {
-            const aantal = tellingen[opt.id];
-            const actief = actieveFilter === opt.id;
-            return (
-              <Link
-                key={opt.id}
-                href={
-                  actief
-                    ? `/ministerie/${m.slug}`
-                    : `/ministerie/${m.slug}?fase=${opt.id}`
-                }
-                className={`text-sm px-3 py-2 rounded-full border transition inline-flex items-center min-h-[36px] ${
-                  actief
-                    ? "bg-ink text-paper border-ink"
-                    : aantal === 0
-                      ? "bg-surface border-line text-mute/50 pointer-events-none"
-                      : "bg-surface border-line hover:border-ink text-mute hover:text-ink"
-                }`}
-              >
-                {opt.label} ({aantal})
-              </Link>
-            );
-          })}
-        </div>
-      </section>
-
-      <section className="rounded-md border border-line bg-surface p-4 text-sm leading-relaxed text-mute">
-        <div className="text-ink font-medium mb-1">
-          Wat betekenen deze categorieën?
-        </div>
-        <p>
-          <span className="text-ink font-medium">Lopend</span> = nog in
-          behandeling: het voorstel zit ergens tussen indiening en de stemming
-          in de Eerste Kamer.{" "}
-          <span className="text-ink font-medium">Afgerond</span> = aangenomen
-          door de Tweede Kamer (gaat door naar de EK of is al wet), verworpen,
-          of door de minister ingetrokken. Per wet zie je op de detailpagina
-          precies waar in het proces het zich bevindt —{" "}
-          <Link href="/proces" className="underline text-ink hover:text-accent">
-            zie de uitleg van de 8 stappen
-          </Link>
-          .
-        </p>
-      </section>
+      <FaseStrip
+        slug={m.slug}
+        items={items}
+        tellingen={tellingen}
+        actieveFilter={actieveFilter}
+      />
 
       <section>
-        <h2 className="font-serif text-2xl mb-4">
-          Lopende wetsvoorstellen{" "}
-          <span className="text-mute text-base">({lopend.length})</span>
-        </h2>
+        <div className="flex items-baseline justify-between gap-3 mb-3">
+          <h2 className="font-serif text-2xl">
+            Lopende wetsvoorstellen{" "}
+            <span className="text-mute text-base">({lopend.length})</span>
+          </h2>
+          <Link
+            href="/proces"
+            className="text-xs text-mute hover:text-ink underline"
+          >
+            wat betekenen de fases?
+          </Link>
+        </div>
         <ul className="divide-y divide-line border-t border-b border-line">
           {lopend.map((it) => (
             <WetRow key={it.id} item={it} />
           ))}
           {lopend.length === 0 && !error && (
             <li className="py-6 text-sm text-mute">
-              Op dit moment geen lopende wetsvoorstellen gevonden voor dit
-              ministerie.
+              {actieveFilter
+                ? "Geen wetten in deze fase voor dit ministerie."
+                : "Op dit moment geen lopende wetsvoorstellen gevonden voor dit ministerie."}
             </li>
           )}
         </ul>
@@ -225,34 +186,80 @@ export default async function MinisterieOverview({
   );
 }
 
-function FaseTotalen({ items }: { items: WetVoorstel[] }) {
-  const tellen = items.reduce<Record<string, number>>((acc, i) => {
-    acc[i.fase] = (acc[i.fase] ?? 0) + 1;
-    return acc;
-  }, {});
-  const fases: Fase[] = [
-    "ingediend",
-    "in_commissie",
-    "plenair_tk",
-    "aangenomen_tk",
-    "in_eerste_kamer",
-    "wet",
-    "verworpen",
-  ];
+function FaseStrip({
+  slug,
+  items,
+  tellingen,
+  actieveFilter,
+}: {
+  slug: string;
+  items: WetVoorstel[];
+  tellingen: Record<string, number>;
+  actieveFilter: string | null;
+}) {
   return (
-    <section className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2">
-      {fases.map((f) => (
-        <div
-          key={f}
-          className="rounded-md border border-line bg-surface px-3 py-3"
-        >
-          <div className="text-2xl font-serif">{tellen[f] ?? 0}</div>
-          <div className="text-[11px] uppercase tracking-wide text-mute mt-1 leading-tight">
-            {FASE_LABEL[f]}
-          </div>
-        </div>
-      ))}
+    <section aria-label="Filter op fase">
+      <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2">
+        <FaseTegel
+          href={`/ministerie/${slug}`}
+          actief={!actieveFilter}
+          aantal={items.length}
+          label="Alles"
+          alwaysClickable
+        />
+        {FILTER_OPTIES.map((opt) => {
+          const aantal = tellingen[opt.id] ?? 0;
+          const actief = actieveFilter === opt.id;
+          const href = actief
+            ? `/ministerie/${slug}`
+            : `/ministerie/${slug}?fase=${opt.id}`;
+          return (
+            <FaseTegel
+              key={opt.id}
+              href={href}
+              actief={actief}
+              aantal={aantal}
+              label={opt.label}
+            />
+          );
+        })}
+      </div>
     </section>
+  );
+}
+
+function FaseTegel({
+  href,
+  actief,
+  aantal,
+  label,
+  alwaysClickable,
+}: {
+  href: string;
+  actief: boolean;
+  aantal: number;
+  label: string;
+  alwaysClickable?: boolean;
+}) {
+  const disabled = !alwaysClickable && aantal === 0 && !actief;
+  const base =
+    "block rounded-md border px-3 py-3 transition select-none";
+  const state = actief
+    ? "bg-ink text-paper border-ink"
+    : disabled
+      ? "bg-surface/60 border-line text-mute/40 pointer-events-none"
+      : "bg-surface border-line hover:border-ink text-ink";
+  return (
+    <Link href={href} className={`${base} ${state}`}>
+      <div className="text-2xl font-serif leading-none">{aantal}</div>
+      <div
+        className={`text-[11px] uppercase tracking-wide mt-1 leading-tight ${
+          actief ? "text-paper/80" : "text-mute"
+        }`}
+      >
+        {label}
+      </div>
+    </Link>
   );
 }
 
