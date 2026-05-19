@@ -2,6 +2,8 @@ import "./globals.css";
 import type { Metadata, Viewport } from "next";
 import Link from "next/link";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { LanguageToggle } from "@/components/LanguageToggle";
+import { getDict } from "@/lib/i18n";
 
 export const metadata: Metadata = {
   title: "Wetgevingsmonitor — wat doet de Tweede Kamer écht?",
@@ -19,13 +21,14 @@ export const viewport: Viewport = {
   ],
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const { dict, locale } = await getDict();
   return (
-    <html lang="nl" suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -42,33 +45,34 @@ export default function RootLayout({
             >
               <span className="inline-block h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-accent shrink-0" />
               <span className="font-serif text-base sm:text-xl tracking-tight truncate">
-                Wetgevings<span className="text-accent">monitor</span>
+                {dict.nav.siteName}
+                <span className="text-accent">{dict.nav.siteAccent}</span>
               </span>
             </Link>
             <nav className="text-xs sm:text-sm text-mute flex items-center gap-3 sm:gap-5 shrink-0">
               <Link href="/" className="hover:text-ink hidden sm:inline">
-                Ministeries
+                {dict.nav.ministries}
               </Link>
               <Link href="/proces" className="hover:text-ink">
-                <span className="sm:hidden">Proces</span>
-                <span className="hidden sm:inline">Hoe werkt het?</span>
+                <span className="sm:hidden">{dict.nav.processShort}</span>
+                <span className="hidden sm:inline">{dict.nav.process}</span>
               </Link>
               <Link
                 href="/over"
                 className="hover:text-ink hidden sm:inline"
               >
-                Over
+                {dict.nav.about}
               </Link>
               <Link
                 href="/contact"
                 className="hover:text-ink hidden sm:inline"
               >
-                Contact
+                {dict.nav.contact}
               </Link>
               <Link
                 href="/zoeken"
-                aria-label="Zoek in alle wetsvoorstellen"
-                title="Zoeken"
+                aria-label={dict.nav.searchAria}
+                title={dict.nav.searchTitle}
                 className="hover:text-ink inline-flex items-center justify-center"
               >
                 <svg
@@ -86,6 +90,11 @@ export default function RootLayout({
                   <line x1="21" y1="21" x2="16.65" y2="16.65" />
                 </svg>
               </Link>
+              <LanguageToggle
+                locale={locale}
+                toggleLabel={dict.common.languageToggle}
+                currentLabel={dict.common.languageCurrent}
+              />
               <ThemeToggle />
             </nav>
           </div>
@@ -96,19 +105,18 @@ export default function RootLayout({
         <footer className="border-t border-line mt-12 sm:mt-20">
           <div className="mx-auto max-w-5xl px-4 sm:px-6 py-6 sm:py-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 text-xs text-mute">
             <p className="max-w-prose">
-              Brongegevens: Tweede Kamer Open Data (CC0). Deze website is
-              geen officiële website van de Rijksoverheid.{" "}
+              {dict.footer.source} {dict.footer.notOfficial}{" "}
               <Link href="/contact" className="underline hover:text-ink">
-                Contact
+                {dict.footer.contact}
               </Link>
             </p>
             <div className="flex items-center gap-3">
-              <span className="hidden sm:inline">Volg ons:</span>
+              <span className="hidden sm:inline">{dict.footer.follow}</span>
               <a
                 href="https://bsky.app/profile/wetgevingsmonitor.bsky.social"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Wetgevingsmonitor op Bluesky"
+                aria-label={dict.footer.blueskyAria}
                 title="Bluesky"
                 className="text-mute hover:text-accent transition-colors"
               >
@@ -126,7 +134,7 @@ export default function RootLayout({
                 href="https://www.instagram.com/wetgevingsmonitor/"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Wetgevingsmonitor op Instagram"
+                aria-label={dict.footer.instagramAria}
                 title="Instagram"
                 className="text-mute hover:text-accent transition-colors"
               >

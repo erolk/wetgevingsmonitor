@@ -1,8 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import type { Dictionary } from "@/lib/i18n/types";
 
-export function ContactForm() {
+type Props = {
+  dict: Dictionary;
+};
+
+export function ContactForm({ dict }: Props) {
+  const t = dict.contact;
   const [naam, setNaam] = useState("");
   const [email, setEmail] = useState("");
   const [bericht, setBericht] = useState("");
@@ -28,14 +34,14 @@ export function ContactForm() {
       const data = await res.json();
       if (!res.ok) {
         setStatus("error");
-        setFeedback(data.error ?? "Er ging iets mis");
+        setFeedback(data.error ?? t.formGenericError);
         return;
       }
       setStatus("ok");
       setFeedback(data.bericht);
     } catch {
       setStatus("error");
-      setFeedback("Kon bericht niet versturen");
+      setFeedback(t.formGenericError);
     }
   }
 
@@ -45,10 +51,7 @@ export function ContactForm() {
         <div className="flex items-center gap-2 text-ink font-medium mb-1">
           <span aria-hidden>✓</span> {feedback}
         </div>
-        <p className="text-sm text-mute leading-relaxed">
-          We reageren meestal binnen een paar dagen op het opgegeven
-          e-mailadres.
-        </p>
+        <p className="text-sm text-mute leading-relaxed">{t.successHint}</p>
       </div>
     );
   }
@@ -81,7 +84,7 @@ export function ContactForm() {
       </div>
 
       <label className="block">
-        <span className="text-xs text-mute">Naam</span>
+        <span className="text-xs text-mute">{t.formName}</span>
         <input
           type="text"
           required
@@ -89,24 +92,24 @@ export function ContactForm() {
           value={naam}
           onChange={(e) => setNaam(e.target.value)}
           className="mt-1 w-full rounded-md border border-line bg-paper px-3 py-2 text-sm focus:outline-none focus:border-accent"
-          placeholder="Jouw naam"
+          placeholder={t.formNamePlaceholder}
         />
       </label>
 
       <label className="block">
-        <span className="text-xs text-mute">E-mailadres</span>
+        <span className="text-xs text-mute">{t.formEmail}</span>
         <input
           type="email"
           required
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           className="mt-1 w-full rounded-md border border-line bg-paper px-3 py-2 text-sm focus:outline-none focus:border-accent"
-          placeholder="naam@voorbeeld.nl"
+          placeholder={t.formEmailPlaceholder}
         />
       </label>
 
       <label className="block">
-        <span className="text-xs text-mute">Opmerkingen / vraag</span>
+        <span className="text-xs text-mute">{t.formMessage}</span>
         <textarea
           required
           minLength={5}
@@ -115,10 +118,10 @@ export function ContactForm() {
           value={bericht}
           onChange={(e) => setBericht(e.target.value)}
           className="mt-1 w-full rounded-md border border-line bg-paper px-3 py-2 text-sm focus:outline-none focus:border-accent resize-y"
-          placeholder="Vraag, opmerking, verbetering of typfout? Laat het weten."
+          placeholder={t.formMessagePlaceholder}
         />
         <span className="block text-[10px] text-mute mt-1 text-right">
-          {bericht.length}/5000
+          {t.formCharCounter.replace("{n}", String(bericht.length))}
         </span>
       </label>
 
@@ -130,10 +133,7 @@ export function ContactForm() {
           className="mt-0.5"
           required
         />
-        <span>
-          Ik wil dat mijn naam en e-mailadres alleen gebruikt worden om
-          antwoord te kunnen krijgen en niet verder worden gedeeld.
-        </span>
+        <span>{t.formConsent}</span>
       </label>
 
       {status === "error" && feedback && (
@@ -146,7 +146,7 @@ export function ContactForm() {
           disabled={status === "loading"}
           className="rounded-md bg-accent text-paper px-4 py-2 text-sm hover:bg-accentDark transition disabled:opacity-50"
         >
-          {status === "loading" ? "Versturen…" : "Verstuur bericht"}
+          {status === "loading" ? t.formSubmitting : t.formSubmit}
         </button>
       </div>
     </form>
