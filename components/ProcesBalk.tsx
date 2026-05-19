@@ -12,53 +12,70 @@ export function ProcesBalk({ fase, compact = false }: Props) {
 
   return (
     <div className="w-full">
-      {/* Desktop (≥lg) / horizontale variant met hover-tooltip */}
-      <ol className="hidden lg:flex items-stretch gap-0">
+      {/* Desktop (≥lg) / horizontale variant met hover-tooltip.
+          Grid-cols-8 zorgt dat elke bolletje precies in het midden van zijn
+          kolom zit; connector-lines lopen tussen aangrenzende kolommen door
+          via absolute positionering (geen 'last item shifts right' meer). */}
+      <ol className="hidden lg:grid grid-cols-8 items-start">
         {PROCES_STAPPEN.map((stap, i) => {
           const status = statussen[i];
+          const vorigeVoltooid = i > 0 && statussen[i - 1] === "voltooid";
+          const dezeVoltooid = status === "voltooid";
+          const isEerste = i === 0;
           const isLaatste = i === PROCES_STAPPEN.length - 1;
           return (
             <li
               key={stap.id}
-              className="flex-1 flex items-center"
+              className="flex flex-col items-center px-1 group relative"
               aria-current={status === "bezig" ? "step" : undefined}
             >
-              <div className="flex flex-col items-center flex-1 px-1 group relative">
-                <Bolletje status={status} verworpen={verworpen} />
+              {/* Connector-segmenten van de kolom-rand tot net voor het bolletje.
+                  top-[9px] matcht de verticale midden van de h-5 (20px) bolletje.
+                  De inset (calc(50% - 14px)) zorgt voor een kleine adempauze
+                  tussen de lijn en de bolletje (20px breed + 2x2px border = 24px,
+                  dus 12px aan elke kant + 2px gap). */}
+              {!isEerste && (
                 <div
-                  className={`mt-2 text-[11px] text-center leading-tight ${
-                    status === "bezig"
-                      ? "font-semibold text-ink"
-                      : status === "voltooid"
-                        ? "text-ink/80"
-                        : "text-mute"
-                  }`}
-                >
-                  {stap.korteNaam}
-                </div>
-                {!compact && (
-                  <div
-                    className="hidden group-hover:block group-focus-within:block absolute top-full mt-2 z-10 bg-ink text-paper text-xs rounded p-3 w-64 shadow-lg pointer-events-none"
-                    role="tooltip"
-                  >
-                    <div className="font-medium mb-1">
-                      {stap.volledigeNaam}
-                    </div>
-                    <div className="text-paper/80 leading-relaxed">
-                      {stap.uitleg}
-                    </div>
-                  </div>
-                )}
-              </div>
-              {!isLaatste && (
-                <div
-                  className={`h-px flex-1 ${
-                    statussen[i + 1] === "voltooid" || statussen[i] === "voltooid"
+                  className={`absolute top-[9px] left-0 right-[calc(50%+14px)] h-px ${
+                    vorigeVoltooid || dezeVoltooid
                       ? "bg-accent/60"
                       : "bg-line"
                   }`}
                   aria-hidden="true"
                 />
+              )}
+              {!isLaatste && (
+                <div
+                  className={`absolute top-[9px] left-[calc(50%+14px)] right-0 h-px ${
+                    dezeVoltooid || statussen[i + 1] === "voltooid"
+                      ? "bg-accent/60"
+                      : "bg-line"
+                  }`}
+                  aria-hidden="true"
+                />
+              )}
+              <Bolletje status={status} verworpen={verworpen} />
+              <div
+                className={`mt-2 text-[11px] text-center leading-tight ${
+                  status === "bezig"
+                    ? "font-semibold text-ink"
+                    : status === "voltooid"
+                      ? "text-ink/80"
+                      : "text-mute"
+                }`}
+              >
+                {stap.korteNaam}
+              </div>
+              {!compact && (
+                <div
+                  className="hidden group-hover:block group-focus-within:block absolute top-full mt-2 z-20 bg-ink text-paper text-xs rounded p-3 w-64 shadow-lg pointer-events-none"
+                  role="tooltip"
+                >
+                  <div className="font-medium mb-1">{stap.volledigeNaam}</div>
+                  <div className="text-paper/80 leading-relaxed">
+                    {stap.uitleg}
+                  </div>
+                </div>
               )}
             </li>
           );
