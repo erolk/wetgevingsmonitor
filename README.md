@@ -34,6 +34,7 @@ veilig: `mv ~/Desktop/VolkshuisvestingMonitor ~/Desktop/wetgevingsmonitor`.)
 | Bron | Gebruik |
 |---|---|
 | [Tweede Kamer Open Data](https://opendata.tweedekamer.nl) — OData v4 op `gegevensmagazijn.tweedekamer.nl/OData/v4/2.0` | Zaken, activiteiten, besluiten, stemmingen |
+| [Eerste Kamer](https://www.eerstekamer.nl) — gescrapet per dossiernummer (geen open data API) | EK-fase (schriftelijke voorbereiding, plenair, Staatsblad) |
 | Anthropic Claude API (Haiku 4.5) | Burger-vriendelijke uitleg per wet |
 
 ## Lokaal draaien
@@ -92,16 +93,32 @@ lib/
   types.ts                            # TS types
   ministeries.ts                      # 15 ministeries met commissie-mapping
   explanations.ts                     # leest data/explanations.json
+  ek-status.ts                        # leest data/ek-status.json
+  fase-display.ts                     # fase-blokjes (TK + EK gecombineerd)
 data/
   explanations.json                   # burger-uitleg cache
+  ek-status.json                      # EK-fase cache per dossiernummer
 scripts/
   generate-explanations.mjs           # vult explanations.json via Claude API
+  fetch-ek-status.mjs                 # vult ek-status.json door EK-site te scrapen
+  check-updates.mjs                   # detecteert wijzigingen voor email-alerts
 ```
+
+## EK-status verversen
+
+Eerste Kamer heeft geen open data API. We scrapen per dossiernummer de
+voortgangsblokken (vol/geblokt/leeg) en cachen dat in `data/ek-status.json`.
+
+```bash
+npm run ek-status
+```
+
+Veilig om dagelijks te draaien (idempotent, cachet 24u oud is goed genoeg).
 
 ## Roadmap
 
+- [x] Eerste Kamer-fase integreren (scrape `eerstekamer.nl` per dossiernummer)
 - [ ] **Email/notificatie-alerts** per wet of per ministerie (cron + Resend)
-- [ ] Eerste Kamer Open Data integreren ("ligt nu in EK"-fase)
 - [ ] Stemverhouding-totalen ("145 voor, 5 tegen")
 - [ ] Filter op thema (huurregulering, stikstof, AVG, …)
 - [ ] RSS-feed per ministerie
