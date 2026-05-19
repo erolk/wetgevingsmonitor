@@ -11,9 +11,10 @@
 :root {
   color-scheme: light;
 
-  /* Krantenpapier — iets warmer en dieper dan eerder #fafaf7 */
-  --paper: 238 232 216;        /* warm cream */
-  --surface: 252 248 238;      /* card achtergrond, iets lichter */
+  /* Krantenpapier — iets dieper cream als achtergrond zodat de surface-laag
+     (menu, kaarten, agenda) er duidelijker boven uit komt. */
+  --paper: 226 218 198;        /* dieper cream — achtergrond */
+  --surface: 252 248 238;      /* card / menu / tegels — duidelijk lichter */
   --ink: 14 22 50;             /* diep navy ink */
   --mute: 88 99 122;            /* gedempt navy */
   --line: 198 190 168;          /* warme border */
@@ -24,8 +25,8 @@
 .dark {
   color-scheme: dark;
 
-  --paper: 18 23 36;            /* diep navy-grijs */
-  --surface: 26 32 50;          /* card iets lichter */
+  --paper: 14 18 30;            /* iets dieper navy — achtergrond */
+  --surface: 26 32 50;          /* card / menu / tegels */
   --ink: 232 232 228;           /* warm cream tekst */
   --mute: 154 164 184;
   --line: 56 68 92;
@@ -56,13 +57,13 @@ hr {
 }
 
 /*
- * Ministerie-tegels — lichter dan paper maar nog duidelijk te onderscheiden
- * van de agenda-strip (surface). Contrast komt vooral uit de iets sterkere
- * border. Bij hover: lift + accent-border + zachte schaduw.
+ * Ministerie-tegels — dezelfde fill als het menu (surface). Contrast met
+ * de dieperde paper-achtergrond ontstaat uit de fill zelf + de border.
+ * Hover lift de tegel en kleurt de border accent.
  */
 .ministerie-tile {
-  background-color: rgb(248 242 226); /* iets lichter dan paper, donkerder dan surface */
-  border-color: rgb(var(--ink) / 0.22);
+  background-color: rgb(var(--surface));
+  border-color: rgb(var(--ink) / 0.18);
   border-width: 1px;
   transition:
     background-color 160ms ease,
@@ -71,7 +72,7 @@ hr {
     box-shadow 160ms ease;
 }
 .ministerie-tile:hover {
-  background-color: rgb(252 246 232); /* nog ietsje lichter bij hover */
+  background-color: rgb(255 252 246); /* zacht naar wit toe */
   border-color: rgb(var(--accent));
   transform: translateY(-3px);
   box-shadow:
@@ -79,11 +80,11 @@ hr {
     0 4px 10px -2px rgb(var(--ink) / 0.1);
 }
 .dark .ministerie-tile {
-  background-color: rgb(36 44 64); /* duidelijk lichter dan paper voor contrast */
+  background-color: rgb(var(--surface));
   border-color: rgb(var(--line));
 }
 .dark .ministerie-tile:hover {
-  background-color: rgb(48 58 82);
+  background-color: rgb(38 46 68);
   border-color: rgb(var(--accent));
   box-shadow:
     0 10px 28px -4px rgb(0 0 0 / 0.6),

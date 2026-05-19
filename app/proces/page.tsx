@@ -67,12 +67,12 @@ export default async function ProcesPagina() {
         </ol>
       </section>
 
-      <section className="rounded-md border border-line bg-paper p-6 space-y-3">
+      <section className="rounded-md border border-line bg-surface p-6 space-y-3">
         <h2 className="font-serif text-xl">{t.rejectedTitle}</h2>
         <p className="text-sm leading-relaxed">{t.rejectedBody}</p>
       </section>
 
-      <section className="rounded-md border border-line bg-paper p-6 space-y-3">
+      <section className="rounded-md border border-line bg-surface p-6 space-y-3">
         <h2 className="font-serif text-xl">{t.enactTitle}</h2>
         <p className="text-sm leading-relaxed">{t.enactBody}</p>
       </section>

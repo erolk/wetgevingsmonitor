@@ -135,7 +135,7 @@ export function SubscribeButton(props: Props) {
             if (e.target === e.currentTarget) close();
           }}
         >
-          <div className="w-full max-w-md rounded-lg border border-line bg-paper shadow-2xl">
+          <div className="w-full max-w-md rounded-lg border border-line bg-surface shadow-2xl">
             <div className="flex items-start justify-between gap-3 px-5 py-4 border-b border-line">
               <h2 className="font-medium text-ink leading-snug">{label}</h2>
               <button
