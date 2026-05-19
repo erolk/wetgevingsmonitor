@@ -10,6 +10,7 @@ import type { Fase, WetVoorstel } from "@/lib/types";
 import { getMinisterie, MINISTERIES } from "@/lib/ministeries";
 import { getUitleg } from "@/lib/explanations";
 import { SubscribeButton } from "@/components/SubscribeButton";
+import { UitklapLijst } from "@/components/UitklapLijst";
 
 export const revalidate = 86400;
 
@@ -176,9 +177,15 @@ export default async function MinisterieOverview({
             <span className="text-mute text-base">({afgerond.length})</span>
           </h2>
           <ul className="divide-y divide-line border-t border-b border-line">
-            {afgerond.slice(0, 8).map((it) => (
-              <WetRow key={it.id} item={it} />
-            ))}
+            <UitklapLijst
+              initialCount={10}
+              meerLabel={(n) => `Toon overige ${n} wetsvoorstellen ↓`}
+              minderLabel="Toon minder ↑"
+            >
+              {afgerond.map((it) => (
+                <WetRow key={it.id} item={it} />
+              ))}
+            </UitklapLijst>
           </ul>
         </section>
       )}
