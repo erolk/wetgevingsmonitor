@@ -56,13 +56,13 @@ hr {
 }
 
 /*
- * Ministerie-tegels — dieper kranten-cream met duidelijke hover-state.
- * Tegels zijn merkbaar donkerder dan de papier-achtergrond, en bij hover
- * trekken ze stevig de aandacht via border + lift + schaduw.
+ * Ministerie-tegels — lichter dan paper maar nog duidelijk te onderscheiden
+ * van de agenda-strip (surface). Contrast komt vooral uit de iets sterkere
+ * border. Bij hover: lift + accent-border + zachte schaduw.
  */
 .ministerie-tile {
-  background-color: rgb(220 212 188); /* dieper cream — duidelijk donkerder dan paper */
-  border-color: rgb(var(--ink) / 0.18);
+  background-color: rgb(248 242 226); /* iets lichter dan paper, donkerder dan surface */
+  border-color: rgb(var(--ink) / 0.22);
   border-width: 1px;
   transition:
     background-color 160ms ease,
@@ -71,7 +71,7 @@ hr {
     box-shadow 160ms ease;
 }
 .ministerie-tile:hover {
-  background-color: rgb(206 196 168); /* nog iets dieper bij hover */
+  background-color: rgb(252 246 232); /* nog ietsje lichter bij hover */
   border-color: rgb(var(--accent));
   transform: translateY(-3px);
   box-shadow:
