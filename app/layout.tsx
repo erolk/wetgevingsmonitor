@@ -2,7 +2,6 @@ import "./globals.css";
 import type { Metadata, Viewport } from "next";
 import Link from "next/link";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { LanguageToggle } from "@/components/LanguageToggle";
 import { getDict } from "@/lib/i18n";
 
 export const metadata: Metadata = {
@@ -90,11 +89,6 @@ export default async function RootLayout({
                   <line x1="21" y1="21" x2="16.65" y2="16.65" />
                 </svg>
               </Link>
-              <LanguageToggle
-                locale={locale}
-                toggleLabel={dict.common.languageToggle}
-                currentLabel={dict.common.languageCurrent}
-              />
               <ThemeToggle />
             </nav>
           </div>
