@@ -11,6 +11,15 @@ import { getMinisterieByCommissie } from "@/lib/ministeries";
 import { ProcesBalk } from "@/components/ProcesBalk";
 import { getEkStatus } from "@/lib/ek-status";
 import { SubscribeButton } from "@/components/SubscribeButton";
+import {
+  BesluitenLijst,
+  type BesluitWeergave,
+} from "@/components/BesluitenLijst";
+import {
+  aggregeerStemming,
+  isStemmingBesluit,
+  isProcedureelBesluit,
+} from "@/lib/stemming";
 
 export const revalidate = 21600;
 
@@ -41,6 +50,31 @@ export default async function WetDetail({ params }: Params) {
       new Date(b.GewijzigdOp ?? 0).getTime() -
       new Date(a.GewijzigdOp ?? 0).getTime(),
   );
+
+  const stemmingBesluiten: BesluitWeergave[] = [];
+  const procedureleBesluiten: BesluitWeergave[] = [];
+  for (const b of besluiten) {
+    const isStemming = isStemmingBesluit(b);
+    const weergave: BesluitWeergave = {
+      id: b.Id,
+      besluitSoort: b.BesluitSoort,
+      stemmingsSoort: b.StemmingsSoort,
+      besluitTekst: b.BesluitTekst,
+      status: b.Status,
+      gewijzigdOp: b.GewijzigdOp,
+      uitslag:
+        isStemming && b.Stemming && b.Stemming.length > 0
+          ? aggregeerStemming(b.Stemming, b.StemmingsSoort)
+          : null,
+    };
+    if (isStemming) {
+      stemmingBesluiten.push(weergave);
+    } else if (isProcedureelBesluit(b)) {
+      procedureleBesluiten.push(weergave);
+    } else {
+      procedureleBesluiten.push(weergave);
+    }
+  }
 
   return (
     <article className="space-y-10">
@@ -197,59 +231,10 @@ export default async function WetDetail({ params }: Params) {
 
       <section>
         <h2 className="font-serif text-xl mb-3">Besluiten en stemmingen</h2>
-        {besluiten.length === 0 ? (
-          <p className="text-sm text-mute">
-            Nog geen besluiten genomen door de Tweede Kamer.
-          </p>
-        ) : (
-          <ul className="space-y-4">
-            {besluiten.map((b) => (
-              <li
-                key={b.Id}
-                className="rounded-md border border-line bg-surface p-4"
-              >
-                <div className="text-xs text-mute mb-1">
-                  {formatDate(b.GewijzigdOp)}
-                  {b.Status ? ` · ${b.Status}` : ""}
-                </div>
-                <div className="font-medium">
-                  {b.BesluitSoort ?? b.StemmingsSoort ?? "Besluit"}
-                </div>
-                {b.BesluitTekst && (
-                  <div className="text-sm mt-1">{b.BesluitTekst}</div>
-                )}
-                {b.Stemming && b.Stemming.length > 0 && (
-                  <div className="mt-3">
-                    <div className="text-xs uppercase tracking-wide text-mute mb-2">
-                      Stemming per fractie
-                    </div>
-                    <ul className="grid grid-cols-2 sm:grid-cols-3 gap-1 text-sm">
-                      {b.Stemming.map((s) => (
-                        <li
-                          key={s.Id}
-                          className="flex justify-between border-b border-line/60 py-1"
-                        >
-                          <span className="truncate">{s.ActorFractie}</span>
-                          <span
-                            className={
-                              s.Soort === "Voor"
-                                ? "text-emerald-700 dark:text-emerald-300 font-medium"
-                                : s.Soort === "Tegen"
-                                  ? "text-rose-700 dark:text-rose-300 font-medium"
-                                  : "text-mute"
-                            }
-                          >
-                            {s.Soort}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-              </li>
-            ))}
-          </ul>
-        )}
+        <BesluitenLijst
+          stemmingen={stemmingBesluiten}
+          procedureel={procedureleBesluiten}
+        />
       </section>
 
       <section>
