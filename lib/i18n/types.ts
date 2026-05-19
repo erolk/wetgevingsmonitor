@@ -128,6 +128,12 @@ export interface Dictionary {
     emptyAll: string;
     helpFases: string;
     filterAll: string; // "Alles"
+    ministerieLabel: string; // "Ministerie" header-prefix
+    errorPrefix: string; // "Kon data niet ophalen:"
+    unknownError: string;
+    nextMoment: string; // "Volgende moment:"
+    submittedOn: string; // "ingediend {datum}"
+    dossierLabel: string; // "dossier {n}"
   };
 
   wet: {

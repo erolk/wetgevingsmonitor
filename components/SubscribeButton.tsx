@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import type { Dictionary } from "@/lib/i18n/types";
 
-type Props =
+type Props = (
   | {
       target: "wet";
       wetId: string;
@@ -14,9 +15,13 @@ type Props =
       slug: string;
       naam: string;
       compact?: boolean;
-    };
+    }
+) & {
+  dict: Dictionary;
+};
 
 export function SubscribeButton(props: Props) {
+  const t = props.dict.subscribe;
   const [open, setOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [avg, setAvg] = useState(false);
@@ -42,8 +47,8 @@ export function SubscribeButton(props: Props) {
 
   useEffect(() => {
     if (open && status === "idle") {
-      const t = setTimeout(() => emailInputRef.current?.focus(), 50);
-      return () => clearTimeout(t);
+      const id = setTimeout(() => emailInputRef.current?.focus(), 50);
+      return () => clearTimeout(id);
     }
   }, [open, status]);
 
@@ -89,21 +94,21 @@ export function SubscribeButton(props: Props) {
       const data = await res.json();
       if (!res.ok) {
         setStatus("error");
-        setBericht(data.error ?? "Er ging iets mis");
+        setBericht(data.error ?? t.genericError);
         return;
       }
       setStatus("ok");
       setBericht(data.bericht);
     } catch {
       setStatus("error");
-      setBericht("Kon abonnement niet versturen");
+      setBericht(t.genericError);
     }
   }
 
   const label =
     props.target === "wet"
-      ? "Mail mij bij updates over deze wet"
-      : `Mail mij bij updates over ${props.naam}`;
+      ? t.wetLabel
+      : t.ministryLabel.replace("{naam}", props.naam);
 
   return (
     <>
@@ -136,7 +141,7 @@ export function SubscribeButton(props: Props) {
               <button
                 type="button"
                 onClick={close}
-                aria-label="Sluiten"
+                aria-label={t.close}
                 className="shrink-0 -mr-1 -mt-1 p-1 rounded text-mute hover:text-ink hover:bg-surface transition"
               >
                 <svg
@@ -165,8 +170,7 @@ export function SubscribeButton(props: Props) {
                   {bericht}
                 </div>
                 <p className="text-sm text-mute leading-relaxed">
-                  Klik op de bevestigingslink in de mail om je abonnement te
-                  activeren.
+                  {t.activate}
                 </p>
                 <div className="pt-1">
                   <button
@@ -174,19 +178,17 @@ export function SubscribeButton(props: Props) {
                     onClick={close}
                     className="rounded-md border border-line px-3 py-2 text-sm hover:border-ink transition text-mute hover:text-ink"
                   >
-                    Sluiten
+                    {t.close}
                   </button>
                 </div>
               </div>
             ) : (
               <form onSubmit={submit} className="px-5 py-5 space-y-4">
                 <p className="text-xs text-mute leading-relaxed">
-                  Je krijgt een mail bij elk nieuw event: behandeling in
-                  commissie, plenair debat, stemming (inclusief voor/tegen
-                  per fractie), en besluiten in de Eerste Kamer.
+                  {t.description}
                 </p>
                 <label className="block">
-                  <span className="text-xs text-mute">Je e-mailadres</span>
+                  <span className="text-xs text-mute">{t.yourEmail}</span>
                   <input
                     ref={emailInputRef}
                     type="email"
@@ -194,7 +196,7 @@ export function SubscribeButton(props: Props) {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className="mt-1 w-full rounded-md border border-line bg-surface px-3 py-2 text-sm focus:outline-none focus:border-accent"
-                    placeholder="naam@voorbeeld.nl"
+                    placeholder={t.emailPlaceholder}
                   />
                 </label>
                 <label className="flex items-start gap-2 text-xs text-mute leading-relaxed">
@@ -206,12 +208,25 @@ export function SubscribeButton(props: Props) {
                     required
                   />
                   <span>
-                    Ik ga akkoord met de{" "}
-                    <a href="/privacy" target="_blank" className="underline">
-                      privacyverklaring
-                    </a>{" "}
-                    en weet dat ik me altijd kan uitschrijven via de link in
-                    elke mail.
+                    {t.consent.replace(
+                      "{privacy}",
+                      "",
+                    ).split(t.privacyLink).map((part, i, arr) =>
+                      i < arr.length - 1 ? (
+                        <span key={i}>
+                          {part}
+                          <a
+                            href="/privacy"
+                            target="_blank"
+                            className="underline"
+                          >
+                            {t.privacyLink}
+                          </a>
+                        </span>
+                      ) : (
+                        <span key={i}>{part}</span>
+                      ),
+                    )}
                   </span>
                 </label>
                 {status === "error" && bericht && (
@@ -223,16 +238,14 @@ export function SubscribeButton(props: Props) {
                     onClick={close}
                     className="rounded-md border border-line px-3 py-2 text-sm hover:border-ink transition text-mute hover:text-ink"
                   >
-                    Annuleer
+                    {t.cancel}
                   </button>
                   <button
                     type="submit"
                     disabled={status === "loading"}
                     className="flex-1 min-w-0 rounded-md bg-accent text-paper px-3 py-2 text-sm hover:bg-accentDark transition disabled:opacity-50"
                   >
-                    {status === "loading"
-                      ? "Versturen…"
-                      : "Stuur bevestigingsmail"}
+                    {status === "loading" ? t.submitting : t.submit}
                   </button>
                 </div>
               </form>

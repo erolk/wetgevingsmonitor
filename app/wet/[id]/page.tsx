@@ -1,11 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import {
-  fetchWetsvoorstel,
-  normalize,
-  FASE_LABEL,
-  FASE_KLEUR,
-} from "@/lib/tk-api";
+import { fetchWetsvoorstel, normalize, FASE_KLEUR } from "@/lib/tk-api";
 import { getUitleg } from "@/lib/explanations";
 import { getMinisterieByCommissie } from "@/lib/ministeries";
 import { ProcesBalk } from "@/components/ProcesBalk";
@@ -25,6 +20,8 @@ import {
   heeftMogelijkVideo,
   type DebatMatch,
 } from "@/lib/debat-direct";
+import { getDict, tpl } from "@/lib/i18n";
+import type { Locale } from "@/lib/i18n";
 
 export const revalidate = 21600;
 
@@ -35,15 +32,22 @@ export default async function WetDetail({ params }: Params) {
   const zaak = await fetchWetsvoorstel(id);
   if (!zaak) notFound();
 
+  const { dict, locale } = await getDict();
+  const t = dict.wet;
   const item = normalize(zaak);
   const uitleg = getUitleg(item.id);
   const ministerie = item.voortouwcommissie
     ? getMinisterieByCommissie(item.voortouwcommissie)
     : null;
+  const ministerieLabels = ministerie
+    ? (dict.ministeries[ministerie.slug] ?? {
+        naam: ministerie.naam,
+        korteNaam: ministerie.korteNaam,
+        beschrijving: ministerie.beschrijving,
+      })
+    : null;
   const ekStatus = getEkStatus(item.id);
 
-  // Combineer activiteiten uit Zaak.Activiteit en Zaak.Besluit[].Agendapunt.Activiteit
-  // (per Id deduplicate; sommige wetten hebben enkel via Agendapunt activiteiten).
   type ActiviteitType = NonNullable<typeof zaak.Activiteit>[number];
   const activiteitMap = new Map<string, ActiviteitType>();
   for (const a of zaak.Activiteit ?? []) {
@@ -69,8 +73,6 @@ export default async function WetDetail({ params }: Params) {
       new Date(a.GewijzigdOp ?? 0).getTime(),
   );
 
-  // Probeer voor elke verleden video-activiteit een Debat Direct match te
-  // vinden. Per datum 1 API-call (gecached door Next.js fetch).
   const nu = new Date().toISOString().slice(0, 10);
   const matchKandidaten = activiteiten.filter(
     (a) =>
@@ -122,19 +124,19 @@ export default async function WetDetail({ params }: Params) {
   return (
     <article className="space-y-10">
       <div>
-        {ministerie ? (
+        {ministerie && ministerieLabels ? (
           <Link
             href={`/ministerie/${ministerie.slug}`}
             className="text-sm text-mute hover:text-ink inline-flex items-center gap-1"
           >
-            ← terug naar {ministerie.korteNaam}
+            {tpl(t.backToMinistry, { naam: ministerieLabels.korteNaam })}
           </Link>
         ) : (
           <Link
             href="/"
             className="text-sm text-mute hover:text-ink inline-flex items-center gap-1"
           >
-            ← terug naar overzicht
+            {t.backToOverview}
           </Link>
         )}
       </div>
@@ -142,8 +144,16 @@ export default async function WetDetail({ params }: Params) {
       <header className="space-y-3">
         <div className="flex flex-wrap items-center gap-2 text-xs text-mute">
           <span className="font-mono">{item.nummer}</span>
-          {item.dossierNummer && <span>· dossier {item.dossierNummer}</span>}
-          {item.vergaderjaar && <span>· vergaderjaar {item.vergaderjaar}</span>}
+          {item.dossierNummer && (
+            <span>
+              · {t.fieldDossier} {item.dossierNummer}
+            </span>
+          )}
+          {item.vergaderjaar && (
+            <span>
+              · {t.fieldVergaderjaar} {item.vergaderjaar}
+            </span>
+          )}
         </div>
         <h1 className="font-serif text-2xl sm:text-3xl leading-tight break-words">
           {item.titel}
@@ -152,11 +162,11 @@ export default async function WetDetail({ params }: Params) {
           <span
             className={`text-xs px-2.5 py-1 rounded-full font-medium ${FASE_KLEUR[item.fase]}`}
           >
-            {FASE_LABEL[item.fase]}
+            {dict.fase[item.fase]}
           </span>
           {item.voortouwcommissie && (
             <span className="text-xs text-mute">
-              Voortouw: {item.voortouwcommissie}
+              {t.fieldVoortouw} {item.voortouwcommissie}
             </span>
           )}
         </div>
@@ -164,25 +174,25 @@ export default async function WetDetail({ params }: Params) {
 
       <section className="rounded-md border border-line bg-surface p-5 space-y-4">
         <div className="flex items-center justify-between gap-2 flex-wrap">
-          <h2 className="font-serif text-lg">Waar bevindt het zich nu?</h2>
+          <h2 className="font-serif text-lg">{t.sectionWhere}</h2>
           <Link
             href="/proces"
             className="text-xs text-mute hover:text-ink underline"
           >
-            hoe werkt het hele proces? →
+            {t.howProcess}
           </Link>
         </div>
         <ProcesBalk fase={item.fase} />
         {ekStatus?.gevonden && ekStatus.ekUrl && (
           <div className="text-xs text-mute pt-2 border-t border-line">
-            EK-fase: {ekStatus.label} ·{" "}
+            {t.ekPhasePrefix} {ekStatus.label} ·{" "}
             <a
               href={ekStatus.ekUrl}
               target="_blank"
               rel="noopener"
               className="underline hover:text-ink"
             >
-              bekijk op eerstekamer.nl ↗
+              {t.ekView}
             </a>
           </div>
         )}
@@ -196,6 +206,7 @@ export default async function WetDetail({ params }: Params) {
               target="wet"
               wetId={item.id}
               titel={item.titel}
+              dict={dict}
             />
           </section>
         )}
@@ -203,7 +214,7 @@ export default async function WetDetail({ params }: Params) {
       {uitleg && (
         <section className="rounded-md border border-accent/40 bg-accent/5 dark:bg-accent/10 p-5 space-y-2">
           <div className="text-xs uppercase tracking-wide text-accent font-medium">
-            Wat betekent dit voor jou?
+            {t.sectionWhatMeans}
           </div>
           <p className="text-base leading-relaxed">
             <span className="font-medium">{uitleg.watRegelt}</span>
@@ -223,21 +234,18 @@ export default async function WetDetail({ params }: Params) {
               ))}
             </div>
           )}
-          <div className="text-[10px] text-mute pt-1">
-            AI-gegenereerde samenvatting op basis van de officiële titel/onderwerp.
-            Bekijk de tijdlijn en besluiten hieronder voor de feiten.
-          </div>
+          <div className="text-[10px] text-mute pt-1">{t.aiNote}</div>
         </section>
       )}
 
       {item.volgendeActiviteit && (
         <section className="rounded-md border border-line bg-surface p-5">
           <div className="text-xs uppercase tracking-wide text-mute mb-1">
-            Eerstvolgende moment
+            {t.nextMoment}
           </div>
           <div className="font-medium">
-            {item.volgendeActiviteit.soort ?? "Activiteit"} —{" "}
-            {formatDate(item.volgendeActiviteit.datum)}
+            {item.volgendeActiviteit.soort ?? t.activity} —{" "}
+            {formatDate(item.volgendeActiviteit.datum, locale)}
           </div>
           <div className="text-sm text-mute mt-1">
             {item.volgendeActiviteit.onderwerp}
@@ -246,11 +254,9 @@ export default async function WetDetail({ params }: Params) {
       )}
 
       <section>
-        <h2 className="font-serif text-xl mb-3">Tijdlijn van activiteiten</h2>
+        <h2 className="font-serif text-xl mb-3">{t.timelineTitle}</h2>
         {activiteiten.length === 0 ? (
-          <p className="text-sm text-mute">
-            Nog geen activiteiten geregistreerd.
-          </p>
+          <p className="text-sm text-mute">{t.timelineEmpty}</p>
         ) : (
           <ol className="border-l border-line ml-2 space-y-5">
             {activiteiten.map((a) => {
@@ -259,11 +265,11 @@ export default async function WetDetail({ params }: Params) {
                 <li key={a.Id} className="relative pl-5">
                   <span className="absolute -left-[5px] top-2 h-2 w-2 rounded-full bg-accent" />
                   <div className="text-xs text-mute">
-                    {formatDate(a.Datum)}
+                    {formatDate(a.Datum, locale)}
                     {a.Status ? ` · ${a.Status}` : ""}
                   </div>
                   <div className="font-medium leading-snug">
-                    {a.Soort ?? "Activiteit"}
+                    {a.Soort ?? t.activity}
                   </div>
                   {a.Onderwerp && (
                     <div className="text-sm text-mute mt-0.5">
@@ -279,10 +285,10 @@ export default async function WetDetail({ params }: Params) {
                     >
                       <span aria-hidden>▶</span>
                       {dbm.zekerheid === "dag"
-                        ? "Bekijk de agenda van die dag op Debat Direct"
+                        ? t.watchDay
                         : dbm.zekerheid === "waarschijnlijk"
-                          ? `Bekijk waarschijnlijk debat: "${dbm.naam}" ↗`
-                          : `Bekijk terug: "${dbm.naam}" ↗`}
+                          ? tpl(t.watchLikely, { naam: dbm.naam })
+                          : tpl(t.watchExact, { naam: dbm.naam })}
                     </a>
                   )}
                 </li>
@@ -293,20 +299,22 @@ export default async function WetDetail({ params }: Params) {
       </section>
 
       <section>
-        <h2 className="font-serif text-xl mb-3">Besluiten en stemmingen</h2>
+        <h2 className="font-serif text-xl mb-3">{t.decisionsTitle}</h2>
         <BesluitenLijst
           stemmingen={stemmingBesluiten}
           procedureel={procedureleBesluiten}
+          dict={dict}
+          locale={locale}
         />
       </section>
 
       <section>
-        <h2 className="font-serif text-xl mb-3">Volledig onderwerp</h2>
+        <h2 className="font-serif text-xl mb-3">{t.onderwerpTitle}</h2>
         <p className="text-sm leading-relaxed">{item.onderwerp}</p>
       </section>
 
       <section className="text-xs text-mute pt-6 border-t border-line">
-        Bron-record:{" "}
+        {t.bronPrefix}{" "}
         <a
           href={`https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Zaak(${item.id})`}
           className="underline hover:text-ink"
@@ -318,14 +326,16 @@ export default async function WetDetail({ params }: Params) {
   );
 }
 
-function formatDate(iso: string | null | undefined): string {
+function formatDate(
+  iso: string | null | undefined,
+  locale: Locale,
+): string {
   if (!iso) return "—";
   try {
-    return new Date(iso).toLocaleDateString("nl-NL", {
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-    });
+    return new Date(iso).toLocaleDateString(
+      locale === "en" ? "en-GB" : "nl-NL",
+      { day: "numeric", month: "long", year: "numeric" },
+    );
   } catch {
     return iso;
   }

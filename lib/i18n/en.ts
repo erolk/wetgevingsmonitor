@@ -193,6 +193,12 @@ export const en: Dictionary = {
     emptyAll: "Currently no active bills found for this ministry.",
     helpFases: "what do the phases mean?",
     filterAll: "All",
+    ministerieLabel: "Ministry",
+    errorPrefix: "Could not load data:",
+    unknownError: "Unknown error",
+    nextMoment: "Next moment:",
+    submittedOn: "submitted {datum}",
+    dossierLabel: "dossier {n}",
   },
 
   wet: {

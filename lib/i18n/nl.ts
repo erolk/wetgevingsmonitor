@@ -196,6 +196,12 @@ export const nl: Dictionary = {
       "Op dit moment geen lopende wetsvoorstellen gevonden voor dit ministerie.",
     helpFases: "wat betekenen de fases?",
     filterAll: "Alles",
+    ministerieLabel: "Ministerie",
+    errorPrefix: "Kon data niet ophalen:",
+    unknownError: "Onbekende fout",
+    nextMoment: "Volgende moment:",
+    submittedOn: "ingediend {datum}",
+    dossierLabel: "dossier {n}",
   },
 
   wet: {

@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import {
   fetchWetsvoorstellenVoorCommissie,
   normalize,
-  FASE_LABEL,
   FASE_KLEUR,
 } from "@/lib/tk-api";
 import type { Fase, WetVoorstel } from "@/lib/types";
@@ -11,6 +10,8 @@ import { getMinisterie, MINISTERIES } from "@/lib/ministeries";
 import { getUitleg } from "@/lib/explanations";
 import { SubscribeButton } from "@/components/SubscribeButton";
 import { UitklapLijst } from "@/components/UitklapLijst";
+import { getDict, tpl } from "@/lib/i18n";
+import type { Dictionary, Locale } from "@/lib/i18n";
 
 export const revalidate = 86400;
 
@@ -23,39 +24,42 @@ type Params = {
   searchParams: Promise<{ fase?: string }>;
 };
 
-const FILTER_OPTIES: Array<{ id: string; label: string; matchFases: Fase[] }> =
-  [
-    {
-      id: "in-commissie",
-      label: "In commissie TK",
-      matchFases: ["ingediend", "in_commissie"],
-    },
-    {
-      id: "plenair-tk",
-      label: "Plenair / stemming TK",
-      matchFases: ["plenair_tk", "stemming_tk"],
-    },
-    {
-      id: "aangenomen-tk",
-      label: "Aangenomen door TK",
-      matchFases: ["aangenomen_tk"],
-    },
-    {
-      id: "eerste-kamer",
-      label: "In Eerste Kamer",
-      matchFases: ["in_eerste_kamer", "aangenomen_ek"],
-    },
-    {
-      id: "wet",
-      label: "Wet (Staatsblad)",
-      matchFases: ["wet"],
-    },
-    {
-      id: "verworpen",
-      label: "Verworpen / ingetrokken",
-      matchFases: ["verworpen", "ingetrokken"],
-    },
-  ];
+const FILTER_OPTIES: Array<{
+  id: string;
+  labelKey: keyof Dictionary["filterOpties"];
+  matchFases: Fase[];
+}> = [
+  {
+    id: "in-commissie",
+    labelKey: "in_commissie",
+    matchFases: ["ingediend", "in_commissie"],
+  },
+  {
+    id: "plenair-tk",
+    labelKey: "plenair_tk",
+    matchFases: ["plenair_tk", "stemming_tk"],
+  },
+  {
+    id: "aangenomen-tk",
+    labelKey: "aangenomen_tk",
+    matchFases: ["aangenomen_tk"],
+  },
+  {
+    id: "eerste-kamer",
+    labelKey: "eerste_kamer",
+    matchFases: ["in_eerste_kamer", "aangenomen_ek"],
+  },
+  {
+    id: "wet",
+    labelKey: "wet",
+    matchFases: ["wet"],
+  },
+  {
+    id: "verworpen",
+    labelKey: "verworpen",
+    matchFases: ["verworpen", "ingetrokken"],
+  },
+];
 
 export default async function MinisterieOverview({
   params,
@@ -67,16 +71,22 @@ export default async function MinisterieOverview({
   const m = getMinisterie(slug);
   if (!m) notFound();
 
+  const { dict, locale } = await getDict();
+  const minLabels = dict.ministeries[m.slug] ?? {
+    naam: m.naam,
+    korteNaam: m.korteNaam,
+    beschrijving: m.beschrijving,
+  };
+
   let items: WetVoorstel[] = [];
   let error: string | null = null;
   try {
     const zaken = await fetchWetsvoorstellenVoorCommissie(m.commissie, 200);
     items = zaken.map(normalize);
   } catch (e) {
-    error = e instanceof Error ? e.message : "Onbekende fout";
+    error = e instanceof Error ? e.message : dict.ministery.unknownError;
   }
 
-  // Filter toepassen indien actief
   const filterOpt = FILTER_OPTIES.find((f) => f.id === actieveFilter) ?? null;
   const gefilterd = filterOpt
     ? items.filter((i) => filterOpt.matchFases.includes(i.fase))
@@ -89,7 +99,6 @@ export default async function MinisterieOverview({
     (i) => i.afgedaan || i.fase === "verworpen" || i.fase === "ingetrokken",
   );
 
-  // Tellingen per filter-optie voor in de chips
   const tellingen: Record<string, number> = {};
   for (const opt of FILTER_OPTIES) {
     tellingen[opt.id] = items.filter((i) =>
@@ -103,36 +112,36 @@ export default async function MinisterieOverview({
         href="/"
         className="text-sm text-mute hover:text-ink inline-flex items-center gap-1"
       >
-        ← alle ministeries
+        {dict.ministery.backToAll}
       </Link>
 
       <section className="grid gap-6 sm:grid-cols-[1fr_auto] sm:items-start">
         <header>
           <div className="text-xs text-mute uppercase tracking-wider mb-1">
-            Ministerie · {m.afkorting}
+            {dict.ministery.ministerieLabel} · {m.afkorting}
           </div>
           <h1 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight break-words">
-            {m.naam}
+            {minLabels.naam}
           </h1>
-          <p className="mt-3 max-w-2xl text-mute">{m.beschrijving}</p>
+          <p className="mt-3 max-w-2xl text-mute">{minLabels.beschrijving}</p>
         </header>
         <aside className="rounded-md border border-line bg-surface p-3 sm:w-64 sm:shrink-0">
           <SubscribeButton
             target="ministerie"
             slug={m.slug}
-            naam={m.naam}
+            naam={minLabels.naam}
             compact
+            dict={dict}
           />
           <p className="mt-2 text-[11px] text-mute leading-relaxed">
-            Mail bij elk debat, stemming of besluit op een wet van dit
-            ministerie.
+            {dict.ministery.subscribeNote}
           </p>
         </aside>
       </section>
 
       {error && (
         <div className="rounded-md border border-rose-200 bg-rose-50 p-4 text-sm text-rose-900 dark:border-rose-800 dark:bg-rose-950/40 dark:text-rose-200">
-          Kon data niet ophalen: {error}
+          {dict.ministery.errorPrefix} {error}
         </div>
       )}
 
@@ -141,30 +150,31 @@ export default async function MinisterieOverview({
         items={items}
         tellingen={tellingen}
         actieveFilter={actieveFilter}
+        dict={dict}
       />
 
       <section>
         <div className="flex items-baseline justify-between gap-3 mb-3">
           <h2 className="font-serif text-2xl">
-            Lopende wetsvoorstellen{" "}
+            {dict.ministery.runningTitle}{" "}
             <span className="text-mute text-base">({lopend.length})</span>
           </h2>
           <Link
             href="/proces"
             className="text-xs text-mute hover:text-ink underline"
           >
-            wat betekenen de fases?
+            {dict.ministery.helpFases}
           </Link>
         </div>
         <ul className="divide-y divide-line border-t border-b border-line">
           {lopend.map((it) => (
-            <WetRow key={it.id} item={it} />
+            <WetRow key={it.id} item={it} dict={dict} locale={locale} />
           ))}
           {lopend.length === 0 && !error && (
             <li className="py-6 text-sm text-mute">
               {actieveFilter
-                ? "Geen wetten in deze fase voor dit ministerie."
-                : "Op dit moment geen lopende wetsvoorstellen gevonden voor dit ministerie."}
+                ? dict.ministery.emptyFiltered
+                : dict.ministery.emptyAll}
             </li>
           )}
         </ul>
@@ -173,17 +183,17 @@ export default async function MinisterieOverview({
       {afgerond.length > 0 && (
         <section>
           <h2 className="font-serif text-2xl mb-4">
-            Afgerond / verworpen{" "}
+            {dict.ministery.completedTitle}{" "}
             <span className="text-mute text-base">({afgerond.length})</span>
           </h2>
           <ul className="divide-y divide-line border-t border-b border-line">
             <UitklapLijst
               initialCount={10}
-              meerTemplate="Toon overige {aantal} wetsvoorstellen ↓"
-              minderLabel="Toon minder ↑"
+              meerTemplate={dict.ministery.showMore}
+              minderLabel={dict.ministery.showLess}
             >
               {afgerond.map((it) => (
-                <WetRow key={it.id} item={it} />
+                <WetRow key={it.id} item={it} dict={dict} locale={locale} />
               ))}
             </UitklapLijst>
           </ul>
@@ -198,20 +208,22 @@ function FaseStrip({
   items,
   tellingen,
   actieveFilter,
+  dict,
 }: {
   slug: string;
   items: WetVoorstel[];
   tellingen: Record<string, number>;
   actieveFilter: string | null;
+  dict: Dictionary;
 }) {
   return (
-    <section aria-label="Filter op fase">
+    <section aria-label="Filter">
       <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2">
         <FaseTegel
           href={`/ministerie/${slug}`}
           actief={!actieveFilter}
           aantal={items.length}
-          label="Alles"
+          label={dict.ministery.filterAll}
           alwaysClickable
         />
         {FILTER_OPTIES.map((opt) => {
@@ -226,7 +238,7 @@ function FaseStrip({
               href={href}
               actief={actief}
               aantal={aantal}
-              label={opt.label}
+              label={dict.filterOpties[opt.labelKey]}
             />
           );
         })}
@@ -249,8 +261,7 @@ function FaseTegel({
   alwaysClickable?: boolean;
 }) {
   const disabled = !alwaysClickable && aantal === 0 && !actief;
-  const base =
-    "block rounded-md border px-3 py-3 transition select-none";
+  const base = "block rounded-md border px-3 py-3 transition select-none";
   const state = actief
     ? "bg-ink text-paper border-ink"
     : disabled
@@ -270,7 +281,15 @@ function FaseTegel({
   );
 }
 
-function WetRow({ item }: { item: WetVoorstel }) {
+function WetRow({
+  item,
+  dict,
+  locale,
+}: {
+  item: WetVoorstel;
+  dict: Dictionary;
+  locale: Locale;
+}) {
   const datum = item.volgendeActiviteit?.datum;
   const uitleg = getUitleg(item.id);
   return (
@@ -283,13 +302,21 @@ function WetRow({ item }: { item: WetVoorstel }) {
               {item.dossierNummer && (
                 <>
                   <span>·</span>
-                  <span>dossier {item.dossierNummer}</span>
+                  <span>
+                    {tpl(dict.ministery.dossierLabel, {
+                      n: item.dossierNummer,
+                    })}
+                  </span>
                 </>
               )}
               {item.gestartOp && (
                 <>
                   <span>·</span>
-                  <span>ingediend {formatDate(item.gestartOp)}</span>
+                  <span>
+                    {tpl(dict.ministery.submittedOn, {
+                      datum: formatDate(item.gestartOp, locale),
+                    })}
+                  </span>
                 </>
               )}
             </div>
@@ -304,9 +331,11 @@ function WetRow({ item }: { item: WetVoorstel }) {
             )}
             {item.volgendeActiviteit && (
               <div className="mt-2 text-xs text-mute">
-                <span className="text-ink/80 font-medium">Volgende moment:</span>{" "}
-                {item.volgendeActiviteit.soort ?? "Activiteit"}
-                {datum ? ` — ${formatDate(datum)}` : ""}
+                <span className="text-ink/80 font-medium">
+                  {dict.ministery.nextMoment}
+                </span>{" "}
+                {item.volgendeActiviteit.soort ?? dict.wet.activity}
+                {datum ? ` — ${formatDate(datum, locale)}` : ""}
                 {item.volgendeActiviteit.status
                   ? ` (${item.volgendeActiviteit.status})`
                   : ""}
@@ -316,7 +345,7 @@ function WetRow({ item }: { item: WetVoorstel }) {
           <span
             className={`shrink-0 text-xs px-2.5 py-1 rounded-full font-medium ${FASE_KLEUR[item.fase]}`}
           >
-            {FASE_LABEL[item.fase]}
+            {dict.fase[item.fase]}
           </span>
         </div>
       </Link>
@@ -324,13 +353,12 @@ function WetRow({ item }: { item: WetVoorstel }) {
   );
 }
 
-function formatDate(iso: string): string {
+function formatDate(iso: string, locale: Locale): string {
   try {
-    return new Date(iso).toLocaleDateString("nl-NL", {
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-    });
+    return new Date(iso).toLocaleDateString(
+      locale === "en" ? "en-GB" : "nl-NL",
+      { day: "numeric", month: "long", year: "numeric" },
+    );
   } catch {
     return iso;
   }

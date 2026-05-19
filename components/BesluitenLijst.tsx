@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { StemmingDetail } from "./StemmingDetail";
 import type { StemUitslag } from "@/lib/stemming";
+import type { Dictionary, Locale } from "@/lib/i18n/types";
 
 export type BesluitWeergave = {
   id: string;
@@ -17,17 +18,23 @@ export type BesluitWeergave = {
 type Props = {
   stemmingen: BesluitWeergave[];
   procedureel: BesluitWeergave[];
+  dict: Dictionary;
+  locale: Locale;
 };
 
-export function BesluitenLijst({ stemmingen, procedureel }: Props) {
+export function BesluitenLijst({
+  stemmingen,
+  procedureel,
+  dict,
+  locale,
+}: Props) {
   const [procOpen, setProcOpen] = useState(false);
+  const t = dict.wet;
 
   return (
     <div className="space-y-4">
       {stemmingen.length === 0 && procedureel.length === 0 && (
-        <p className="text-sm text-mute">
-          Nog geen besluiten genomen door de Tweede Kamer.
-        </p>
+        <p className="text-sm text-mute">{t.decisionsEmpty}</p>
       )}
 
       {stemmingen.length > 0 && (
@@ -39,20 +46,22 @@ export function BesluitenLijst({ stemmingen, procedureel }: Props) {
             >
               <div className="space-y-1">
                 <div className="text-xs text-mute">
-                  {formatDate(b.gewijzigdOp)}
+                  {formatDate(b.gewijzigdOp, locale)}
                   {b.status ? ` · ${b.status}` : ""}
                 </div>
                 <div className="font-medium">
                   {b.besluitTekst ??
                     b.besluitSoort ??
                     b.stemmingsSoort ??
-                    "Stemming"}
+                    dict.stemming.accepted}
                 </div>
                 {b.besluitTekst && b.besluitSoort && (
                   <div className="text-xs text-mute">{b.besluitSoort}</div>
                 )}
               </div>
-              {b.uitslag && <StemmingDetail uitslag={b.uitslag} />}
+              {b.uitslag && (
+                <StemmingDetail uitslag={b.uitslag} dict={dict} />
+              )}
             </li>
           ))}
         </ul>
@@ -67,8 +76,9 @@ export function BesluitenLijst({ stemmingen, procedureel }: Props) {
             aria-expanded={procOpen}
           >
             <span>
-              {procOpen ? "Verberg" : "Toon"} procedurele besluiten (
-              {procedureel.length})
+              {procOpen
+                ? t.hideProcedural.replace("{n}", String(procedureel.length))
+                : t.showProcedural.replace("{n}", String(procedureel.length))}
             </span>
             <span
               aria-hidden
@@ -82,7 +92,7 @@ export function BesluitenLijst({ stemmingen, procedureel }: Props) {
               {procedureel.map((b) => (
                 <li key={b.id} className="px-4 py-3 space-y-1">
                   <div className="text-xs text-mute">
-                    {formatDate(b.gewijzigdOp)}
+                    {formatDate(b.gewijzigdOp, locale)}
                     {b.besluitSoort ? ` · ${b.besluitSoort}` : ""}
                   </div>
                   {b.besluitTekst && (
@@ -98,14 +108,13 @@ export function BesluitenLijst({ stemmingen, procedureel }: Props) {
   );
 }
 
-function formatDate(iso: string | null | undefined): string {
+function formatDate(iso: string | null | undefined, locale: Locale): string {
   if (!iso) return "—";
   try {
-    return new Date(iso).toLocaleDateString("nl-NL", {
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-    });
+    return new Date(iso).toLocaleDateString(
+      locale === "en" ? "en-GB" : "nl-NL",
+      { day: "numeric", month: "long", year: "numeric" },
+    );
   } catch {
     return iso;
   }
