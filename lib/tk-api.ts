@@ -75,11 +75,13 @@ export async function fetchWetsvoorstellenVoorCommissie(
 
 /** Haal één wetsvoorstel volledig op (incl. activiteiten en besluiten). */
 export async function fetchWetsvoorstel(id: string): Promise<TkZaak | null> {
+  // Activiteiten zitten soms direct onder Zaak.Activiteit, vaker indirect
+  // via Besluit.Agendapunt.Activiteit. We halen beide op en mergen in de page.
   const expand = [
     "Kamerstukdossier",
     "ZaakActor",
     "Activiteit",
-    "Besluit($expand=Stemming)",
+    "Besluit($expand=Stemming,Agendapunt($expand=Activiteit))",
   ].join(",");
   const qs = buildQuery({ $expand: expand });
   try {

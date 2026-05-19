@@ -20,6 +20,11 @@ import {
   isStemmingBesluit,
   isProcedureelBesluit,
 } from "@/lib/stemming";
+import {
+  findDebatVoorActiviteit,
+  heeftMogelijkVideo,
+  type DebatMatch,
+} from "@/lib/debat-direct";
 
 export const revalidate = 21600;
 
@@ -37,7 +42,20 @@ export default async function WetDetail({ params }: Params) {
     : null;
   const ekStatus = getEkStatus(item.id);
 
-  const activiteiten = (zaak.Activiteit ?? [])
+  // Combineer activiteiten uit Zaak.Activiteit en Zaak.Besluit[].Agendapunt.Activiteit
+  // (per Id deduplicate; sommige wetten hebben enkel via Agendapunt activiteiten).
+  type ActiviteitType = NonNullable<typeof zaak.Activiteit>[number];
+  const activiteitMap = new Map<string, ActiviteitType>();
+  for (const a of zaak.Activiteit ?? []) {
+    if (a.Id) activiteitMap.set(a.Id, a);
+  }
+  for (const b of zaak.Besluit ?? []) {
+    const a = b.Agendapunt?.Activiteit;
+    if (a?.Id && !activiteitMap.has(a.Id)) {
+      activiteitMap.set(a.Id, a);
+    }
+  }
+  const activiteiten = [...activiteitMap.values()]
     .filter((a) => a.Datum)
     .sort(
       (a, b) =>
@@ -49,6 +67,31 @@ export default async function WetDetail({ params }: Params) {
     (a, b) =>
       new Date(b.GewijzigdOp ?? 0).getTime() -
       new Date(a.GewijzigdOp ?? 0).getTime(),
+  );
+
+  // Probeer voor elke verleden video-activiteit een Debat Direct match te
+  // vinden. Per datum 1 API-call (gecached door Next.js fetch).
+  const nu = new Date().toISOString().slice(0, 10);
+  const matchKandidaten = activiteiten.filter(
+    (a) =>
+      a.Datum &&
+      a.Datum.slice(0, 10) <= nu &&
+      heeftMogelijkVideo(a.Soort),
+  );
+  const matches = await Promise.all(
+    matchKandidaten.map(async (a) => ({
+      id: a.Id,
+      match: await findDebatVoorActiviteit(
+        a.Datum as string,
+        a.Onderwerp,
+        a.Soort,
+      ),
+    })),
+  );
+  const debatMatches = new Map<string, DebatMatch>(
+    matches
+      .filter((m): m is { id: string; match: DebatMatch } => m.match !== null)
+      .map((m) => [m.id, m.match]),
   );
 
   const stemmingBesluiten: BesluitWeergave[] = [];
@@ -210,21 +253,41 @@ export default async function WetDetail({ params }: Params) {
           </p>
         ) : (
           <ol className="border-l border-line ml-2 space-y-5">
-            {activiteiten.map((a) => (
-              <li key={a.Id} className="relative pl-5">
-                <span className="absolute -left-[5px] top-2 h-2 w-2 rounded-full bg-accent" />
-                <div className="text-xs text-mute">
-                  {formatDate(a.Datum)}
-                  {a.Status ? ` · ${a.Status}` : ""}
-                </div>
-                <div className="font-medium leading-snug">
-                  {a.Soort ?? "Activiteit"}
-                </div>
-                {a.Onderwerp && (
-                  <div className="text-sm text-mute mt-0.5">{a.Onderwerp}</div>
-                )}
-              </li>
-            ))}
+            {activiteiten.map((a) => {
+              const dbm = debatMatches.get(a.Id);
+              return (
+                <li key={a.Id} className="relative pl-5">
+                  <span className="absolute -left-[5px] top-2 h-2 w-2 rounded-full bg-accent" />
+                  <div className="text-xs text-mute">
+                    {formatDate(a.Datum)}
+                    {a.Status ? ` · ${a.Status}` : ""}
+                  </div>
+                  <div className="font-medium leading-snug">
+                    {a.Soort ?? "Activiteit"}
+                  </div>
+                  {a.Onderwerp && (
+                    <div className="text-sm text-mute mt-0.5">
+                      {a.Onderwerp}
+                    </div>
+                  )}
+                  {dbm && (
+                    <a
+                      href={dbm.url}
+                      target="_blank"
+                      rel="noopener"
+                      className="mt-2 inline-flex items-center gap-1.5 text-xs rounded-md border border-line bg-surface hover:border-accent hover:text-accent transition px-2.5 py-1 text-mute"
+                    >
+                      <span aria-hidden>▶</span>
+                      {dbm.zekerheid === "dag"
+                        ? "Bekijk de agenda van die dag op Debat Direct"
+                        : dbm.zekerheid === "waarschijnlijk"
+                          ? `Bekijk waarschijnlijk debat: "${dbm.naam}" ↗`
+                          : `Bekijk terug: "${dbm.naam}" ↗`}
+                    </a>
+                  )}
+                </li>
+              );
+            })}
           </ol>
         )}
       </section>
