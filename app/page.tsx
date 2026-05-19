@@ -8,6 +8,7 @@ import {
   bouwDebatUrl,
   type DebatDirectItem,
 } from "@/lib/debat-direct";
+import { UitklapLijst } from "@/components/UitklapLijst";
 
 export const revalidate = 86400;
 
@@ -302,54 +303,60 @@ function DezeWeekStrip({
 }) {
   return (
     <section className="rounded-md border border-line bg-surface">
-      <div className="flex items-baseline justify-between gap-3 px-4 pt-3 pb-2 border-b border-line/60">
-        <h2 className="font-medium text-sm text-ink">
+      <div className="flex items-baseline justify-between gap-3 px-3 pt-2 pb-1.5 border-b border-line/60">
+        <h2 className="font-medium text-xs text-ink">
           Deze week op de TK-agenda{" "}
           <span className="text-mute font-normal">— week {wkNr}</span>
         </h2>
-        <span className="text-xs text-mute shrink-0">
+        <span className="text-[11px] text-mute shrink-0">
           {items.length === 0
             ? "geen behandeling"
             : `${items.length} ${items.length === 1 ? "wet" : "wetten"}`}
         </span>
       </div>
       {items.length === 0 ? (
-        <p className="px-4 py-3 text-xs text-mute">
+        <p className="px-3 py-2 text-[11px] text-mute">
           Geen wetsvoorstellen op de Tweede Kamer-agenda deze week.
         </p>
       ) : (
-        <ul className="divide-y divide-line/60 text-xs">
-          {items.map(({ wet, ministerie, debat }, idx) => (
-            <li key={`${wet.id}-${debat.id}-${idx}`}>
-              <div className="grid grid-cols-[3.5rem_2.5rem_1fr_auto] sm:grid-cols-[3.5rem_2.5rem_8rem_1fr_auto] gap-x-3 items-baseline px-4 py-1.5 hover:bg-paper transition group">
-                <span className="font-mono text-mute shrink-0 tabular-nums">
-                  {formatDagKort(debat.startsAt)}
-                </span>
-                <span className="text-[10px] font-mono uppercase tracking-wider text-mute shrink-0">
-                  {ministerie.afkorting}
-                </span>
-                <span className="hidden sm:block text-mute truncate">
-                  {debat.debateType}
-                </span>
-                <Link
-                  href={`/wet/${wet.id}`}
-                  className="truncate text-ink hover:underline min-w-0"
-                >
-                  {wet.titel}
-                </Link>
-                <a
-                  href={bouwDebatUrl(debat)}
-                  target="_blank"
-                  rel="noopener"
-                  aria-label="Bekijk debat op Debat Direct"
-                  title="Bekijk debat op Debat Direct"
-                  className="text-mute hover:text-accent shrink-0"
-                >
-                  ▶
-                </a>
-              </div>
-            </li>
-          ))}
+        <ul className="divide-y divide-line/60 text-[11px]">
+          <UitklapLijst
+            initialCount={3}
+            meerTemplate="Toon overige {aantal} debaten deze week ↓"
+            minderLabel="Toon minder ↑"
+          >
+            {items.map(({ wet, ministerie, debat }, idx) => (
+              <li key={`${wet.id}-${debat.id}-${idx}`}>
+                <div className="grid grid-cols-[3rem_2.5rem_1fr_auto] sm:grid-cols-[3rem_2.5rem_7rem_1fr_auto] gap-x-3 items-baseline px-3 py-1 hover:bg-paper transition group">
+                  <span className="font-mono text-mute shrink-0 tabular-nums">
+                    {formatDagKort(debat.startsAt)}
+                  </span>
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-mute shrink-0">
+                    {ministerie.afkorting}
+                  </span>
+                  <span className="hidden sm:block text-mute truncate">
+                    {debat.debateType}
+                  </span>
+                  <Link
+                    href={`/wet/${wet.id}`}
+                    className="truncate text-ink hover:underline min-w-0"
+                  >
+                    {wet.titel}
+                  </Link>
+                  <a
+                    href={bouwDebatUrl(debat)}
+                    target="_blank"
+                    rel="noopener"
+                    aria-label="Bekijk debat op Debat Direct"
+                    title="Bekijk debat op Debat Direct"
+                    className="text-mute hover:text-accent shrink-0"
+                  >
+                    ▶
+                  </a>
+                </div>
+              </li>
+            ))}
+          </UitklapLijst>
         </ul>
       )}
     </section>
