@@ -37,7 +37,7 @@ export default async function RootLayout({
         />
       </head>
       <body className="min-h-screen font-sans antialiased">
-        <header className="border-b-2 border-accent bg-surface/70 backdrop-blur">
+        <header className="border-b-[0.5px] border-accent bg-surface/70 backdrop-blur">
           <div className="mx-auto max-w-5xl px-4 sm:px-6 py-3 sm:py-5 flex items-center justify-between gap-2">
             <Link
               href="/"
