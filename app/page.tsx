@@ -1,19 +1,27 @@
 import Link from "next/link";
-import { MINISTERIES } from "@/lib/ministeries";
+import { MINISTERIES, type Ministerie } from "@/lib/ministeries";
 import { fetchWetsvoorstellenVoorCommissie, normalize } from "@/lib/tk-api";
+import type { WetVoorstel } from "@/lib/types";
+import {
+  fetchAgenda,
+  keywords,
+  bouwDebatUrl,
+  type DebatDirectItem,
+} from "@/lib/debat-direct";
 
 export const revalidate = 86400;
 
-type Telling = {
-  slug: string;
+type Gathered = {
+  ministerie: Ministerie;
+  items: WetVoorstel[];
   totaal: number;
   lopend: number;
   volgendeDatum: string | null;
 };
 
-async function tellen(commissie: string): Promise<Omit<Telling, "slug">> {
+async function gatherMinisterie(m: Ministerie): Promise<Gathered> {
   try {
-    const zaken = await fetchWetsvoorstellenVoorCommissie(commissie, 200);
+    const zaken = await fetchWetsvoorstellenVoorCommissie(m.commissie, 200);
     const items = zaken.map(normalize);
     const lopend = items.filter(
       (i) =>
@@ -24,32 +32,88 @@ async function tellen(commissie: string): Promise<Omit<Telling, "slug">> {
       .filter((d): d is string => !!d && new Date(d).getTime() >= Date.now())
       .sort();
     return {
+      ministerie: m,
+      items,
       totaal: items.length,
       lopend: lopend.length,
       volgendeDatum: datums[0] ?? null,
     };
   } catch {
-    return { totaal: 0, lopend: 0, volgendeDatum: null };
+    return {
+      ministerie: m,
+      items: [],
+      totaal: 0,
+      lopend: 0,
+      volgendeDatum: null,
+    };
   }
 }
 
-export default async function Home() {
-  const tellingen = await Promise.all(
-    MINISTERIES.map(async (m) => ({
-      slug: m.slug,
-      ...(await tellen(m.commissie)),
-    })),
+function isoWeekNummer(date: Date): number {
+  const d = new Date(
+    Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()),
   );
-  const tellingMap = new Map(tellingen.map((t) => [t.slug, t]));
+  const dayNum = d.getUTCDay() || 7;
+  d.setUTCDate(d.getUTCDate() + 4 - dayNum);
+  const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+  return Math.ceil(
+    ((d.getTime() - yearStart.getTime()) / 86400000 + 1) / 7,
+  );
+}
 
-  const totaal = tellingen.reduce((a, t) => a + t.totaal, 0);
-  const lopendTotaal = tellingen.reduce((a, t) => a + t.lopend, 0);
+function weekRange(today: Date): { ma: Date; volgendeMa: Date } {
+  const ma = new Date(today);
+  ma.setHours(0, 0, 0, 0);
+  const dow = ma.getDay() || 7;
+  ma.setDate(ma.getDate() - (dow - 1));
+  const volgendeMa = new Date(ma);
+  volgendeMa.setDate(volgendeMa.getDate() + 7);
+  return { ma, volgendeMa };
+}
+
+function isBetekenisvolleBehandeling(
+  soort: string | null | undefined,
+): boolean {
+  if (!soort) return false;
+  const s = soort.toLowerCase();
+  if (
+    s.includes("inbreng") ||
+    s.includes("procedurevergadering") ||
+    s.includes("emailprocedure") ||
+    s.includes("regeling van werkzaamheden")
+  ) {
+    return false;
+  }
+  return [
+    "plenair",
+    "commissiedebat",
+    "wetgevingsoverleg",
+    "tweeminutendebat",
+    "notaoverleg",
+    "rondetafelgesprek",
+    "hoorzitting",
+    "stemming",
+  ].some((v) => s.includes(v));
+}
+
+export default async function Home() {
+  const gathered = await Promise.all(MINISTERIES.map(gatherMinisterie));
+  const tellingMap = new Map(gathered.map((g) => [g.ministerie.slug, g]));
+
+  const totaal = gathered.reduce((a, g) => a + g.totaal, 0);
+  const lopendTotaal = gathered.reduce((a, g) => a + g.lopend, 0);
   const laatstBijgewerkt = new Date().toLocaleString("nl-NL", {
     day: "numeric",
     month: "short",
     hour: "2-digit",
     minute: "2-digit",
   });
+
+  // Verzamel wetten met een betekenisvolle TK-behandeling deze week.
+  const nu = new Date();
+  const { ma, volgendeMa } = weekRange(nu);
+  const wkNr = isoWeekNummer(nu);
+  const dezeWeek = await matchDezeWeekAgenda(ma, volgendeMa, gathered);
 
   return (
     <div className="space-y-14">
@@ -78,6 +142,8 @@ export default async function Home() {
           automatisch elke 24 uur (wet-detailpagina&apos;s elke 6 uur)
         </div>
       </section>
+
+      <DezeWeekStrip wkNr={wkNr} items={dezeWeek} />
 
       <section>
         <h2 className="font-serif text-2xl mb-4">Kies een ministerie</h2>
@@ -142,4 +208,150 @@ function formatDate(iso: string): string {
   } catch {
     return iso;
   }
+}
+
+const NL_DAGEN = ["zo", "ma", "di", "wo", "do", "vr", "za"];
+
+function formatDagKort(iso: string): string {
+  const d = new Date(iso);
+  return `${NL_DAGEN[d.getDay()]} ${d.getDate()}`;
+}
+
+type AgendaEntry = {
+  wet: WetVoorstel;
+  ministerie: Ministerie;
+  debat: DebatDirectItem;
+};
+
+async function matchDezeWeekAgenda(
+  ma: Date,
+  volgendeMa: Date,
+  gathered: Gathered[],
+): Promise<AgendaEntry[]> {
+  // Verzamel datums van de week (Mon t/m Sun = 7 dagen)
+  const dagen: string[] = [];
+  for (
+    let d = new Date(ma);
+    d.getTime() < volgendeMa.getTime();
+    d.setDate(d.getDate() + 1)
+  ) {
+    dagen.push(d.toISOString().slice(0, 10));
+  }
+
+  // Haal alle debaten van die dagen op (parallel)
+  const debatenPerDag = await Promise.all(dagen.map(fetchAgenda));
+  const alleDebaten = debatenPerDag.flat();
+
+  // Maak een lookup van lopende wetten met hun keyword-set
+  const lopendItems = gathered.flatMap((g) =>
+    g.items
+      .filter(
+        (i) =>
+          !i.afgedaan && i.fase !== "verworpen" && i.fase !== "ingetrokken",
+      )
+      .map((i) => ({
+        wet: i,
+        ministerie: g.ministerie,
+        kw: keywords(i.titel),
+      })),
+  );
+
+  const entries: AgendaEntry[] = [];
+  const gezienPaar = new Set<string>();
+  for (const debat of alleDebaten) {
+    if (!isBetekenisvolleBehandeling(debat.debateType)) continue;
+    const haystack = `${debat.name} ${debat.slug ?? ""}`.toLowerCase();
+    let best: { score: number; item: (typeof lopendItems)[number] } | null =
+      null;
+    for (const item of lopendItems) {
+      if (item.kw.length === 0) continue;
+      const score = item.kw.reduce(
+        (acc, w) => acc + (haystack.includes(w) ? 1 : 0),
+        0,
+      );
+      if (score >= 2 && (!best || score > best.score)) {
+        best = { score, item };
+      }
+    }
+    if (best) {
+      const sleutel = `${best.item.wet.id}|${debat.id}`;
+      if (gezienPaar.has(sleutel)) continue;
+      gezienPaar.add(sleutel);
+      entries.push({
+        wet: best.item.wet,
+        ministerie: best.item.ministerie,
+        debat,
+      });
+    }
+  }
+
+  entries.sort(
+    (a, b) =>
+      new Date(a.debat.startsAt).getTime() -
+      new Date(b.debat.startsAt).getTime(),
+  );
+  return entries;
+}
+
+function DezeWeekStrip({
+  wkNr,
+  items,
+}: {
+  wkNr: number;
+  items: AgendaEntry[];
+}) {
+  return (
+    <section className="rounded-md border border-line bg-surface">
+      <div className="flex items-baseline justify-between gap-3 px-4 pt-3 pb-2 border-b border-line/60">
+        <h2 className="font-medium text-sm text-ink">
+          Deze week op de TK-agenda{" "}
+          <span className="text-mute font-normal">— week {wkNr}</span>
+        </h2>
+        <span className="text-xs text-mute shrink-0">
+          {items.length === 0
+            ? "geen behandeling"
+            : `${items.length} ${items.length === 1 ? "wet" : "wetten"}`}
+        </span>
+      </div>
+      {items.length === 0 ? (
+        <p className="px-4 py-3 text-xs text-mute">
+          Geen wetsvoorstellen op de Tweede Kamer-agenda deze week.
+        </p>
+      ) : (
+        <ul className="divide-y divide-line/60 text-xs">
+          {items.map(({ wet, ministerie, debat }, idx) => (
+            <li key={`${wet.id}-${debat.id}-${idx}`}>
+              <div className="grid grid-cols-[3.5rem_2.5rem_1fr_auto] sm:grid-cols-[3.5rem_2.5rem_8rem_1fr_auto] gap-x-3 items-baseline px-4 py-1.5 hover:bg-paper transition group">
+                <span className="font-mono text-mute shrink-0 tabular-nums">
+                  {formatDagKort(debat.startsAt)}
+                </span>
+                <span className="text-[10px] font-mono uppercase tracking-wider text-mute shrink-0">
+                  {ministerie.afkorting}
+                </span>
+                <span className="hidden sm:block text-mute truncate">
+                  {debat.debateType}
+                </span>
+                <Link
+                  href={`/wet/${wet.id}`}
+                  className="truncate text-ink hover:underline min-w-0"
+                >
+                  {wet.titel}
+                </Link>
+                <a
+                  href={bouwDebatUrl(debat)}
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Bekijk debat op Debat Direct"
+                  title="Bekijk debat op Debat Direct"
+                  className="text-mute hover:text-accent shrink-0"
+                >
+                  ▶
+                </a>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
+    </section>
+  );
 }

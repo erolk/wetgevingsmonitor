@@ -5,7 +5,7 @@
 const API_BASE = "https://api.debatdirect.tweedekamer.nl";
 const SITE_BASE = "https://debatdirect.tweedekamer.nl";
 
-type DebatDirectItem = {
+export type DebatDirectItem = {
   id: string;
   name: string;
   slug: string;
@@ -90,7 +90,7 @@ const STOPWOORDEN = new Set([
   "staatssecretaris",
 ]);
 
-function keywords(tekst: string | null | undefined): string[] {
+export function keywords(tekst: string | null | undefined): string[] {
   if (!tekst) return [];
   return tekst
     .toLowerCase()
@@ -100,7 +100,7 @@ function keywords(tekst: string | null | undefined): string[] {
     .filter((w) => w.length >= 5 && !STOPWOORDEN.has(w));
 }
 
-async function fetchAgenda(datum: string): Promise<DebatDirectItem[]> {
+export async function fetchAgenda(datum: string): Promise<DebatDirectItem[]> {
   try {
     const today = new Date().toISOString().slice(0, 10);
     const isToekomstOfVandaag = datum >= today;
@@ -116,6 +116,10 @@ async function fetchAgenda(datum: string): Promise<DebatDirectItem[]> {
   } catch {
     return [];
   }
+}
+
+export function bouwDebatUrl(d: DebatDirectItem): string {
+  return bouwUrl(d);
 }
 
 function bouwUrl(d: DebatDirectItem): string {
