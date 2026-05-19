@@ -5,15 +5,20 @@ import { Children, useState, type ReactNode } from "react";
 type Props = {
   children: ReactNode;
   initialCount?: number;
-  /** Tekst voor de uitklap-knop. Krijgt het aantal verborgen items als arg. */
-  meerLabel: (verborgen: number) => string;
+  /**
+   * Template voor de uitklap-knop tekst. Gebruik `{aantal}` als placeholder
+   * voor het aantal verborgen items. Strings only (geen function-props),
+   * want server→client componenten in Next.js App Router accepteren geen
+   * function-props zonder "use server".
+   */
+  meerTemplate: string;
   minderLabel?: string;
 };
 
 export function UitklapLijst({
   children,
   initialCount = 10,
-  meerLabel,
+  meerTemplate,
   minderLabel = "Toon minder",
 }: Props) {
   const items = Children.toArray(children);
@@ -25,6 +30,7 @@ export function UitklapLijst({
 
   const zichtbaar = open ? items : items.slice(0, initialCount);
   const verborgen = items.length - initialCount;
+  const meerLabel = meerTemplate.replace("{aantal}", String(verborgen));
 
   return (
     <>
@@ -35,7 +41,7 @@ export function UitklapLijst({
           onClick={() => setOpen(!open)}
           className="text-sm text-mute hover:text-ink underline underline-offset-2 transition"
         >
-          {open ? minderLabel : meerLabel(verborgen)}
+          {open ? minderLabel : meerLabel}
         </button>
       </li>
     </>

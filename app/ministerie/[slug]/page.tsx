@@ -179,7 +179,7 @@ export default async function MinisterieOverview({
           <ul className="divide-y divide-line border-t border-b border-line">
             <UitklapLijst
               initialCount={10}
-              meerLabel={(n) => `Toon overige ${n} wetsvoorstellen ↓`}
+              meerTemplate="Toon overige {aantal} wetsvoorstellen ↓"
               minderLabel="Toon minder ↑"
             >
               {afgerond.map((it) => (
