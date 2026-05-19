@@ -131,8 +131,8 @@ export function ContactForm() {
           required
         />
         <span>
-          Ik weet dat mijn naam en e-mailadres alleen gebruikt worden om
-          antwoord te kunnen geven en niet verder worden gedeeld.
+          Ik wil dat mijn naam en e-mailadres alleen gebruikt worden om
+          antwoord te kunnen krijgen en niet verder worden gedeeld.
         </span>
       </label>
 
