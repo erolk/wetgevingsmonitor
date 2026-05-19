@@ -71,7 +71,8 @@ async function fetchAangenomenIds() {
 async function fetchZaakDetail(id) {
   const expand =
     "Activiteit($select=Id,Onderwerp,Soort,Status,Datum)," +
-    "Besluit($expand=Stemming($select=Id,Soort,ActorFractie,FractieGrootte))";
+    "Besluit($select=Id,BesluitSoort,BesluitTekst,StemmingsSoort,Status,GewijzigdOp;" +
+    "$expand=Stemming($select=Id,Soort,ActorNaam,ActorFractie,FractieGrootte,Vergissing))";
   const url = `${TK_BASE}/Zaak(${id})?$expand=${enc(expand)}`;
   const res = await fetch(url, { headers: { Accept: "application/json" } });
   if (!res.ok) return null;
@@ -116,10 +117,13 @@ function detecteerEvents(zaakNu, prev) {
       type: "besluit",
       besluitSoort: b.BesluitSoort,
       besluitTekst: b.BesluitTekst,
+      stemmingsSoort: b.StemmingsSoort,
       stemming: stemming.map((s) => ({
+        naam: s.ActorNaam,
         fractie: s.ActorFractie,
         keuze: s.Soort,
         grootte: s.FractieGrootte,
+        vergissing: !!s.Vergissing,
       })),
     });
   }
@@ -147,23 +151,56 @@ function formatEvent(ev) {
     let s = `🗳️ Besluit: ${ev.besluitSoort ?? "Besluit"}`;
     if (ev.besluitTekst) s += `\n   ${ev.besluitTekst}`;
     if (ev.stemming.length > 0) {
-      const voor = ev.stemming
-        .filter((x) => (x.keuze ?? "").toLowerCase() === "voor")
-        .map((x) => `${x.fractie} (${x.grootte ?? "?"})`);
-      const tegen = ev.stemming
-        .filter((x) => (x.keuze ?? "").toLowerCase() === "tegen")
-        .map((x) => `${x.fractie} (${x.grootte ?? "?"})`);
-      const voorTotaal = voor.reduce(
-        (a, t) => a + (parseInt(t.match(/\((\d+)\)/)?.[1] ?? "0", 10)),
-        0,
+      const isHoofdelijk = (ev.stemmingsSoort ?? "")
+        .toLowerCase()
+        .includes("hoofdelijk");
+
+      // Aggregeer per fractie. Bij hoofdelijke stemming: 1 stem per Kamerlid.
+      // Bij niet-hoofdelijk: gebruik FractieGrootte als gewicht.
+      const perFractie = new Map();
+      for (const x of ev.stemming) {
+        const f = (x.fractie ?? "Onbekend").trim() || "Onbekend";
+        if (!perFractie.has(f)) {
+          perFractie.set(f, { fractie: f, voor: 0, tegen: 0, leden: [] });
+        }
+        const row = perFractie.get(f);
+        const gewicht = isHoofdelijk ? 1 : x.grootte ?? 1;
+        const keuze = (x.keuze ?? "").toLowerCase();
+        if (keuze === "voor") row.voor += gewicht;
+        else if (keuze === "tegen") row.tegen += gewicht;
+        if (isHoofdelijk && x.naam) {
+          row.leden.push({ naam: x.naam, keuze: x.keuze, vergissing: x.vergissing });
+        }
+      }
+      const fracties = [...perFractie.values()].sort(
+        (a, b) => b.voor + b.tegen - (a.voor + a.tegen),
       );
-      const tegenTotaal = tegen.reduce(
-        (a, t) => a + (parseInt(t.match(/\((\d+)\)/)?.[1] ?? "0", 10)),
-        0,
-      );
+      const voorTotaal = fracties.reduce((a, f) => a + f.voor, 0);
+      const tegenTotaal = fracties.reduce((a, f) => a + f.tegen, 0);
+
       s += `\n   Uitslag: ${voorTotaal} voor, ${tegenTotaal} tegen`;
-      s += `\n   VOOR: ${voor.join(", ") || "(niemand)"}`;
-      s += `\n   TEGEN: ${tegen.join(", ") || "(niemand)"}`;
+      if (isHoofdelijk) {
+        s += `\n   (Hoofdelijke stemming — elk Kamerlid stemt apart)`;
+      }
+      s += `\n`;
+      for (const f of fracties) {
+        const totaal = f.voor + f.tegen;
+        const samenvatting =
+          f.voor > 0 && f.tegen > 0
+            ? `${f.voor} voor, ${f.tegen} tegen`
+            : f.voor > 0
+              ? `${f.voor} voor`
+              : f.tegen > 0
+                ? `${f.tegen} tegen`
+                : `${totaal}`;
+        s += `\n   • ${f.fractie} — ${samenvatting}`;
+        if (isHoofdelijk && f.leden.length > 0) {
+          for (const lid of f.leden.sort((a, b) => a.naam.localeCompare(b.naam, "nl"))) {
+            const merk = lid.vergissing ? " (vergissing)" : "";
+            s += `\n       - ${lid.naam}: ${lid.keuze}${merk}`;
+          }
+        }
+      }
     }
     return s;
   }
