@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type Props =
   | {
@@ -24,6 +24,38 @@ export function SubscribeButton(props: Props) {
     "idle",
   );
   const [bericht, setBericht] = useState<string | null>(null);
+  const emailInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") setOpen(false);
+    }
+    document.addEventListener("keydown", onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [open]);
+
+  useEffect(() => {
+    if (open && status === "idle") {
+      const t = setTimeout(() => emailInputRef.current?.focus(), 50);
+      return () => clearTimeout(t);
+    }
+  }, [open, status]);
+
+  function close() {
+    setOpen(false);
+    if (status === "ok") {
+      setStatus("idle");
+      setEmail("");
+      setAvg(false);
+      setBericht(null);
+    }
+  }
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
@@ -73,91 +105,141 @@ export function SubscribeButton(props: Props) {
       ? "Mail mij bij updates over deze wet"
       : `Mail mij bij updates over ${props.naam}`;
 
-  if (!open) {
-    return (
+  return (
+    <>
       <button
+        type="button"
         onClick={() => setOpen(true)}
         className={`inline-flex items-center gap-2 rounded-md border border-accent bg-accent text-paper hover:bg-accentDark transition px-4 py-2 text-left max-w-full ${
           props.compact ? "text-sm" : "text-sm sm:text-base"
         }`}
       >
-        <span aria-hidden className="shrink-0">✉</span>
+        <span aria-hidden className="shrink-0">
+          ✉
+        </span>
         <span className="break-words">{label}</span>
       </button>
-    );
-  }
 
-  if (status === "ok") {
-    return (
-      <div className="rounded-md border border-line bg-surface p-4 text-sm">
-        <div className="flex items-center gap-2 text-ink font-medium mb-1">
-          <span aria-hidden>✓</span> {bericht}
-        </div>
-        <div className="text-mute">
-          Klik op de bevestigingslink in de mail om je abonnement te activeren.
-        </div>
-      </div>
-    );
-  }
+      {open && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={label}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink/40 backdrop-blur-sm"
+          onMouseDown={(e) => {
+            if (e.target === e.currentTarget) close();
+          }}
+        >
+          <div className="w-full max-w-md rounded-lg border border-line bg-paper shadow-2xl">
+            <div className="flex items-start justify-between gap-3 px-5 py-4 border-b border-line">
+              <h2 className="font-medium text-ink leading-snug">{label}</h2>
+              <button
+                type="button"
+                onClick={close}
+                aria-label="Sluiten"
+                className="shrink-0 -mr-1 -mt-1 p-1 rounded text-mute hover:text-ink hover:bg-surface transition"
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden
+                >
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              </button>
+            </div>
 
-  return (
-    <form
-      onSubmit={submit}
-      className="rounded-md border border-line bg-surface p-4 space-y-3 max-w-md"
-    >
-      <div className="font-medium text-ink">{label}</div>
-      <p className="text-xs text-mute leading-relaxed">
-        Je krijgt een mail bij elk nieuw event: behandeling in commissie,
-        plenair debat, stemming (inclusief voor/tegen per fractie), en
-        besluiten in de Eerste Kamer.
-      </p>
-      <label className="block">
-        <span className="text-xs text-mute">Je e-mailadres</span>
-        <input
-          type="email"
-          required
-          autoFocus
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="mt-1 w-full rounded-md border border-line bg-paper px-3 py-2 text-sm focus:outline-none focus:border-accent"
-          placeholder="naam@voorbeeld.nl"
-        />
-      </label>
-      <label className="flex items-start gap-2 text-xs text-mute leading-relaxed">
-        <input
-          type="checkbox"
-          checked={avg}
-          onChange={(e) => setAvg(e.target.checked)}
-          className="mt-0.5"
-          required
-        />
-        <span>
-          Ik ga akkoord met de{" "}
-          <a href="/privacy" target="_blank" className="underline">
-            privacyverklaring
-          </a>{" "}
-          en weet dat ik me altijd kan uitschrijven via de link in elke mail.
-        </span>
-      </label>
-      {status === "error" && bericht && (
-        <div className="text-xs text-rose-700">{bericht}</div>
+            {status === "ok" ? (
+              <div className="px-5 py-5 space-y-3">
+                <div className="flex items-center gap-2 text-ink font-medium">
+                  <span aria-hidden className="text-emerald-600">
+                    ✓
+                  </span>{" "}
+                  {bericht}
+                </div>
+                <p className="text-sm text-mute leading-relaxed">
+                  Klik op de bevestigingslink in de mail om je abonnement te
+                  activeren.
+                </p>
+                <div className="pt-1">
+                  <button
+                    type="button"
+                    onClick={close}
+                    className="rounded-md border border-line px-3 py-2 text-sm hover:border-ink transition text-mute hover:text-ink"
+                  >
+                    Sluiten
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <form onSubmit={submit} className="px-5 py-5 space-y-4">
+                <p className="text-xs text-mute leading-relaxed">
+                  Je krijgt een mail bij elk nieuw event: behandeling in
+                  commissie, plenair debat, stemming (inclusief voor/tegen
+                  per fractie), en besluiten in de Eerste Kamer.
+                </p>
+                <label className="block">
+                  <span className="text-xs text-mute">Je e-mailadres</span>
+                  <input
+                    ref={emailInputRef}
+                    type="email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="mt-1 w-full rounded-md border border-line bg-surface px-3 py-2 text-sm focus:outline-none focus:border-accent"
+                    placeholder="naam@voorbeeld.nl"
+                  />
+                </label>
+                <label className="flex items-start gap-2 text-xs text-mute leading-relaxed">
+                  <input
+                    type="checkbox"
+                    checked={avg}
+                    onChange={(e) => setAvg(e.target.checked)}
+                    className="mt-0.5"
+                    required
+                  />
+                  <span>
+                    Ik ga akkoord met de{" "}
+                    <a href="/privacy" target="_blank" className="underline">
+                      privacyverklaring
+                    </a>{" "}
+                    en weet dat ik me altijd kan uitschrijven via de link in
+                    elke mail.
+                  </span>
+                </label>
+                {status === "error" && bericht && (
+                  <div className="text-xs text-rose-700">{bericht}</div>
+                )}
+                <div className="flex flex-wrap-reverse gap-2 pt-1">
+                  <button
+                    type="button"
+                    onClick={close}
+                    className="rounded-md border border-line px-3 py-2 text-sm hover:border-ink transition text-mute hover:text-ink"
+                  >
+                    Annuleer
+                  </button>
+                  <button
+                    type="submit"
+                    disabled={status === "loading"}
+                    className="flex-1 min-w-0 rounded-md bg-accent text-paper px-3 py-2 text-sm hover:bg-accentDark transition disabled:opacity-50"
+                  >
+                    {status === "loading"
+                      ? "Versturen…"
+                      : "Stuur bevestigingsmail"}
+                  </button>
+                </div>
+              </form>
+            )}
+          </div>
+        </div>
       )}
-      <div className="flex gap-2 pt-1">
-        <button
-          type="submit"
-          disabled={status === "loading"}
-          className="rounded-md bg-accent text-paper px-3 py-2 text-sm hover:bg-accentDark transition disabled:opacity-50"
-        >
-          {status === "loading" ? "Versturen…" : "Stuur bevestigingsmail"}
-        </button>
-        <button
-          type="button"
-          onClick={() => setOpen(false)}
-          className="rounded-md border border-line px-3 py-2 text-sm hover:border-ink transition text-mute hover:text-ink"
-        >
-          Annuleer
-        </button>
-      </div>
-    </form>
+    </>
   );
 }
