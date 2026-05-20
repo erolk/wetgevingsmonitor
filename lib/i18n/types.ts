@@ -115,6 +115,18 @@ export interface Dictionary {
       string,
       { korteNaam: string; volledigeNaam: string; uitleg: string; waar: string }
     >;
+    statusTitle: string;
+    statusIntro: string;
+    statusColStatus: string;
+    statusColMeaning: string;
+    statusColFases: string;
+    statusLopendLabel: string;
+    statusLopendMeaning: string;
+    statusLopendFases: string;
+    statusAfgerondLabel: string;
+    statusAfgerondMeaning: string;
+    statusAfgerondFases: string;
+    statusNote: string;
   };
 
   ministery: {

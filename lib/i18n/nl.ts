@@ -181,6 +181,24 @@ export const nl: Dictionary = {
         waar: "Koning + Staatsblad",
       },
     },
+    statusTitle: "Lopend of afgerond?",
+    statusIntro:
+      "Op de ministerie-pagina's verdelen we wetsvoorstellen in twee groepen, op basis van de fase waarin ze zich bevinden:",
+    statusColStatus: "Status",
+    statusColMeaning: "Wat het betekent",
+    statusColFases: "Fasen die hieronder vallen",
+    statusLopendLabel: "Lopend",
+    statusLopendMeaning:
+      "Nog in behandeling — er kan nog over gedebatteerd, gestemd of besloten worden.",
+    statusLopendFases:
+      "Ingediend · In commissie Tweede Kamer · Plenair debat · Stemming Tweede Kamer · In behandeling Eerste Kamer",
+    statusAfgerondLabel: "Afgerond",
+    statusAfgerondMeaning:
+      "De besluitvorming is rond — beide Kamers hebben besloten, of het voorstel is gestopt.",
+    statusAfgerondFases:
+      "Aangenomen door Eerste Kamer · Wet (in Staatsblad) · Verworpen · Ingetrokken",
+    statusNote:
+      "Let op: 'Aangenomen door de Tweede Kamer' betekent nog niet afgerond. De Eerste Kamer moet het voorstel dan nog behandelen en erover stemmen — daarom telt zo'n wet als lopend.",
   },
 
   ministery: {

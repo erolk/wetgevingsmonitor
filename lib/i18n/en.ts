@@ -179,6 +179,24 @@ export const en: Dictionary = {
         waar: "King + Bulletin",
       },
     },
+    statusTitle: "In progress or completed?",
+    statusIntro:
+      "On the ministry pages we split bills into two groups, based on the phase they are in:",
+    statusColStatus: "Status",
+    statusColMeaning: "What it means",
+    statusColFases: "Phases included",
+    statusLopendLabel: "In progress",
+    statusLopendMeaning:
+      "Still being handled — it can still be debated, voted on or decided.",
+    statusLopendFases:
+      "Submitted · In House committee · Plenary debate · House vote · Pending in Senate",
+    statusAfgerondLabel: "Completed",
+    statusAfgerondMeaning:
+      "Decision-making is done — both chambers have decided, or the bill has stopped.",
+    statusAfgerondFases:
+      "Passed by Senate · Law (in Bulletin) · Rejected · Withdrawn",
+    statusNote:
+      "Note: 'Passed by the House of Representatives' does not yet mean completed. The Senate still has to handle and vote on the bill — which is why such a bill counts as in progress.",
   },
 
   ministery: {

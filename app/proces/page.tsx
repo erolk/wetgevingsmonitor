@@ -67,6 +67,61 @@ export default async function ProcesPagina() {
         </ol>
       </section>
 
+      <section className="space-y-4">
+        <h2 className="font-serif text-2xl">{t.statusTitle}</h2>
+        <p className="text-sm text-mute leading-relaxed max-w-2xl">
+          {t.statusIntro}
+        </p>
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse text-sm">
+            <thead>
+              <tr className="border-b border-line text-left">
+                <th className="py-2 pr-4 font-medium align-bottom">
+                  {t.statusColStatus}
+                </th>
+                <th className="py-2 pr-4 font-medium align-bottom">
+                  {t.statusColMeaning}
+                </th>
+                <th className="py-2 font-medium align-bottom">
+                  {t.statusColFases}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-line/60 align-top">
+                <td className="py-3 pr-4">
+                  <span className="inline-block rounded-full bg-amber-100 text-amber-900 dark:bg-amber-900/30 dark:text-amber-200 px-2.5 py-1 text-xs font-medium whitespace-nowrap">
+                    {t.statusLopendLabel}
+                  </span>
+                </td>
+                <td className="py-3 pr-4 leading-relaxed">
+                  {t.statusLopendMeaning}
+                </td>
+                <td className="py-3 text-mute leading-relaxed">
+                  {t.statusLopendFases}
+                </td>
+              </tr>
+              <tr className="align-top">
+                <td className="py-3 pr-4">
+                  <span className="inline-block rounded-full bg-green-200 text-green-900 dark:bg-green-800/40 dark:text-green-100 px-2.5 py-1 text-xs font-medium whitespace-nowrap">
+                    {t.statusAfgerondLabel}
+                  </span>
+                </td>
+                <td className="py-3 pr-4 leading-relaxed">
+                  {t.statusAfgerondMeaning}
+                </td>
+                <td className="py-3 text-mute leading-relaxed">
+                  {t.statusAfgerondFases}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-mute leading-relaxed max-w-2xl rounded-md border border-line bg-surface p-3">
+          {t.statusNote}
+        </p>
+      </section>
+
       <section className="rounded-md border border-line bg-surface p-6 space-y-3">
         <h2 className="font-serif text-xl">{t.rejectedTitle}</h2>
         <p className="text-sm leading-relaxed">{t.rejectedBody}</p>
