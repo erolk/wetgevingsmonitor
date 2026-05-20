@@ -4,6 +4,7 @@ import {
   normalize,
 } from "@/lib/tk-api";
 import { MINISTERIES, getMinisterie } from "@/lib/ministeries";
+import { isAfgerond } from "@/lib/fase-display";
 
 export const revalidate = 86400;
 
@@ -59,7 +60,7 @@ export async function GET(req: Request) {
           naam: r.ministerie.naam,
           afkorting: r.ministerie.afkorting,
           aantal: r.aantal,
-          aantalLopend: r.items.filter((i) => !i.afgedaan).length,
+          aantalLopend: r.items.filter((i) => !isAfgerond(i.fase)).length,
         })),
       },
       { headers: cacheHeader(refresh) },

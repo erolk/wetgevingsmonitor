@@ -5,6 +5,7 @@ import {
   normalize,
   FASE_KLEUR,
 } from "@/lib/tk-api";
+import { isAfgerond } from "@/lib/fase-display";
 import type { Fase, WetVoorstel } from "@/lib/types";
 import { getMinisterie, MINISTERIES } from "@/lib/ministeries";
 import { getUitleg } from "@/lib/explanations";
@@ -92,12 +93,11 @@ export default async function MinisterieOverview({
     ? items.filter((i) => filterOpt.matchFases.includes(i.fase))
     : items;
 
-  const lopend = gefilterd.filter(
-    (i) => !i.afgedaan && i.fase !== "verworpen" && i.fase !== "ingetrokken",
-  );
-  const afgerond = gefilterd.filter(
-    (i) => i.afgedaan || i.fase === "verworpen" || i.fase === "ingetrokken",
-  );
+  // Afgerond = echt klaar (wet/verworpen/ingetrokken). Een wet die de TK heeft
+  // doorgestuurd naar de EK heeft Afgedaan=true maar is nog volop in
+  // behandeling — die hoort dus bij 'lopend', niet bij 'afgerond'.
+  const lopend = gefilterd.filter((i) => !isAfgerond(i.fase));
+  const afgerond = gefilterd.filter((i) => isAfgerond(i.fase));
 
   const tellingen: Record<string, number> = {};
   for (const opt of FILTER_OPTIES) {

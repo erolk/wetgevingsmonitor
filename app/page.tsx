@@ -9,6 +9,7 @@ import {
   type DebatDirectItem,
 } from "@/lib/debat-direct";
 import { UitklapLijst } from "@/components/UitklapLijst";
+import { isAfgerond } from "@/lib/fase-display";
 import { getDict, tpl } from "@/lib/i18n";
 import type { Dictionary, Locale } from "@/lib/i18n";
 
@@ -26,10 +27,9 @@ async function gatherMinisterie(m: Ministerie): Promise<Gathered> {
   try {
     const zaken = await fetchWetsvoorstellenVoorCommissie(m.commissie, 200);
     const items = zaken.map(normalize);
-    const lopend = items.filter(
-      (i) =>
-        !i.afgedaan && i.fase !== "verworpen" && i.fase !== "ingetrokken",
-    );
+    // Lopend = nog niet afgerond (zie isAfgerond). Een naar de EK doorgestuurde
+    // wet (Afgedaan=true, fase in_eerste_kamer) telt mee als lopend.
+    const lopend = items.filter((i) => !isAfgerond(i.fase));
     const datums = items
       .map((i) => i.volgendeActiviteit?.datum)
       .filter((d): d is string => !!d && new Date(d).getTime() >= Date.now())
@@ -272,10 +272,7 @@ async function matchDezeWeekAgenda(
   // Maak een lookup van lopende wetten met hun keyword-set
   const lopendItems = gathered.flatMap((g) =>
     g.items
-      .filter(
-        (i) =>
-          !i.afgedaan && i.fase !== "verworpen" && i.fase !== "ingetrokken",
-      )
+      .filter((i) => !isAfgerond(i.fase))
       .map((i) => ({
         wet: i,
         ministerie: g.ministerie,
