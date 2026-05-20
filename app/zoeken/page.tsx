@@ -228,8 +228,8 @@ function Resultaat({
   return (
     <li className="py-5">
       <Link href={`/wet/${item.id}`} className="block group">
-        <div className="flex flex-wrap items-start justify-between gap-3">
-          <div className="min-w-0 flex-1">
+        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-3">
+          <div className="min-w-0 sm:flex-1 order-2 sm:order-1">
             <div className="flex items-center gap-2 text-xs text-mute mb-1 flex-wrap">
               <Link
                 href={`/ministerie/${item.ministerie.slug}`}
@@ -257,7 +257,7 @@ function Resultaat({
             )}
           </div>
           <span
-            className={`shrink-0 text-xs px-2.5 py-1 rounded-full font-medium ${FASE_KLEUR[item.fase as Fase]}`}
+            className={`self-start shrink-0 order-1 sm:order-2 text-xs px-2.5 py-1 rounded-full font-medium ${FASE_KLEUR[item.fase as Fase]}`}
           >
             {FASE_LABEL[item.fase as Fase]}
           </span>

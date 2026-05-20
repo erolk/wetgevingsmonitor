@@ -295,9 +295,9 @@ function WetRow({
   return (
     <li className="py-5">
       <Link href={`/wet/${item.id}`} className="block group">
-        <div className="flex flex-wrap items-start justify-between gap-3">
-          <div className="min-w-0 flex-1">
-            <div className="flex items-center gap-2 text-xs text-mute mb-1">
+        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-3">
+          <div className="min-w-0 sm:flex-1 order-2 sm:order-1">
+            <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-xs text-mute mb-1">
               <span className="font-mono">{item.nummer}</span>
               {item.dossierNummer && (
                 <>
@@ -343,7 +343,7 @@ function WetRow({
             )}
           </div>
           <span
-            className={`shrink-0 text-xs px-2.5 py-1 rounded-full font-medium ${FASE_KLEUR[item.fase]}`}
+            className={`self-start shrink-0 order-1 sm:order-2 text-xs px-2.5 py-1 rounded-full font-medium ${FASE_KLEUR[item.fase]}`}
           >
             {dict.fase[item.fase]}
           </span>
