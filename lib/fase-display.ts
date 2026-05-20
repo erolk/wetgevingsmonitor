@@ -4,13 +4,13 @@
 
 import type { Fase } from "./types";
 
-// Een wet telt als "afgerond" zodra het proces echt klaar is: gepubliceerd
-// in het Staatsblad (wet), verworpen, of ingetrokken. NIET op basis van de
-// TK "Afgedaan"-vlag — die staat al op true zodra de Tweede Kamer doorstuurt
-// naar de Eerste Kamer, terwijl de EK dan nog volop aan het behandelen is.
-// Alles daarvoor (incl. in_eerste_kamer en aangenomen_ek-in-afkondiging) is
-// "lopend": nog niet formeel een wet.
+// Een wet telt als "afgerond" zodra de parlementaire besluitvorming klaar is:
+// aangenomen door de Eerste Kamer (beide Kamers akkoord), gepubliceerd in het
+// Staatsblad, verworpen, of ingetrokken. NIET op basis van de TK "Afgedaan"-
+// vlag — die staat al op true zodra de Tweede Kamer doorstuurt naar de Eerste
+// Kamer, terwijl de EK dan nog volop aan het behandelen is (in_eerste_kamer).
 export const AFGERONDE_FASEN: ReadonlyArray<Fase> = [
+  "aangenomen_ek",
   "wet",
   "verworpen",
   "ingetrokken",

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { fetchWetsvoorstel, normalize, FASE_KLEUR } from "@/lib/tk-api";
+import { isAfgerond } from "@/lib/fase-display";
 import { getUitleg } from "@/lib/explanations";
 import { getMinisterieByCommissie } from "@/lib/ministeries";
 import { ProcesBalk } from "@/components/ProcesBalk";
@@ -98,17 +99,13 @@ export default async function WetDetail({ params }: Params) {
   );
 
   // Stilstand-detectie: laatste activiteit > 6 maanden geleden EN niet
-  // afgerond (geen wet/verworpen/ingetrokken/aangenomen_ek).
+  // afgerond (zie isAfgerond — wet/verworpen/ingetrokken/aangenomen_ek).
   const STILSTAND_MAANDEN_DREMPEL = 6;
   const laatsteAct = activiteiten[0]; // gesorteerd nieuw→oud
   const laatsteActDatum = laatsteAct?.Datum
     ? new Date(laatsteAct.Datum)
     : null;
-  const isAfgerondeFase =
-    item.fase === "wet" ||
-    item.fase === "verworpen" ||
-    item.fase === "ingetrokken" ||
-    item.fase === "aangenomen_ek";
+  const isAfgerondeFase = isAfgerond(item.fase);
   const maandenStilstand = laatsteActDatum
     ? Math.floor(
         (Date.now() - laatsteActDatum.getTime()) / (1000 * 60 * 60 * 24 * 30),
