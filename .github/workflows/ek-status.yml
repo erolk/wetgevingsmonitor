@@ -28,8 +28,12 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Scrape EK-status (force refresh)
-        run: node scripts/fetch-ek-status.mjs --force
+      # Geen --force: terminale states (Staatsblad/verworpen/ingetrokken)
+      # worden overgeslagen, dus alleen de ~46 actieve EK-wetten + nieuwe
+      # afgedane wetten worden gescrapet. Houdt de wekelijkse run licht (~1 min)
+      # en belast de EK-server niet onnodig.
+      - name: Scrape EK-status
+        run: node scripts/fetch-ek-status.mjs
 
       - name: Commit & push bij wijziging
         run: |
