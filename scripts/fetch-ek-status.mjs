@@ -55,9 +55,13 @@ async function tkAangenomenWetten(commissie) {
   const filter =
     `Verwijderd eq false and Soort eq 'Wetgeving' and Afgedaan eq true ` +
     `and ZaakActor/any(a: a/ActorNaam eq '${cm}' and a/Relatie eq 'Voortouwcommissie')`;
+  // Top 200 zodat we dezelfde wetten dekken als de ministerie-pagina toont
+  // (die haalt ook 200 per commissie op). Met $top=50 misten oudere afgedane
+  // wetten — bv. gemeente-herindelingen uit 2019 — hun EK-fase en bleven
+  // hangen op 'Aangenomen door TK' terwijl ze al lang in het Staatsblad staan.
   const params =
     `$filter=${enc(filter)}&$expand=Kamerstukdossier($select=Nummer)` +
-    `&$select=Id,Nummer,Titel&$orderby=GestartOp%20desc&$top=50`;
+    `&$select=Id,Nummer,Titel&$orderby=GestartOp%20desc&$top=200`;
   const res = await fetch(`${TK_BASE}/Zaak?${params}`);
   if (!res.ok) throw new Error(`TK ${res.status}`);
   const d = await res.json();
@@ -172,17 +176,27 @@ async function main() {
 
   // Stap 2: voor elk: EK URL vinden + voortgang parsen
   const forceAll = process.argv.includes("--force");
+  const TERMINAAL = new Set(["wet", "verworpen", "ingetrokken"]);
   let nieuw = 0;
   let skip = 0;
   let now = Date.now();
   for (const [tkId, info] of seen) {
     const prev = existing[tkId];
-    // Skip als minder dan 12 uur oud (tenzij --force)
-    if (!forceAll && prev?.gegenereerdOp) {
-      const age = now - new Date(prev.gegenereerdOp).getTime();
-      if (age < 12 * 60 * 60 * 1000) {
+    if (!forceAll && prev) {
+      // Terminale states (in Staatsblad, verworpen, ingetrokken) veranderen
+      // niet meer — eenmaal gescrapet permanent overslaan. Houdt de wekelijkse
+      // run snel ondanks de grotere dekking (top 200 per commissie).
+      if (prev.gevonden && TERMINAAL.has(prev.fase)) {
         skip++;
         continue;
+      }
+      // Niet-terminale records: skip als minder dan 12 uur oud.
+      if (prev.gegenereerdOp) {
+        const age = now - new Date(prev.gegenereerdOp).getTime();
+        if (age < 12 * 60 * 60 * 1000) {
+          skip++;
+          continue;
+        }
       }
     }
     try {
