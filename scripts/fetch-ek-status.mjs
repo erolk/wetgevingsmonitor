@@ -22,24 +22,6 @@ const OUT = path.join(ROOT, "data", "ek-status.json");
 const TK_BASE = "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0";
 const EK_BASE = "https://www.eerstekamer.nl";
 
-const MINISTERIES = [
-  "vaste commissie voor Volkshuisvesting en Ruimtelijke Ordening",
-  "vaste commissie voor Binnenlandse Zaken",
-  "vaste commissie voor Justitie en Veiligheid",
-  "vaste commissie voor Asiel en Migratie",
-  "vaste commissie voor Onderwijs, Cultuur en Wetenschap",
-  "vaste commissie voor Volksgezondheid, Welzijn en Sport",
-  "vaste commissie voor Sociale Zaken en Werkgelegenheid",
-  "vaste commissie voor Financiën",
-  "vaste commissie voor Economische Zaken",
-  "vaste commissie voor Klimaat en Groene Groei",
-  "vaste commissie voor Infrastructuur en Waterstaat",
-  "vaste commissie voor Landbouw, Visserij, Voedselzekerheid en Natuur",
-  "vaste commissie voor Defensie",
-  "vaste commissie voor Buitenlandse Zaken",
-  "vaste commissie voor Buitenlandse Handel en Ontwikkelingssamenwerking",
-];
-
 function enc(s) {
   return s
     .replace(/%/g, "%25")
@@ -49,23 +31,31 @@ function enc(s) {
     .replace(/\+/g, "%2B");
 }
 
-async function tkAangenomenWetten(commissie) {
-  // Wetten die de TK heeft afgedaan (aangenomen, naar EK door).
-  const cm = commissie.replace(/'/g, "''");
+// Alle door de TK afgedane wetgeving-zaken — onafhankelijk van commissie.
+// Eerder haalden we per commissie op (15 vaste commissies), maar wetten onder
+// andere/oudere commissies (bv. 'Digitale Zaken', 'Economische Zaken en
+// Klimaat (2017-2024)') vielen daardoor buiten de EK-status. Nu pakken we
+// alles, zodat elke wet die via een directe link bereikbaar is een correcte
+// EK-fase krijgt. Pagineren via @odata.nextLink (server-page size = 250).
+async function alleAfgedaneWetten() {
   const filter =
-    `Verwijderd eq false and Soort eq 'Wetgeving' and Afgedaan eq true ` +
-    `and ZaakActor/any(a: a/ActorNaam eq '${cm}' and a/Relatie eq 'Voortouwcommissie')`;
-  // Top 200 zodat we dezelfde wetten dekken als de ministerie-pagina toont
-  // (die haalt ook 200 per commissie op). Met $top=50 misten oudere afgedane
-  // wetten — bv. gemeente-herindelingen uit 2019 — hun EK-fase en bleven
-  // hangen op 'Aangenomen door TK' terwijl ze al lang in het Staatsblad staan.
+    "Verwijderd eq false and Soort eq 'Wetgeving' and Afgedaan eq true";
   const params =
     `$filter=${enc(filter)}&$expand=Kamerstukdossier($select=Nummer)` +
-    `&$select=Id,Nummer,Titel&$orderby=GestartOp%20desc&$top=200`;
-  const res = await fetch(`${TK_BASE}/Zaak?${params}`);
-  if (!res.ok) throw new Error(`TK ${res.status}`);
-  const d = await res.json();
-  return d.value;
+    `&$select=Id,Nummer,Titel`;
+  let url = `${TK_BASE}/Zaak?${params}`;
+  const out = [];
+  let pagina = 0;
+  while (url) {
+    const res = await fetch(url, { headers: { Accept: "application/json" } });
+    if (!res.ok) throw new Error(`TK ${res.status}`);
+    const d = await res.json();
+    out.push(...(d.value ?? []));
+    url = d["@odata.nextLink"] ?? null;
+    pagina++;
+    if (pagina > 50) break; // veiligheidsrem tegen oneindige paginatie
+  }
+  return out;
 }
 
 async function ekUrlVoorDossier(nummer) {
@@ -156,23 +146,27 @@ async function main() {
     existing = JSON.parse(await fs.readFile(OUT, "utf8"));
   } catch {}
 
-  // Stap 1: verzamel alle TK-aangenomen wetten met dossiernummer
+  // Stap 1: verzamel alle door de TK afgedane wetgeving-zaken met dossiernummer
   const seen = new Map();
-  for (const c of MINISTERIES) {
-    try {
-      const lijst = await tkAangenomenWetten(c);
-      for (const z of lijst) {
-        const dnr = z.Kamerstukdossier?.[0]?.Nummer;
-        if (!dnr) continue;
-        if (seen.has(z.Id)) continue;
-        seen.set(z.Id, { tkId: z.Id, dossiernummer: dnr, titel: z.Titel });
+  let zonderDossier = 0;
+  try {
+    const lijst = await alleAfgedaneWetten();
+    for (const z of lijst) {
+      const dnr = z.Kamerstukdossier?.[0]?.Nummer;
+      if (!dnr) {
+        zonderDossier++;
+        continue;
       }
-      console.log(`  ${c}: ${lijst.length} aangenomen`);
-    } catch (e) {
-      console.error(`  ${c}: ${e.message}`);
+      if (seen.has(z.Id)) continue;
+      seen.set(z.Id, { tkId: z.Id, dossiernummer: dnr, titel: z.Titel });
     }
+    console.log(`afgedane wetgeving-zaken: ${lijst.length}`);
+  } catch (e) {
+    console.error(`ophalen mislukt: ${e.message}`);
   }
-  console.log(`unieke wetten: ${seen.size}`);
+  console.log(
+    `unieke wetten met dossiernummer: ${seen.size} (${zonderDossier} zonder dossier overgeslagen)`,
+  );
 
   // Stap 2: voor elk: EK URL vinden + voortgang parsen
   const forceAll = process.argv.includes("--force");
