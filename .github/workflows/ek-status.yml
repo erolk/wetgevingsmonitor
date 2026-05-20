@@ -1,0 +1,45 @@
+name: EK-status verversen
+
+# Scrapet wekelijks de Eerste Kamer-voortgang per wetsvoorstel en commit de
+# bijgewerkte data/ek-status.json. Een push naar main triggert automatisch een
+# Vercel-redeploy, dus de site toont daarna de verse EK-fasen.
+#
+# TK-data hoeft niet gescrapet te worden — die wordt live opgehaald met een
+# dagelijkse cache. Alleen EK heeft geen API en moet gescrapet worden.
+
+on:
+  schedule:
+    # Elke maandag 06:00 UTC (07:00/08:00 NL-tijd)
+    - cron: "0 6 * * 1"
+  workflow_dispatch: {} # handmatig te starten via de Actions-tab
+
+permissions:
+  contents: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Scrape EK-status (force refresh)
+        run: node scripts/fetch-ek-status.mjs --force
+
+      - name: Commit & push bij wijziging
+        run: |
+          if [[ -n "$(git status --porcelain data/ek-status.json)" ]]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add data/ek-status.json
+            git commit -m "chore: wekelijkse EK-status update [skip ci]"
+            git push
+            echo "EK-status bijgewerkt en gepusht."
+          else
+            echo "Geen wijzigingen in EK-status — niets te committen."
+          fi
