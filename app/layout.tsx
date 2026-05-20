@@ -2,6 +2,7 @@ import "./globals.css";
 import type { Metadata, Viewport } from "next";
 import Link from "next/link";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { NLVlag } from "@/components/NLVlag";
 import { getDict } from "@/lib/i18n";
 
 export const metadata: Metadata = {
@@ -42,10 +43,11 @@ export default async function RootLayout({
               href="/"
               className="flex items-center gap-2 sm:gap-3 group min-w-0"
             >
-              <span className="inline-block h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-accent shrink-0" />
+              <NLVlag className="h-4 w-6 sm:h-[18px] sm:w-[27px] shrink-0 rounded-[2.5px] shadow-sm ring-1 ring-black/10 transition-transform group-hover:-translate-y-0.5" />
               <span className="font-serif text-base sm:text-xl tracking-tight truncate">
-                {dict.nav.siteName}
-                <span className="text-accent">{dict.nav.siteAccent}</span>
+                <span className="text-accent font-semibold">NL</span>
+                <span className="text-ink">wetgevings</span>
+                <span className="text-accent">monitor</span>
               </span>
             </Link>
             <nav className="text-xs sm:text-sm text-mute flex items-center gap-3 sm:gap-5 shrink-0">
