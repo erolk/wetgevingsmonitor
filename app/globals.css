@@ -9,7 +9,9 @@
  */
 
 :root {
-  color-scheme: light;
+  /* 'only light' forceert lichte weergave en zet Android Chrome's
+     'Auto dark theme' uit. De site heeft geen dark-mode meer. */
+  color-scheme: only light;
 
   /* Krantenpapier — iets dieper cream als achtergrond zodat de surface-laag
      (menu, kaarten, agenda) er duidelijker boven uit komt. */

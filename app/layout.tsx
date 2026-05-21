@@ -1,7 +1,6 @@
 import "./globals.css";
 import type { Metadata, Viewport } from "next";
 import Link from "next/link";
-import { ThemeToggle } from "@/components/ThemeToggle";
 import { NLVlag } from "@/components/NLVlag";
 import { EUVlag } from "@/components/EUVlag";
 import { EU_MONITOR_URL } from "@/lib/site";
@@ -17,10 +16,9 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#eee8d8" },
-    { media: "(prefers-color-scheme: dark)", color: "#121724" },
-  ],
+  // De site is altijd licht (geen dark-mode), dus één lichte theme-color.
+  themeColor: "#eee8d8",
+  colorScheme: "light",
 };
 
 export default async function RootLayout({
@@ -30,14 +28,7 @@ export default async function RootLayout({
 }) {
   const { dict, locale } = await getDict();
   return (
-    <html lang={locale} suppressHydrationWarning>
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){try{var s=localStorage.getItem('theme');var d=s?s==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;if(d)document.documentElement.classList.add('dark');}catch(e){}})();`,
-          }}
-        />
-      </head>
+    <html lang={locale}>
       <body className="min-h-screen font-sans antialiased">
         <header className="border-b-[0.5px] border-accent bg-surface/70 backdrop-blur">
           <div className="mx-auto max-w-5xl px-4 sm:px-6 py-3 sm:py-5 flex items-center justify-between gap-2">
@@ -101,9 +92,8 @@ export default async function RootLayout({
                 className="group inline-flex items-center gap-1.5 rounded-full border border-line px-2 sm:px-2.5 py-1 hover:border-accent hover:text-ink transition-colors"
               >
                 <EUVlag className="h-3 w-[18px] rounded-[2px] ring-1 ring-black/10 transition-transform group-hover:-translate-y-0.5" />
-                <span className="hidden sm:inline">EU-monitor</span>
+                <span className="hidden sm:inline">EU-wetgevingsmonitor</span>
               </a>
-              <ThemeToggle />
             </nav>
           </div>
         </header>
