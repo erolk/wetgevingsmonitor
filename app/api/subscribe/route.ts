@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { createSubscription } from "@/lib/subscriptions";
 import { sendEmail, emailMode } from "@/lib/email";
+import { rateLimit, clientIp } from "@/lib/rate-limit";
 
 export const runtime = "nodejs";
 
@@ -16,6 +17,16 @@ function valideerEmail(e: string): boolean {
 }
 
 export async function POST(req: Request) {
+  // Max 5 aanmeldingen per IP per 10 minuten — tegen spam-floods.
+  const ip = clientIp(req);
+  const rl = rateLimit(`subscribe:${ip}`, { max: 5, windowMs: 10 * 60 * 1000 });
+  if (!rl.ok) {
+    return NextResponse.json(
+      { error: "Te veel aanvragen. Probeer het later opnieuw." },
+      { status: 429, headers: { "Retry-After": String(rl.retryAfterSec) } },
+    );
+  }
+
   let body: {
     email?: string;
     targetType?: "wet" | "ministerie";

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createContactMessage } from "@/lib/contact";
+import { rateLimit, clientIp } from "@/lib/rate-limit";
 
 export const runtime = "nodejs";
 
@@ -8,6 +9,16 @@ function valideerEmail(e: string): boolean {
 }
 
 export async function POST(req: Request) {
+  // Max 5 berichten per IP per 10 minuten — tegen spam-floods.
+  const ip = clientIp(req);
+  const rl = rateLimit(`contact:${ip}`, { max: 5, windowMs: 10 * 60 * 1000 });
+  if (!rl.ok) {
+    return NextResponse.json(
+      { error: "Te veel berichten verstuurd. Probeer het later opnieuw." },
+      { status: 429, headers: { "Retry-After": String(rl.retryAfterSec) } },
+    );
+  }
+
   let body: {
     naam?: string;
     email?: string;
@@ -58,10 +69,6 @@ export async function POST(req: Request) {
     );
   }
 
-  const ip =
-    req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
-    req.headers.get("x-real-ip") ||
-    null;
   const userAgent = req.headers.get("user-agent");
 
   try {
