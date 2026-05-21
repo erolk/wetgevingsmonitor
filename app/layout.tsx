@@ -3,6 +3,8 @@ import type { Metadata, Viewport } from "next";
 import Link from "next/link";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { NLVlag } from "@/components/NLVlag";
+import { EUVlag } from "@/components/EUVlag";
+import { EU_MONITOR_URL } from "@/lib/site";
 import { getDict } from "@/lib/i18n";
 
 export const metadata: Metadata = {
@@ -91,6 +93,16 @@ export default async function RootLayout({
                   <line x1="21" y1="21" x2="16.65" y2="16.65" />
                 </svg>
               </Link>
+              <a
+                href={EU_MONITOR_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Naar de EU-wetgevingsmonitor"
+                className="group inline-flex items-center gap-1.5 rounded-full border border-line px-2 sm:px-2.5 py-1 hover:border-accent hover:text-ink transition-colors"
+              >
+                <EUVlag className="h-3 w-[18px] rounded-[2px] ring-1 ring-black/10 transition-transform group-hover:-translate-y-0.5" />
+                <span className="hidden sm:inline">EU-monitor</span>
+              </a>
               <ThemeToggle />
             </nav>
           </div>
