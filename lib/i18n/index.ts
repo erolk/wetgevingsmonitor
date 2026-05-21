@@ -1,27 +1,22 @@
-// Server-side helper om de juiste dictionary op te halen op basis van een
-// cookie `locale=nl|en`. Default = nl.
+// De site is NL-only (de taalschakelaar is uit de header gehaald). We lezen
+// daarom GEEN cookie meer: cookies() zou elke pagina dynamisch maken, waardoor
+// alles live per request gerenderd wordt (traag). Door hier gewoon de NL-
+// dictionary terug te geven kunnen pagina's statisch gegenereerd + via ISR
+// gecached worden.
 //
-// Let op: `cookies()` maakt een Server Component dynamisch (geen statische
-// generatie). Voor onze schaal (paar honderd wetten, dagelijks gecached
-// fetched data) is dat acceptabel.
+// De EN-dictionary (en.ts) blijft bestaan voor als de taalschakelaar later
+// terugkomt; dan kan hier weer een cookie/locale-route worden ingelezen.
 
-import { cookies } from "next/headers";
 import { nl } from "./nl";
-import { en } from "./en";
 import type { Dictionary, Locale } from "./types";
 
 export type { Dictionary, Locale };
-
-const DICTS: Record<Locale, Dictionary> = { nl, en };
 
 export async function getDict(): Promise<{
   dict: Dictionary;
   locale: Locale;
 }> {
-  const store = await cookies();
-  const raw = store.get("locale")?.value;
-  const locale: Locale = raw === "en" ? "en" : "nl";
-  return { dict: DICTS[locale], locale };
+  return { dict: nl, locale: "nl" };
 }
 
 /** Vervang `{key}`-placeholders door waarden. */
