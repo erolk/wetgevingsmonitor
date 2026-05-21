@@ -1,22 +1,28 @@
 /** @type {import('next').NextConfig} */
 
+const isDev = process.env.NODE_ENV !== "production";
+
 // Content-Security-Policy. De site laadt client-side alléén eigen resources
 // (geen externe scripts, fonts of afbeeldingen) plus inline scripts/styles die
-// Next.js en Tailwind nodig hebben. Daarom kan het CSP streng zijn op de
-// gevaarlijke richtlijnen (frame-ancestors, base-uri, object-src, form-action)
-// en alleen 'unsafe-inline' toestaan waar Next.js dat technisch vereist.
+// Next.js en Tailwind nodig hebben. Streng op de gevaarlijke richtlijnen
+// (frame-ancestors, base-uri, object-src, form-action).
+//
+// In development heeft Next.js extra ruimte nodig: 'unsafe-eval' voor React
+// Fast Refresh en een websocket (ws:) voor hot-reload. Zonder die twee breekt
+// de dev-client en werken o.a. de header-links (logo, Ministeries) niet. In
+// productie laten we ze weg, zodat het daar strikt blijft.
 const csp = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline'",
+  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""}`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data:",
   "font-src 'self'",
-  "connect-src 'self'",
+  `connect-src 'self'${isDev ? " ws:" : ""}`,
   "frame-ancestors 'none'",
   "base-uri 'self'",
   "form-action 'self'",
   "object-src 'none'",
-  "upgrade-insecure-requests",
+  ...(isDev ? [] : ["upgrade-insecure-requests"]),
 ].join("; ");
 
 const securityHeaders = [
