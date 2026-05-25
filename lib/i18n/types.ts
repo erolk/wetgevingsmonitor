@@ -55,6 +55,7 @@ export interface Dictionary {
     uitgelichtKopPortemonnee: string; // "Wat dit voor uw portemonnee betekent"
     uitgelichtKopLeefomgeving: string; // "Wat dit voor uw leefomgeving betekent"
     uitgelichtNext: string; // "eerstvolgende stap op {datum}"
+    uitgelichtDezeWeek: string; // "Deze week op de agenda · {datum}"
     uitgelichtLeesMeer: string; // "Lees wat deze wet betekent →"
     chooseMinistry: string;
     tileRunning: string; // "lopend"

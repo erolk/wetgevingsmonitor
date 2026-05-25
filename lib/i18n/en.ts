@@ -50,6 +50,7 @@ export const en: Dictionary = {
     uitgelichtKopPortemonnee: "What this could mean for your wallet",
     uitgelichtKopLeefomgeving: "What this could mean for your living environment",
     uitgelichtNext: "next step on {datum}",
+    uitgelichtDezeWeek: "On the agenda this week · {datum}",
     uitgelichtLeesMeer: "Read what this bill means →",
     chooseMinistry: "Choose a ministry",
     tileRunning: "in progress",

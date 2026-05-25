@@ -124,10 +124,18 @@ export default async function Home() {
   const dezeWeek = await matchDezeWeekAgenda(ma, volgendeMa, gathered);
 
   // Uitgelichte wet die de burger raakt in de portemonnee of leefomgeving.
+  // Geef voorrang aan wetten die deze week op de TK-agenda staan.
   const lopendeWetten = gathered.flatMap((g) =>
     g.items.filter((i) => !isAfgerond(i.fase)),
   );
-  const uitgelicht = kiesUitgelicht(lopendeWetten);
+  const dezeWeekDatums = new Map<string, string>();
+  for (const e of dezeWeek) {
+    const bestaand = dezeWeekDatums.get(e.wet.id);
+    if (!bestaand || new Date(e.debat.startsAt) < new Date(bestaand)) {
+      dezeWeekDatums.set(e.wet.id, e.debat.startsAt);
+    }
+  }
+  const uitgelicht = kiesUitgelicht(lopendeWetten, dezeWeekDatums);
 
   const ministerieDict = dict.ministeries;
 
@@ -378,11 +386,23 @@ function UitgelichtKaart({
       </p>
 
       <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-mute">
-        <span className="inline-flex items-center gap-1.5">
-          <span className="h-1.5 w-1.5 rounded-full bg-accent/70" />
-          {FASE_LABEL[wet.fase]}
-        </span>
-        {aankomend && (
+        {item.agendaDatum ? (
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-accent/10 text-accentDark px-2.5 py-1 font-medium">
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="absolute inset-0 rounded-full bg-accent/50 animate-ping" />
+              <span className="relative rounded-full h-1.5 w-1.5 bg-accent" />
+            </span>
+            {tpl(dict.home.uitgelichtDezeWeek, {
+              datum: formatDate(item.agendaDatum, locale),
+            })}
+          </span>
+        ) : (
+          <span className="inline-flex items-center gap-1.5">
+            <span className="h-1.5 w-1.5 rounded-full bg-accent/70" />
+            {FASE_LABEL[wet.fase]}
+          </span>
+        )}
+        {!item.agendaDatum && aankomend && (
           <span>{tpl(dict.home.uitgelichtNext, {
             datum: formatDate(aankomend, locale),
           })}</span>

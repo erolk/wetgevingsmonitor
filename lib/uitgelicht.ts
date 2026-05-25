@@ -46,6 +46,8 @@ export type Uitgelicht = {
   wet: WetVoorstel;
   categorie: Categorie;
   uitleg: Uitleg;
+  /** ISO-datum: gezet als deze wet deze week op de TK-agenda staat. */
+  agendaDatum?: string;
 };
 
 // Optionele handmatige keuze: pin een wet vast in data/uitgelicht.json. Zo houdt
@@ -65,12 +67,17 @@ function leesPin(): Pin | null {
 /**
  * Kies de uitgelichte wet uit de lopende wetten. Voorkeur:
  *   1. een handmatig vastgepinde wet (indien nog lopend);
- *   2. een wet met een aankomende activiteit (eerstvolgende datum);
- *   3. anders de meest recent gestarte passende wet.
+ *   2. een wet die deze week op de TK-agenda staat (vroegste datum eerst);
+ *   3. een wet met een aankomende activiteit (eerstvolgende datum);
+ *   4. anders de meest recent gestarte passende wet.
+ * `dezeWeek` is een map van wet-id → vroegste agendadatum deze week.
  * Een wet komt alleen in aanmerking als er een gecontroleerde uitleg bestaat
  * én de titel/onderwerp/uitleg in een categorie valt.
  */
-export function kiesUitgelicht(lopend: WetVoorstel[]): Uitgelicht | null {
+export function kiesUitgelicht(
+  lopend: WetVoorstel[],
+  dezeWeek?: Map<string, string>,
+): Uitgelicht | null {
   const alleUitleg = getAlleUitleg();
   const pin = leesPin();
 
@@ -88,11 +95,28 @@ export function kiesUitgelicht(lopend: WetVoorstel[]): Uitgelicht | null {
 
   if (kandidaten.length === 0) return null;
 
+  // 1. handmatige pin (override) — toon eventueel de agendadatum erbij.
   if (pin?.wetId) {
     const gepind = kandidaten.find((k) => k.wet.id === pin.wetId);
-    if (gepind) return gepind;
+    if (gepind) return { ...gepind, agendaDatum: dezeWeek?.get(gepind.wet.id) };
   }
 
+  // 2. staat deze week op de TK-agenda (vroegste datum eerst).
+  if (dezeWeek && dezeWeek.size > 0) {
+    const dezeWeekKandidaten = kandidaten
+      .filter((k) => dezeWeek.has(k.wet.id))
+      .sort(
+        (a, b) =>
+          new Date(dezeWeek.get(a.wet.id)!).getTime() -
+          new Date(dezeWeek.get(b.wet.id)!).getTime(),
+      );
+    if (dezeWeekKandidaten.length > 0) {
+      const beste = dezeWeekKandidaten[0];
+      return { ...beste, agendaDatum: dezeWeek.get(beste.wet.id) };
+    }
+  }
+
+  // 3. heeft een aankomende activiteit.
   const nu = Date.now();
   const metAankomendeDatum = kandidaten
     .filter((k) => {
@@ -106,6 +130,7 @@ export function kiesUitgelicht(lopend: WetVoorstel[]): Uitgelicht | null {
     );
   if (metAankomendeDatum.length > 0) return metAankomendeDatum[0];
 
+  // 4. fallback: meest recent gestart.
   return [...kandidaten].sort((a, b) => {
     const da = a.wet.gestartOp ? new Date(a.wet.gestartOp).getTime() : 0;
     const db = b.wet.gestartOp ? new Date(b.wet.gestartOp).getTime() : 0;
