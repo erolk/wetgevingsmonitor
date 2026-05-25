@@ -49,6 +49,13 @@ export interface Dictionary {
     weekStripShowMore: string; // "Toon overige {aantal} debaten deze week ↓"
     weekStripShowLess: string;
     weekStripDebatDirectAria: string;
+    uitgelichtEyebrow: string; // "Uitgelicht"
+    uitgelichtPortemonnee: string; // "Portemonnee"
+    uitgelichtLeefomgeving: string; // "Leefomgeving"
+    uitgelichtKopPortemonnee: string; // "Wat dit voor uw portemonnee betekent"
+    uitgelichtKopLeefomgeving: string; // "Wat dit voor uw leefomgeving betekent"
+    uitgelichtNext: string; // "eerstvolgende stap op {datum}"
+    uitgelichtLeesMeer: string; // "Lees wat deze wet betekent →"
     chooseMinistry: string;
     tileRunning: string; // "lopend"
     tileTotal: string; // "{n} totaal"
@@ -161,6 +168,7 @@ export interface Dictionary {
     activity: string;
     timelineTitle: string;
     timelineEmpty: string;
+    timelineIndiening: string;
     watchExact: string; // "Bekijk terug: \"{naam}\" ↗"
     watchLikely: string; // "Bekijk waarschijnlijk debat: \"{naam}\" ↗"
     watchDay: string;

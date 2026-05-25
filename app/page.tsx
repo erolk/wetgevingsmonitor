@@ -9,7 +9,8 @@ import {
   type DebatDirectItem,
 } from "@/lib/debat-direct";
 import { UitklapLijst } from "@/components/UitklapLijst";
-import { isAfgerond } from "@/lib/fase-display";
+import { isAfgerond, FASE_LABEL } from "@/lib/fase-display";
+import { kiesUitgelicht, type Uitgelicht } from "@/lib/uitgelicht";
 import { getDict, tpl } from "@/lib/i18n";
 import type { Dictionary, Locale } from "@/lib/i18n";
 
@@ -122,6 +123,12 @@ export default async function Home() {
   const wkNr = isoWeekNummer(nu);
   const dezeWeek = await matchDezeWeekAgenda(ma, volgendeMa, gathered);
 
+  // Uitgelichte wet die de burger raakt in de portemonnee of leefomgeving.
+  const lopendeWetten = gathered.flatMap((g) =>
+    g.items.filter((i) => !isAfgerond(i.fase)),
+  );
+  const uitgelicht = kiesUitgelicht(lopendeWetten);
+
   const ministerieDict = dict.ministeries;
 
   return (
@@ -147,6 +154,10 @@ export default async function Home() {
           {tpl(dict.home.lastSync, { datum: laatstBijgewerkt })}
         </div>
       </section>
+
+      {uitgelicht && (
+        <UitgelichtKaart item={uitgelicht} dict={dict} locale={locale} />
+      )}
 
       <DezeWeekStrip
         wkNr={wkNr}
@@ -315,6 +326,115 @@ async function matchDezeWeekAgenda(
       new Date(b.debat.startsAt).getTime(),
   );
   return entries;
+}
+
+function UitgelichtKaart({
+  item,
+  dict,
+  locale,
+}: {
+  item: Uitgelicht;
+  dict: Dictionary;
+  locale: Locale;
+}) {
+  const { wet, categorie, uitleg } = item;
+  const isPortemonnee = categorie === "portemonnee";
+  const badgeLabel = isPortemonnee
+    ? dict.home.uitgelichtPortemonnee
+    : dict.home.uitgelichtLeefomgeving;
+  const kop = isPortemonnee
+    ? dict.home.uitgelichtKopPortemonnee
+    : dict.home.uitgelichtKopLeefomgeving;
+  const aankomend =
+    wet.volgendeActiviteit?.datum &&
+    new Date(wet.volgendeActiviteit.datum).getTime() >= Date.now()
+      ? wet.volgendeActiviteit.datum
+      : null;
+
+  return (
+    <section className="rounded-lg border-l-[3px] border-l-accent border border-line bg-surface px-4 py-4 sm:px-6 sm:py-5">
+      <div className="flex items-center gap-2 text-[11px] font-mono uppercase tracking-wider text-mute">
+        <span className="text-accent">{dict.home.uitgelichtEyebrow}</span>
+        <span className="text-line">·</span>
+        <span className="inline-flex items-center gap-1.5 text-ink/80">
+          {isPortemonnee ? <PortemonneeIcon /> : <LeefomgevingIcon />}
+          {badgeLabel}
+        </span>
+      </div>
+
+      <h2 className="mt-2 font-serif text-lg sm:text-xl text-ink leading-snug">
+        {kop}
+      </h2>
+
+      <Link
+        href={`/wet/${wet.id}`}
+        className="mt-1 block text-sm text-mute hover:text-ink hover:underline"
+      >
+        {wet.titel}
+      </Link>
+
+      <p className="mt-3 text-[15px] leading-relaxed text-ink/90 max-w-2xl">
+        {uitleg.raaktJou}
+      </p>
+
+      <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-mute">
+        <span className="inline-flex items-center gap-1.5">
+          <span className="h-1.5 w-1.5 rounded-full bg-accent/70" />
+          {FASE_LABEL[wet.fase]}
+        </span>
+        {aankomend && (
+          <span>{tpl(dict.home.uitgelichtNext, {
+            datum: formatDate(aankomend, locale),
+          })}</span>
+        )}
+        <Link
+          href={`/wet/${wet.id}`}
+          className="ml-auto text-accent hover:underline shrink-0"
+        >
+          {dict.home.uitgelichtLeesMeer}
+        </Link>
+      </div>
+    </section>
+  );
+}
+
+function PortemonneeIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width="14"
+      height="14"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M3 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1H5a2 2 0 0 0-2-2Z" />
+      <rect x="3" y="7" width="18" height="12" rx="2" />
+      <path d="M16 13h.01" />
+    </svg>
+  );
+}
+
+function LeefomgevingIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width="14"
+      height="14"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />
+      <path d="M2 21c0-3 1.85-5.36 5.08-6" />
+    </svg>
+  );
 }
 
 function DezeWeekStrip({

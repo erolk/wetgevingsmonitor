@@ -30,3 +30,8 @@ export function getUitleg(wetId: string): Uitleg | null {
   const map = load();
   return map[wetId] ?? null;
 }
+
+/** Volledige uitleg-map (voor wie meerdere wetten tegelijk verwerkt). */
+export function getAlleUitleg(): Record<string, Uitleg> {
+  return load();
+}
