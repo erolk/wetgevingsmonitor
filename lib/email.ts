@@ -1,5 +1,6 @@
 import fs from "node:fs/promises";
 import path from "node:path";
+import { logEmail, maskEmail } from "./email-log";
 
 // Twee modes:
 // - 'file' (default): schrijft mails naar data/outbox/ als .eml-bestanden,
@@ -20,8 +21,15 @@ const FROM = process.env.EMAIL_FROM ?? "Wetgevingsmonitor <noreply@example.inval
 const RESEND_KEY = process.env.RESEND_API_KEY;
 
 export async function sendEmail(email: Email): Promise<{ ok: boolean; via: string; detail?: string }> {
-  if (MODE === "resend") return sendViaResend(email);
-  return sendViaFile(email);
+  const res = MODE === "resend" ? await sendViaResend(email) : await sendViaFile(email);
+  await logEmail({
+    to: maskEmail(email.to),
+    subject: email.subject,
+    ok: res.ok,
+    via: res.via,
+    detail: res.detail,
+  });
+  return res;
 }
 
 async function sendViaFile(email: Email) {

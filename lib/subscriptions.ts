@@ -112,3 +112,23 @@ export async function listAllConfirmed(): Promise<Subscription[]> {
   const subs = await load();
   return subs.filter((s) => s.status === "confirmed");
 }
+
+export type AbonneeStats = {
+  totaal: number;
+  bevestigd: number;
+  inAfwachting: number;
+  perType: { wet: number; ministerie: number };
+};
+
+export async function getAbonneeStats(): Promise<AbonneeStats> {
+  const subs = await load();
+  return {
+    totaal: subs.length,
+    bevestigd: subs.filter((s) => s.status === "confirmed").length,
+    inAfwachting: subs.filter((s) => s.status === "pending").length,
+    perType: {
+      wet: subs.filter((s) => s.target.type === "wet").length,
+      ministerie: subs.filter((s) => s.target.type === "ministerie").length,
+    },
+  };
+}

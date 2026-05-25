@@ -14,6 +14,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { schrijfRunStatus } from "./_status.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, "..");
@@ -141,6 +142,7 @@ function parseEkVoortgang(html) {
 }
 
 async function main() {
+  const startTs = Date.now();
   let existing = {};
   try {
     existing = JSON.parse(await fs.readFile(OUT, "utf8"));
@@ -236,9 +238,20 @@ async function main() {
 
   await fs.writeFile(OUT, JSON.stringify(existing, null, 2));
   console.log(`klaar. ${nieuw} bijgewerkt, ${skip} overgeslagen (vers).`);
+
+  const ophalenOk = seen.size > 0;
+  await schrijfRunStatus(ROOT, "ek-scrape", {
+    ok: ophalenOk,
+    message: ophalenOk
+      ? `${nieuw} bijgewerkt, ${skip} overgeslagen (vers)`
+      : "ophalen TK-lijst leverde 0 wetten op",
+    aantal: Object.keys(existing).length,
+    duurMs: Date.now() - startTs,
+  });
 }
 
-main().catch((e) => {
+main().catch(async (e) => {
   console.error(e);
+  await schrijfRunStatus(ROOT, "ek-scrape", { ok: false, message: e.message });
   process.exit(1);
 });

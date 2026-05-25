@@ -14,6 +14,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { schrijfRunStatus, logEmailPoging, maskEmail } from "./_status.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, "..");
@@ -288,6 +289,7 @@ async function main() {
 
   let nieuwe = 0;
   let mails = 0;
+  let mailFouten = 0;
 
   for (const id of watchIds) {
     const zaak = await fetchZaakDetail(id);
@@ -333,7 +335,17 @@ Bekijk de volledige tijdlijn: ${detailUrl}`;
       const unsub = `${SITE}/api/subscribe/unsubscribe?token=${sub.unsubscribeToken}`;
       const result = await sendMail(sub.email, subject, body, unsub);
       if (result.ok) mails++;
-      else console.error(`  mail fout naar ${sub.email}: ${result.error}`);
+      else {
+        mailFouten++;
+        console.error(`  mail fout naar ${sub.email}: ${result.error}`);
+      }
+      await logEmailPoging(ROOT, {
+        to: maskEmail(sub.email),
+        subject,
+        ok: !!result.ok,
+        via: result.via ?? EMAIL_MODE,
+        detail: result.ok ? undefined : String(result.error ?? ""),
+      });
     }
   }
 
@@ -342,9 +354,18 @@ Bekijk de volledige tijdlijn: ${detailUrl}`;
   if (firstRun) {
     console.log("Dit was de eerste run — alleen snapshot opgebouwd, geen mails verstuurd.");
   }
+
+  await schrijfRunStatus(ROOT, "check-updates", {
+    ok: mailFouten === 0,
+    message: firstRun
+      ? "eerste run — alleen snapshot opgebouwd"
+      : `${nieuwe} wetten met events, ${mails} mails verzonden, ${mailFouten} fouten (${EMAIL_MODE})`,
+    aantal: mails,
+  });
 }
 
-main().catch((e) => {
+main().catch(async (e) => {
   console.error(e);
+  await schrijfRunStatus(ROOT, "check-updates", { ok: false, message: e.message });
   process.exit(1);
 });

@@ -13,4 +13,6 @@ next-env.d.ts
 data/outbox/
 data/subscriptions.json
 data/snapshot.json
+data/status.json
+data/email-log.json
 tsconfig.tsbuildinfo

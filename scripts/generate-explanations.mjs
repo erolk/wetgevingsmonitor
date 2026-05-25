@@ -13,6 +13,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import crypto from "node:crypto";
 import { fileURLToPath } from "node:url";
+import { schrijfRunStatus } from "./_status.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, "..");
@@ -153,9 +154,19 @@ async function main() {
 
   await fs.writeFile(OUT, JSON.stringify(existing, null, 2));
   console.log(`klaar. ${nieuw} nieuwe/gewijzigde uitleg toegevoegd.`);
+
+  await schrijfRunStatus(ROOT, "explanations", {
+    ok: true,
+    message: `${nieuw} nieuwe/gewijzigde uitleg toegevoegd`,
+    aantal: Object.keys(existing).length,
+  });
 }
 
-main().catch((e) => {
+main().catch(async (e) => {
   console.error(e);
+  await schrijfRunStatus(ROOT, "explanations", {
+    ok: false,
+    message: e.message,
+  });
   process.exit(1);
 });
