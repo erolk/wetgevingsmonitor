@@ -9,7 +9,6 @@ export const nl: Dictionary = {
   nav: {
     siteName: "Wetgevings",
     siteAccent: "monitor",
-    ministries: "Ministeries",
     migratiepact: "Migratiepact",
     process: "Hoe werkt het?",
     processShort: "Proces",

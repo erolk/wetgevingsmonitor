@@ -44,9 +44,6 @@ export default async function RootLayout({
               </span>
             </Link>
             <nav className="text-xs sm:text-sm text-mute flex items-center gap-3 sm:gap-5 shrink-0">
-              <Link href="/" className="hover:text-ink hidden sm:inline">
-                {dict.nav.ministries}
-              </Link>
               <Link href="/proces" className="hover:text-ink">
                 <span className="sm:hidden">{dict.nav.processShort}</span>
                 <span className="hidden sm:inline">{dict.nav.process}</span>

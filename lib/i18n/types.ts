@@ -17,7 +17,6 @@ export interface Dictionary {
   nav: {
     siteName: string; // "Wetgevings" prefix
     siteAccent: string; // "monitor" deel (accent kleur)
-    ministries: string;
     migratiepact: string;
     process: string;
     processShort: string;
