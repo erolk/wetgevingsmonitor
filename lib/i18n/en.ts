@@ -10,6 +10,7 @@ export const en: Dictionary = {
     siteName: "Legislation ",
     siteAccent: "monitor",
     ministries: "Ministries",
+    migratiepact: "Migration Pact",
     process: "How does it work?",
     processShort: "Process",
     about: "About",

@@ -1,0 +1,127 @@
+{
+  "bijgewerkt": "2026-05-26T12:33:22.856Z",
+  "jaar": 2026,
+  "bron": "https://www.rijksoverheid.nl/documenten/publicaties/2026/01/01/asielinstroom-per-week-in-2026",
+  "weken": [
+    {
+      "jaar": 2026,
+      "week": 1,
+      "datum": "2026-01-12",
+      "aantal": 700
+    },
+    {
+      "jaar": 2026,
+      "week": 2,
+      "datum": "2026-01-12",
+      "aantal": 700
+    },
+    {
+      "jaar": 2026,
+      "week": 3,
+      "datum": "2026-01-20",
+      "aantal": 900
+    },
+    {
+      "jaar": 2026,
+      "week": 5,
+      "datum": "2026-02-02",
+      "aantal": 900
+    },
+    {
+      "jaar": 2026,
+      "week": 6,
+      "datum": "2026-02-09",
+      "aantal": 900
+    },
+    {
+      "jaar": 2026,
+      "week": 7,
+      "datum": "2026-02-16",
+      "aantal": 900
+    },
+    {
+      "jaar": 2026,
+      "week": 8,
+      "datum": "2026-02-23",
+      "aantal": 900
+    },
+    {
+      "jaar": 2026,
+      "week": 9,
+      "datum": "2026-03-02",
+      "aantal": 800
+    },
+    {
+      "jaar": 2026,
+      "week": 10,
+      "datum": "2026-03-09",
+      "aantal": 800
+    },
+    {
+      "jaar": 2026,
+      "week": 11,
+      "datum": "2026-03-16",
+      "aantal": 900
+    },
+    {
+      "jaar": 2026,
+      "week": 12,
+      "datum": "2026-03-23",
+      "aantal": 1000
+    },
+    {
+      "jaar": 2026,
+      "week": 13,
+      "datum": "2026-03-30",
+      "aantal": 900
+    },
+    {
+      "jaar": 2026,
+      "week": 14,
+      "datum": "2026-04-07",
+      "aantal": 900
+    },
+    {
+      "jaar": 2026,
+      "week": 15,
+      "datum": "2026-04-13",
+      "aantal": 800
+    },
+    {
+      "jaar": 2026,
+      "week": 16,
+      "datum": "2026-04-20",
+      "aantal": 900
+    },
+    {
+      "jaar": 2026,
+      "week": 17,
+      "datum": "2026-04-28",
+      "aantal": 1000
+    },
+    {
+      "jaar": 2026,
+      "week": 18,
+      "datum": "2026-05-06",
+      "aantal": 700
+    },
+    {
+      "jaar": 2026,
+      "week": 19,
+      "datum": "2026-05-11",
+      "aantal": 1000
+    },
+    {
+      "jaar": 2026,
+      "week": 20,
+      "datum": "2026-05-18",
+      "aantal": 1000
+    },
+    {
+      "jaar": 2026,
+      "week": 21,
+      "datum": "2026-05-26",
+      "aantal": 900
+    }
+  ]
+}

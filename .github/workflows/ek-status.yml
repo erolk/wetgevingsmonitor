@@ -35,15 +35,21 @@ jobs:
       - name: Scrape EK-status
         run: node scripts/fetch-ek-status.mjs
 
+      # Wekelijkse asielinstroom (Rijksoverheid) voor de migratiepact-pagina.
+      # || true: faalt deze broze HTML-scrape, dan blokkeert dat de EK-update
+      # hierboven niet.
+      - name: Scrape asielinstroom (week)
+        run: node scripts/fetch-asielinstroom.mjs || true
+
       - name: Commit & push bij wijziging
         run: |
-          if [[ -n "$(git status --porcelain data/ek-status.json)" ]]; then
+          if [[ -n "$(git status --porcelain data/ek-status.json data/asielinstroom-week.json)" ]]; then
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
-            git add data/ek-status.json
-            git commit -m "chore: wekelijkse EK-status update [skip ci]"
+            git add data/ek-status.json data/asielinstroom-week.json
+            git commit -m "chore: wekelijkse EK-status + asielinstroom update [skip ci]"
             git push
-            echo "EK-status bijgewerkt en gepusht."
+            echo "Data bijgewerkt en gepusht."
           else
-            echo "Geen wijzigingen in EK-status — niets te committen."
+            echo "Geen wijzigingen — niets te committen."
           fi

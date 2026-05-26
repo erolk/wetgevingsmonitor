@@ -51,6 +51,9 @@ export default async function RootLayout({
                 <span className="sm:hidden">{dict.nav.processShort}</span>
                 <span className="hidden sm:inline">{dict.nav.process}</span>
               </Link>
+              <Link href="/migratiepact" className="hover:text-ink">
+                {dict.nav.migratiepact}
+              </Link>
               <Link
                 href="/over"
                 className="hover:text-ink hidden sm:inline"

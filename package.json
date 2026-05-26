@@ -9,6 +9,7 @@
     "lint": "next lint",
     "explain": "node scripts/generate-explanations.mjs",
     "ek-status": "node scripts/fetch-ek-status.mjs",
+    "asiel-instroom": "node scripts/fetch-asielinstroom.mjs",
     "check-updates": "node scripts/check-updates.mjs"
   },
   "dependencies": {

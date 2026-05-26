@@ -73,6 +73,32 @@ export async function fetchWetsvoorstellenVoorCommissie(
   return data.value;
 }
 
+/** Haal de wetgeving-zaak/zaken op die bij een Kamerstukdossier-nummer horen
+ * (incl. activiteiten, besluiten én stemmingen). Voor het volgen van specifieke
+ * dossiers, bv. de uitvoeringswet van het EU-migratiepact. */
+export async function fetchWetsvoorstelByDossier(
+  dossiernummer: number,
+): Promise<TkZaak[]> {
+  const filter = [
+    "Verwijderd eq false",
+    "Soort eq 'Wetgeving'",
+    `Kamerstukdossier/any(d: d/Nummer eq ${dossiernummer})`,
+  ].join(" and ");
+  const expand = [
+    "Kamerstukdossier",
+    "ZaakActor",
+    "Activiteit",
+    "Besluit($expand=Stemming,Agendapunt($expand=Activiteit))",
+  ].join(",");
+  const qs = buildQuery({ $filter: filter, $expand: expand });
+  try {
+    const data = await odata<TkZaak>(`Zaak?${qs}`);
+    return data.value;
+  } catch {
+    return [];
+  }
+}
+
 /** Haal één wetsvoorstel volledig op (incl. activiteiten en besluiten). */
 export async function fetchWetsvoorstel(id: string): Promise<TkZaak | null> {
   // Activiteiten zitten soms direct onder Zaak.Activiteit, vaker indirect

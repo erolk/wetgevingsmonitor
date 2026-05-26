@@ -10,6 +10,7 @@ export const nl: Dictionary = {
     siteName: "Wetgevings",
     siteAccent: "monitor",
     ministries: "Ministeries",
+    migratiepact: "Migratiepact",
     process: "Hoe werkt het?",
     processShort: "Proces",
     about: "Over",
