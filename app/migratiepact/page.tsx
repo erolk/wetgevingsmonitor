@@ -58,32 +58,70 @@ function deltaLabel(huidig: number, vorig: number | null): React.ReactNode {
 
 // Eenvoudige verticale staafgrafiek (geen library). `mark` kleurt staven die
 // in/na de pact-periode vallen met de accentkleur.
+// Mini-staafgrafiek zonder library. In plaats van een getal boven elke (smalle)
+// staaf — wat bij duizendtallen over elkaar valt — gebruiken we een y-as met
+// referentiewaarden + stippellijnen, en tonen we de exacte waarde in een
+// zwevende tooltip bij hover (die mag overlappen, want pointer-events-none).
 function StaafGrafiek({
   punten,
 }: {
   punten: { label: string; sub?: string; waarde: number; mark?: boolean }[];
 }) {
   const max = Math.max(1, ...punten.map((p) => p.waarde));
+  const n = punten.length;
+  const labelStap = Math.max(1, Math.ceil(n / 8)); // ~8 x-labels, rest leeg
+  const niveaus = [1, 0.5, 0]; // y-as: max, helft, nul
+
   return (
-    <div className="flex items-end gap-[3px] h-32 sm:h-40">
-      {punten.map((p, i) => (
-        <div
-          key={i}
-          className="flex-1 flex flex-col items-center justify-end h-full group min-w-0"
-          title={`${p.label}${p.sub ? ` (${p.sub})` : ""}: ${p.waarde.toLocaleString("nl-NL")}`}
-        >
-          <span className="text-[9px] text-mute mb-0.5 tabular-nums hidden sm:block">
-            {p.waarde.toLocaleString("nl-NL")}
-          </span>
+    <div>
+      <div className="relative h-36 sm:h-44">
+        {/* y-as: stippellijnen met referentiewaarden */}
+        {niveaus.map((f) => (
           <div
-            className={`w-full rounded-t-sm ${p.mark ? "bg-accent" : "bg-accent/35"} group-hover:bg-accent transition-colors`}
-            style={{ height: `${Math.max(2, (p.waarde / max) * 100)}%` }}
-          />
-          <span className="text-[8px] text-mute mt-1 truncate w-full text-center">
-            {p.label}
-          </span>
+            key={f}
+            className="absolute inset-x-0 flex items-center"
+            style={{ bottom: `${f * 100}%`, transform: "translateY(50%)" }}
+          >
+            <span className="w-7 shrink-0 pr-1 text-right text-[9px] tabular-nums leading-none text-mute">
+              {Math.round(max * f).toLocaleString("nl-NL")}
+            </span>
+            <span className="flex-1 border-t border-dashed border-line/70" />
+          </div>
+        ))}
+
+        {/* staven (boven de gridlijnen, met linker-marge voor de y-as) */}
+        <div className="absolute inset-y-0 right-0 left-7 flex items-end gap-[3px]">
+          {punten.map((p, i) => (
+            <div
+              key={i}
+              className="group relative flex h-full min-w-0 flex-1 items-end"
+              title={`${p.sub ?? p.label}: ${p.waarde.toLocaleString("nl-NL")}`}
+            >
+              <div
+                className={`relative w-full rounded-t-sm ${p.mark ? "bg-accent" : "bg-accent/40"} group-hover:bg-accent transition-colors`}
+                style={{ height: `${Math.max(3, (p.waarde / max) * 100)}%` }}
+              >
+                <span className="pointer-events-none absolute bottom-full left-1/2 z-10 mb-1 hidden -translate-x-1/2 whitespace-nowrap rounded bg-ink px-1.5 py-0.5 text-[10px] font-medium text-paper shadow-md group-hover:block">
+                  {p.sub ?? p.label}: {p.waarde.toLocaleString("nl-NL")}
+                </span>
+              </div>
+            </div>
+          ))}
         </div>
-      ))}
+      </div>
+
+      {/* x-as: uitgedunde labels, uitgelijnd met de staven */}
+      <div className="mt-1.5 flex gap-[3px]">
+        <span className="w-7 shrink-0" />
+        {punten.map((p, i) => (
+          <span
+            key={i}
+            className="min-w-0 flex-1 truncate text-center text-[8px] tabular-nums text-mute"
+          >
+            {i % labelStap === 0 || i === n - 1 ? p.label : ""}
+          </span>
+        ))}
+      </div>
     </div>
   );
 }
