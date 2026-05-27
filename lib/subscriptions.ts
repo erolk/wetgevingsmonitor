@@ -9,7 +9,8 @@ import crypto from "node:crypto";
 
 export type SubscriptionTarget =
   | { type: "wet"; wetId: string; titel: string }
-  | { type: "ministerie"; slug: string; naam: string };
+  | { type: "ministerie"; slug: string; naam: string }
+  | { type: "nieuwsbrief" };
 
 export type Subscription = {
   id: string; // uuid
@@ -43,7 +44,9 @@ function token() {
 }
 
 function targetKey(t: SubscriptionTarget) {
-  return t.type === "wet" ? `wet:${t.wetId}` : `min:${t.slug}`;
+  if (t.type === "wet") return `wet:${t.wetId}`;
+  if (t.type === "ministerie") return `min:${t.slug}`;
+  return "nieuwsbrief";
 }
 
 export async function createSubscription(

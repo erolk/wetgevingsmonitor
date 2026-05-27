@@ -106,6 +106,10 @@ export default async function RootLayout({
               {dict.footer.source} {dict.footer.notOfficial}{" "}
               <Link href="/contact" className="underline hover:text-ink">
                 {dict.footer.contact}
+              </Link>{" "}
+              ·{" "}
+              <Link href="/steun" className="underline hover:text-ink">
+                Steun de monitor
               </Link>
             </p>
             <div className="flex items-center gap-3">

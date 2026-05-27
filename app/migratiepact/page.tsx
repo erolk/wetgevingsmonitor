@@ -13,14 +13,63 @@ import {
   type MaandInstroom,
 } from "@/lib/asielcijfers";
 import type { StemUitslag } from "@/lib/stemming";
+import { SITE_URL } from "@/lib/site";
+import { NieuwsbriefForm } from "@/components/NieuwsbriefForm";
 
 export const revalidate = 86400;
 
+const PAGINA_URL = `${SITE_URL}/migratiepact`;
+const OMSCHRIJVING =
+  "Volg het EU-migratiepact: asielinstroom per week en maand, de Nederlandse uitvoeringswetgeving in de Tweede en Eerste Kamer met stemmingen per fractie, en de asielinstroom per nationaliteit. Alleen officiële, openbare cijfers.";
+
 export const metadata: Metadata = {
-  title: "EU-migratiepact — monitor | Wetgevingsmonitor",
-  description:
-    "Volg het EU-migratiepact: asielinstroom per week en maand, de Nederlandse uitvoeringswetgeving in de Tweede en Eerste Kamer met stemmingen per fractie, en de asielinstroom per nationaliteit. Alleen officiële, openbare cijfers.",
+  title: "EU-migratiepact volgen: asielinstroom, wetgeving & stemmingen",
+  description: OMSCHRIJVING,
+  keywords: [
+    "EU-migratiepact",
+    "asielpact",
+    "asielinstroom",
+    "asielwet",
+    "Tweede Kamer stemming asiel",
+    "Eerste Kamer asielwet",
+    "migratie Nederland",
+    "Uitvoeringswet asiel- en migratiepact",
+  ],
+  alternates: { canonical: PAGINA_URL },
+  openGraph: {
+    type: "website",
+    url: PAGINA_URL,
+    siteName: "Wetgevingsmonitor",
+    title: "EU-migratiepact volgen: asielinstroom, wetgeving & stemmingen",
+    description: OMSCHRIJVING,
+    locale: "nl_NL",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "EU-migratiepact — monitor",
+    description: OMSCHRIJVING,
+  },
 };
+
+// FAQ-structured data (kan rich snippets in Google opleveren). De antwoorden
+// staan ook zichtbaar op de pagina; dat is wat Google wil zien.
+const FAQ: { vraag: string; antwoord: string }[] = [
+  {
+    vraag: "Wanneer gaat het EU-migratiepact in?",
+    antwoord:
+      "De hoofdonderdelen van het EU-migratiepact zijn van toepassing vanaf 12 juni 2026. De verordeningen traden in werking op 11 juni 2024, met een overgangstermijn van twee jaar.",
+  },
+  {
+    vraag: "Welke Nederlandse wet hoort bij het migratiepact?",
+    antwoord:
+      "Het hoofddossier is de Uitvoerings- en implementatiewet Asiel- en migratiepact (Kamerstukdossier 36871). Daarnaast loopt een nationaal asielpakket: de Wet invoering tweestatusstelsel (36703), de Asielnoodmaatregelenwet (36704) en een novelle (36855).",
+  },
+  {
+    vraag: "Waar komen de cijfers vandaan?",
+    antwoord:
+      "Alle cijfers en stemuitslagen komen uit officiële, openbare bronnen: Tweede Kamer Open Data, de Eerste Kamer, CBS StatLine en de Rijksoverheid. Wekelijkse instroomcijfers zijn afgerond en indicatief; maandcijfers van het CBS zijn definitiever.",
+  },
+];
 
 const PACT_START_LABEL = "12 juni 2026";
 
@@ -344,8 +393,23 @@ export default async function MigratiepactPagina() {
   const vorigeMaand = maanden[maanden.length - 2] ?? null;
   const pactMaandStart = PACT_START_ISO.slice(0, 7); // "2026-06"
 
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ.map((f) => ({
+      "@type": "Question",
+      name: f.vraag,
+      acceptedAnswer: { "@type": "Answer", text: f.antwoord },
+    })),
+  };
+
   return (
     <div className="space-y-10">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+
       {/* Kop */}
       <section>
         <p className="text-xs font-mono uppercase tracking-wider text-accent">
@@ -372,6 +436,24 @@ export default async function MigratiepactPagina() {
             Het pact is sinds {PACT_START_LABEL} van toepassing.
           </p>
         )}
+      </section>
+
+      {/* Nieuwsbrief-CTA */}
+      <section className="rounded-lg border border-accent/40 bg-accent/5 px-4 py-4 sm:px-6 sm:py-5">
+        <div className="sm:flex sm:items-center sm:justify-between sm:gap-6">
+          <div className="max-w-md">
+            <h2 className="font-serif text-lg text-ink">
+              Niets missen rond het migratiepact?
+            </h2>
+            <p className="mt-1 text-sm text-mute">
+              Eén mail per week met de belangrijkste behandelde wetten — gratis
+              en zonder reclame.
+            </p>
+          </div>
+          <div className="mt-3 sm:mt-0 sm:w-80 shrink-0">
+            <NieuwsbriefForm compact />
+          </div>
+        </div>
       </section>
 
       {/* Asielinstroom */}
@@ -573,6 +655,24 @@ export default async function MigratiepactPagina() {
             Cijfers per nationaliteit tijdelijk niet beschikbaar.
           </p>
         )}
+      </section>
+
+      {/* Veelgestelde vragen */}
+      <section>
+        <h2 className="font-serif text-2xl mb-3">Veelgestelde vragen</h2>
+        <dl className="space-y-3">
+          {FAQ.map((f) => (
+            <div
+              key={f.vraag}
+              className="rounded-lg border border-line bg-surface px-4 py-3"
+            >
+              <dt className="font-medium text-ink">{f.vraag}</dt>
+              <dd className="mt-1 text-sm text-mute leading-relaxed">
+                {f.antwoord}
+              </dd>
+            </div>
+          ))}
+        </dl>
       </section>
 
       {/* Verantwoording */}

@@ -29,7 +29,7 @@ export async function POST(req: Request) {
 
   let body: {
     email?: string;
-    targetType?: "wet" | "ministerie";
+    targetType?: "wet" | "ministerie" | "nieuwsbrief";
     wetId?: string;
     titel?: string;
     slug?: string;
@@ -74,9 +74,11 @@ export async function POST(req: Request) {
       );
     }
     target = { type: "ministerie" as const, slug, naam };
+  } else if (targetType === "nieuwsbrief") {
+    target = { type: "nieuwsbrief" as const };
   } else {
     return NextResponse.json(
-      { error: "targetType moet 'wet' of 'ministerie' zijn" },
+      { error: "targetType moet 'wet', 'ministerie' of 'nieuwsbrief' zijn" },
       { status: 400 },
     );
   }
@@ -105,14 +107,16 @@ export async function POST(req: Request) {
   const targetOmschrijving =
     target.type === "wet"
       ? `het wetsvoorstel "${target.titel}"`
-      : `alle wetten van het ministerie ${target.naam}`;
+      : target.type === "ministerie"
+        ? `alle wetten van het ministerie ${target.naam}`
+        : "de wekelijkse nieuwsbrief";
 
   await sendEmail({
     to: email,
     subject:
       sub.status === "confirmed"
-        ? `[Wetgevingsmonitor] Je bent al geabonneerd op ${target.type === "wet" ? "deze wet" : target.naam}`
-        : `Bevestig je abonnement op ${targetOmschrijving}`,
+        ? `[Wetgevingsmonitor] Je bent al aangemeld voor ${targetOmschrijving}`
+        : `Bevestig je aanmelding voor ${targetOmschrijving}`,
     text: `Hallo,
 
 Je hebt je aangemeld om updates te ontvangen over ${targetOmschrijving}.
