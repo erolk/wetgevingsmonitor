@@ -53,3 +53,13 @@ jobs:
           else
             echo "Geen wijzigingen — niets te committen."
           fi
+
+      # Cache van de site leeggooien zodat de verse data direct zichtbaar is.
+      # || true: faalt de webhook (bv. site even niet bereikbaar) dan blokkeert
+      # dat de rest van de run niet — de eerstvolgende dagelijkse refresh haalt
+      # 'm vanzelf bij.
+      - name: Cache vernieuwen op de site
+        if: ${{ env.REVALIDATE_URL != '' }}
+        env:
+          REVALIDATE_URL: ${{ secrets.REVALIDATE_URL }}
+        run: curl -fsS -X POST "$REVALIDATE_URL" || true

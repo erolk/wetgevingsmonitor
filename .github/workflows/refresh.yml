@@ -1,0 +1,32 @@
+name: Dagelijkse cache-refresh
+
+# Pingt elke ochtend de revalidate-webhook van de site, zodat nieuwe wetten en
+# wijzigingen die de TK gisteren publiceerde meteen 's ochtends zichtbaar zijn
+# (en je niet hoeft te wachten tot iemand de pagina toevallig bezoekt en de
+# 24u-ISR-cache laat verlopen).
+#
+# Setup:
+#   1. Zet ergens op de host de env-var REVALIDATE_SECRET (zie .env.example).
+#   2. Voeg in GitHub repo-settings -> Secrets -> Actions een nieuw secret toe:
+#        REVALIDATE_URL = https://<jouw-domein>/api/revalidate?secret=<zelfde-token>
+#   3. Klaar — deze workflow draait dan automatisch.
+
+on:
+  schedule:
+    # Elke dag om 06:00 UTC (08:00 NL-zomertijd / 07:00 wintertijd).
+    - cron: "0 6 * * *"
+  workflow_dispatch: {}
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Webhook aanroepen
+        if: ${{ env.REVALIDATE_URL != '' }}
+        env:
+          REVALIDATE_URL: ${{ secrets.REVALIDATE_URL }}
+        run: |
+          echo "Cache vernieuwen..."
+          curl -fsS -X POST "$REVALIDATE_URL"
+          echo
+          echo "Klaar."
