@@ -1,6 +1,20 @@
 import "./globals.css";
 import type { Metadata, Viewport } from "next";
+import { Fraunces, Mulish } from "next/font/google";
 import Link from "next/link";
+
+// Warm ontwerp: Fraunces (karaktervolle serif voor koppen) + Mulish (warme
+// humanist sans voor lopende tekst). Zelf-gehost via next/font.
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  variable: "--font-fraunces",
+  display: "swap",
+});
+const mulish = Mulish({
+  subsets: ["latin"],
+  variable: "--font-mulish",
+  display: "swap",
+});
 import { NLVlag } from "@/components/NLVlag";
 import { EUVlag } from "@/components/EUVlag";
 import { EU_MONITOR_URL } from "@/lib/site";
@@ -28,7 +42,7 @@ export default async function RootLayout({
 }) {
   const { dict, locale } = await getDict();
   return (
-    <html lang={locale}>
+    <html lang={locale} className={`${fraunces.variable} ${mulish.variable}`}>
       <body className="min-h-screen font-sans antialiased">
         <header className="border-b-[0.5px] border-accent bg-surface/70 backdrop-blur">
           <div className="mx-auto max-w-5xl px-4 sm:px-6 py-3 sm:py-5 flex items-center justify-between gap-2">

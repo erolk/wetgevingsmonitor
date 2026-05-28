@@ -3,9 +3,11 @@
 @tailwind utilities;
 
 /*
- * "Editorial Slate" — formeel-journalistiek, dieper papier dan voorheen.
- * Per-ministerie tinten staan onderaan en zijn opgehangen aan CSS-variabelen
- * zodat zowel light als dark mode dezelfde semantische tokens gebruiken.
+ * "Warm" — warme, redactionele uitstraling: cream papier, warm donkerbruin
+ * ink en een terracotta-accent. Typografie: Fraunces (karaktervolle serif voor
+ * koppen) + Mulish (warme humanist sans voor lopende tekst), geladen via
+ * next/font in app/layout.tsx. Tokens hangen aan CSS-variabelen zodat de hele
+ * site één semantisch palet deelt.
  */
 
 :root {
@@ -13,15 +15,14 @@
      'Auto dark theme' uit. De site heeft geen dark-mode meer. */
   color-scheme: only light;
 
-  /* Krantenpapier — iets dieper cream als achtergrond zodat de surface-laag
-     (menu, kaarten, agenda) er duidelijker boven uit komt. */
-  --paper: 234 226 208;        /* iets dieper cream — achtergrond */
-  --surface: 252 248 238;      /* card / menu / tegels — duidelijk lichter */
-  --ink: 14 22 50;             /* diep navy ink */
-  --mute: 88 99 122;            /* gedempt navy */
-  --line: 198 190 168;          /* warme border */
-  --accent: 44 90 106;          /* petrol — formeel, geen alarm */
-  --accent-dark: 28 64 78;
+  /* Warm palet — cream achtergrond, warmer surface voor menu/kaarten/tegels. */
+  --paper: 246 240 230;        /* warme cream — achtergrond */
+  --surface: 255 251 244;      /* card / menu / tegels — lichter, warmer */
+  --ink: 40 31 26;             /* warm donkerbruin ink */
+  --mute: 122 106 92;          /* warm grijsbruin, gedempt */
+  --line: 224 211 192;          /* warme border */
+  --accent: 182 74 44;          /* terracotta accent */
+  --accent-dark: 150 56 32;
 }
 
 .dark {
@@ -43,9 +44,10 @@ body {
 }
 
 body {
+  /* Subtiele warme gloed: terracotta-accent licht in twee hoeken. */
   background-image:
-    radial-gradient(at 28% 18%, rgb(var(--paper) / 0.55) 0%, transparent 55%),
-    radial-gradient(at 78% 88%, rgb(var(--line) / 0.18) 0%, transparent 60%);
+    radial-gradient(at 28% 12%, rgb(var(--accent) / 0.06) 0%, transparent 50%),
+    radial-gradient(at 82% 92%, rgb(var(--accent) / 0.04) 0%, transparent 55%);
   background-attachment: fixed;
 }
 
@@ -74,7 +76,7 @@ hr {
     box-shadow 160ms ease;
 }
 .ministerie-tile:hover {
-  background-color: rgb(255 252 246); /* zacht naar wit toe */
+  background-color: rgb(255 253 248); /* zacht naar warm wit toe */
   border-color: rgb(var(--accent));
   transform: translateY(-3px);
   box-shadow:

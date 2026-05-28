@@ -16,6 +16,7 @@ const config: Config = {
       },
       fontFamily: {
         sans: [
+          "var(--font-mulish)",
           "ui-sans-serif",
           "system-ui",
           "-apple-system",
@@ -23,7 +24,14 @@ const config: Config = {
           "Roboto",
           "sans-serif",
         ],
-        serif: ["ui-serif", "Georgia", "Cambria", "Times New Roman", "serif"],
+        serif: [
+          "var(--font-fraunces)",
+          "ui-serif",
+          "Georgia",
+          "Cambria",
+          "Times New Roman",
+          "serif",
+        ],
       },
       boxShadow: {
         tile: "0 1px 0 rgb(0 0 0 / 0.02), 0 1px 2px rgb(0 0 0 / 0.04)",
