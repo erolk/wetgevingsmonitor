@@ -10,6 +10,7 @@ import {
 } from "@/lib/debat-direct";
 import { UitklapLijst } from "@/components/UitklapLijst";
 import { isAfgerond } from "@/lib/fase-display";
+import { weergaveTitel } from "@/lib/wet-display";
 import { getDict, tpl } from "@/lib/i18n";
 import type { Dictionary, Locale } from "@/lib/i18n";
 
@@ -375,7 +376,7 @@ function DezeWeekStrip({
                     href={`/wet/${wet.id}`}
                     className="truncate text-ink hover:underline min-w-0"
                   >
-                    {wet.titel}
+                    {weergaveTitel(wet)}
                   </Link>
                   <a
                     href={bouwDebatUrl(debat)}

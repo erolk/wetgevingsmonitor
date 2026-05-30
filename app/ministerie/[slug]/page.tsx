@@ -9,6 +9,7 @@ import { isAfgerond } from "@/lib/fase-display";
 import type { Fase, WetVoorstel } from "@/lib/types";
 import { getMinisterie, MINISTERIES } from "@/lib/ministeries";
 import { getUitleg } from "@/lib/explanations";
+import { weergaveTitel } from "@/lib/wet-display";
 import { SubscribeButton } from "@/components/SubscribeButton";
 import { UitklapLijst } from "@/components/UitklapLijst";
 import { getDict, tpl } from "@/lib/i18n";
@@ -321,14 +322,13 @@ function WetRow({
               )}
             </div>
             <div className="font-medium leading-snug group-hover:underline">
-              {item.titel}
+              {weergaveTitel(item)}
             </div>
-            {uitleg && (
-              <div className="mt-2 text-sm text-ink/80 leading-relaxed">
-                <span className="font-medium">{uitleg.watRegelt}</span>{" "}
-                <span className="text-mute">{uitleg.raaktJou}</span>
-              </div>
-            )}
+            {uitleg ? (
+              <p className="mt-1.5 text-sm text-ink/80 leading-relaxed">
+                {uitleg.watRegelt}
+              </p>
+            ) : null}
             {item.volgendeActiviteit && (
               <div className="mt-2 text-xs text-mute">
                 <span className="text-ink/80 font-medium">
