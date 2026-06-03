@@ -73,6 +73,67 @@ export async function fetchWetsvoorstellenVoorCommissie(
   return data.value;
 }
 
+/** Haal wetten op die zijn ingediend door één van de opgegeven personen
+ * (typisch de bewindspersonen van een kabinet), met GestartOp >= sindsDatum.
+ * Gebruikt door de kabinet-pagina om "wat heeft dit kabinet ingediend?" te
+ * bepalen zonder initiatiefwetten of erfenissen uit eerdere kabinetten.
+ *
+ * TK OData kapt filter-expressies > ~100 nodes af; bij meer dan ~14 namen
+ * moet je opdelen. We doen daarom batches van 12 namen en dedupen op Zaak-Id. */
+export async function fetchWetsvoorstellenByIndieners(
+  indienerNamen: string[],
+  sindsDatum: string, // yyyy-mm-dd
+  limit = 200,
+): Promise<TkZaak[]> {
+  if (indienerNamen.length === 0) return [];
+  const sindsLit = `${sindsDatum}T00:00:00Z`;
+  const expand = [
+    "Kamerstukdossier($select=Id,Nummer,Titel)",
+    "ZaakActor($select=Id,ActorNaam,ActorFractie,Functie,Relatie)",
+    "Activiteit($select=Id,Onderwerp,Soort,Status,Datum,Aanvangstijd,Eindtijd,Locatie)",
+    "Besluit($select=Id,BesluitTekst,BesluitSoort,StemmingsSoort,Status,Opmerking,GewijzigdOp)",
+  ].join(",");
+
+  const BATCH = 12;
+  const gezien = new Set<string>();
+  const out: TkZaak[] = [];
+  for (let i = 0; i < indienerNamen.length; i += BATCH) {
+    const subset = indienerNamen.slice(i, i + BATCH);
+    const ors = subset
+      .map((n) => `a/ActorNaam eq '${n.replace(/'/g, "''")}'`)
+      .join(" or ");
+    const filter = [
+      "Verwijderd eq false",
+      "Soort eq 'Wetgeving'",
+      `GestartOp ge ${sindsLit}`,
+      `ZaakActor/any(a: a/Relatie eq 'Indiener' and (${ors}))`,
+    ].join(" and ");
+    const qs = buildQuery({
+      $filter: filter,
+      $expand: expand,
+      $orderby: "GestartOp desc",
+      $top: String(limit),
+    });
+    try {
+      const data = await odata<TkZaak>(`Zaak?${qs}`);
+      for (const z of data.value) {
+        if (gezien.has(z.Id)) continue;
+        gezien.add(z.Id);
+        out.push(z);
+      }
+    } catch {
+      // Mislukt batchje: rest van het werk gaat door.
+    }
+  }
+  // Sorteer op GestartOp desc na merging.
+  out.sort(
+    (a, b) =>
+      new Date(b.GestartOp ?? 0).getTime() -
+      new Date(a.GestartOp ?? 0).getTime(),
+  );
+  return out;
+}
+
 /** Haal de wetgeving-zaak/zaken op die bij een Kamerstukdossier-nummer horen
  * (incl. activiteiten, besluiten én stemmingen). Voor het volgen van specifieke
  * dossiers, bv. de uitvoeringswet van het EU-migratiepact. */

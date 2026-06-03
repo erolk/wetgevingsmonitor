@@ -1,0 +1,40 @@
+{
+  "jetten-1": {
+    "naam": "Kabinet-Jetten I",
+    "korteNaam": "Kabinet Jetten I",
+    "startDatum": "2026-02-23",
+    "eindDatum": null,
+    "ministerPresident": "R.A.A. Jetten",
+    "partijen": ["D66", "VVD", "CDA"],
+    "bewindspersonen": [
+      { "naam": "R.A.A. Jetten", "rol": "minister", "departement": "Algemene Zaken", "partij": "D66" },
+      { "naam": "G. van den Brink", "rol": "minister", "departement": "Asiel en Migratie", "partij": "CDA" },
+      { "naam": "D. Yeşilgöz-Zegerius", "rol": "minister", "departement": "Defensie", "partij": "VVD" },
+      { "naam": "T.B.W. Berendsen", "rol": "minister", "departement": "Buitenlandse Zaken", "partij": "CDA" },
+      { "naam": "Sj.W. Sjoerdsma", "rol": "minister", "departement": "Buitenlandse Handel en Ontwikkelingssamenwerking", "partij": "D66" },
+      { "naam": "D.M. van Weel", "rol": "minister", "departement": "Justitie en Veiligheid", "partij": "VVD" },
+      { "naam": "K.T. van Bruggen", "rol": "staatssecretaris", "departement": "Justitie en Veiligheid", "partij": "D66" },
+      { "naam": "P.E. Heerma", "rol": "minister", "departement": "Binnenlandse Zaken en Koninkrijksrelaties", "partij": "CDA" },
+      { "naam": "E. van der Burg", "rol": "staatssecretaris", "departement": "Binnenlandse Zaken en Koninkrijksrelaties", "partij": "VVD" },
+      { "naam": "E.F. Boekholt-O'Sullivan", "rol": "minister", "departement": "Volkshuisvesting en Ruimtelijke Ordening", "partij": "D66" },
+      { "naam": "R.M. Letschert", "rol": "minister", "departement": "Onderwijs, Cultuur en Wetenschap", "partij": "D66" },
+      { "naam": "J.Z.C.M. Tielen", "rol": "staatssecretaris", "departement": "Onderwijs, Cultuur en Wetenschap", "partij": "VVD" },
+      { "naam": "E. Heinen", "rol": "minister", "departement": "Financiën", "partij": "VVD" },
+      { "naam": "E. Eerenberg", "rol": "staatssecretaris", "departement": "Financiën", "partij": "D66" },
+      { "naam": "S.Th.P.H. Palmen", "rol": "staatssecretaris", "departement": "Financiën", "partij": "partijloos" },
+      { "naam": "D.G. Boswijk", "rol": "staatssecretaris", "departement": "Defensie", "partij": "CDA" },
+      { "naam": "V.P.G. Karremans", "rol": "minister", "departement": "Infrastructuur en Waterstaat", "partij": "VVD" },
+      { "naam": "A.W.H. Bertram", "rol": "staatssecretaris", "departement": "Infrastructuur en Waterstaat", "partij": "CDA" },
+      { "naam": "H.G. Herbert", "rol": "minister", "departement": "Economische Zaken en Klimaat", "partij": "CDA" },
+      { "naam": "W.J.M. Aerdts", "rol": "staatssecretaris", "departement": "Economische Zaken en Klimaat", "partij": "D66" },
+      { "naam": "S. van Veldhoven-van der Meer", "rol": "minister", "departement": "Klimaat en Groene Groei", "partij": "D66" },
+      { "naam": "J. de Bat", "rol": "staatssecretaris", "departement": "Klimaat en Groene Groei", "partij": "CDA" },
+      { "naam": "J. van Essen", "rol": "minister", "departement": "Landbouw, Visserij, Voedselzekerheid en Natuur", "partij": "D66" },
+      { "naam": "S.P.A. Erkens", "rol": "staatssecretaris", "departement": "Landbouw, Visserij, Voedselzekerheid en Natuur", "partij": "VVD" },
+      { "naam": "J.A. Vijlbrief", "rol": "minister", "departement": "Sociale Zaken en Werkgelegenheid", "partij": "D66" },
+      { "naam": "S.Th.M. Hermans", "rol": "minister", "departement": "Volksgezondheid, Welzijn en Sport", "partij": "VVD" },
+      { "naam": "W.R.C. Sterk", "rol": "minister", "departement": "Langdurige Zorg, Jeugd en Sport", "partij": "CDA" },
+      { "naam": "A.A. Aartsen", "rol": "minister", "departement": "Werk en Participatie", "partij": "VVD" }
+    ]
+  }
+}
