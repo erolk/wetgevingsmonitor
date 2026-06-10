@@ -17,6 +17,7 @@ const mulish = Mulish({
 });
 import { NLVlag } from "@/components/NLVlag";
 import { EUVlag } from "@/components/EUVlag";
+import { DossiersMenu } from "@/components/DossiersMenu";
 import { EU_MONITOR_URL } from "@/lib/site";
 import { getDict } from "@/lib/i18n";
 
@@ -62,9 +63,7 @@ export default async function RootLayout({
                 <span className="sm:hidden">{dict.nav.processShort}</span>
                 <span className="hidden sm:inline">{dict.nav.process}</span>
               </Link>
-              <Link href="/migratiepact" className="hover:text-ink">
-                {dict.nav.migratiepact}
-              </Link>
+              <DossiersMenu />
               <Link
                 href="/over"
                 className="hover:text-ink hidden sm:inline"
