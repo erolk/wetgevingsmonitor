@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Suspense } from "react";
 import { MINISTERIES, type Ministerie } from "@/lib/ministeries";
 import { fetchWetsvoorstellenVoorCommissie, normalize } from "@/lib/tk-api";
 import type { WetVoorstel } from "@/lib/types";
@@ -102,6 +103,15 @@ function isBetekenisvolleBehandeling(
 
 export default async function Home() {
   const { dict, locale } = await getDict();
+
+  // Datums eerst, zodat we de Debat Direct-fetches IN PARALLEL met de
+  // ministerie-fetches kunnen starten. De Debat Direct-call hoeft niet op
+  // gathered te wachten — alleen de match-stap (in DezeWeekStripStreamed) wel.
+  const nu = new Date();
+  const { ma, volgendeMa } = weekRange(nu);
+  const wkNr = isoWeekNummer(nu);
+  const debatenPromise = fetchDebatenWeek(ma, volgendeMa);
+
   const gathered = await Promise.all(MINISTERIES.map(gatherMinisterie));
   const tellingMap = new Map(gathered.map((g) => [g.ministerie.slug, g]));
 
@@ -116,12 +126,6 @@ export default async function Home() {
       minute: "2-digit",
     },
   );
-
-  // Verzamel wetten met een betekenisvolle TK-behandeling deze week.
-  const nu = new Date();
-  const { ma, volgendeMa } = weekRange(nu);
-  const wkNr = isoWeekNummer(nu);
-  const dezeWeek = await matchDezeWeekAgenda(ma, volgendeMa, gathered);
 
   const ministerieDict = dict.ministeries;
 
@@ -149,12 +153,17 @@ export default async function Home() {
         </div>
       </section>
 
-      <DezeWeekStrip
-        wkNr={wkNr}
-        items={dezeWeek}
-        dict={dict}
-        locale={locale}
-      />
+      <Suspense
+        fallback={<DezeWeekStripSkeleton wkNr={wkNr} dict={dict} />}
+      >
+        <DezeWeekStripStreamed
+          gathered={gathered}
+          debatenPromise={debatenPromise}
+          wkNr={wkNr}
+          dict={dict}
+          locale={locale}
+        />
+      </Suspense>
 
       <section>
         <h2 className="font-serif text-2xl mb-4">{dict.home.chooseMinistry}</h2>
@@ -251,12 +260,13 @@ type AgendaEntry = {
   debat: DebatDirectItem;
 };
 
-async function matchDezeWeekAgenda(
+// Haal alle Debat Direct-debaten van de week op (7 dagen parallel). Bewust
+// gescheiden van de matching, zodat Home() deze fetches kan starten vóórdat
+// we op de 15 TK Open Data-calls wachten (gathered).
+async function fetchDebatenWeek(
   ma: Date,
   volgendeMa: Date,
-  gathered: Gathered[],
-): Promise<AgendaEntry[]> {
-  // Verzamel datums van de week (Mon t/m Sun = 7 dagen)
+): Promise<DebatDirectItem[]> {
   const dagen: string[] = [];
   for (
     let d = new Date(ma);
@@ -265,12 +275,16 @@ async function matchDezeWeekAgenda(
   ) {
     dagen.push(d.toISOString().slice(0, 10));
   }
-
-  // Haal alle debaten van die dagen op (parallel)
   const debatenPerDag = await Promise.all(dagen.map(fetchAgenda));
-  const alleDebaten = debatenPerDag.flat();
+  return debatenPerDag.flat();
+}
 
-  // Maak een lookup van lopende wetten met hun keyword-set
+// Match de opgehaalde debaten aan lopende wetten via keyword-overlap.
+// Sync CPU-werk dat de streamed component achter Suspense uitvoert.
+function koppelAgendaAanWetten(
+  alleDebaten: DebatDirectItem[],
+  gathered: Gathered[],
+): AgendaEntry[] {
   const lopendItems = gathered.flatMap((g) =>
     g.items
       .filter((i) => !isAfgerond(i.fase))
@@ -316,6 +330,60 @@ async function matchDezeWeekAgenda(
       new Date(b.debat.startsAt).getTime(),
   );
   return entries;
+}
+
+// Suspense-wrapper rond de "Deze week"-strip. Wacht alleen op debatenPromise
+// (start parallel met gathered in Home) en doet daarna de match. React streamt
+// 'm in zodra klaar.
+async function DezeWeekStripStreamed({
+  gathered,
+  debatenPromise,
+  wkNr,
+  dict,
+  locale,
+}: {
+  gathered: Gathered[];
+  debatenPromise: Promise<DebatDirectItem[]>;
+  wkNr: number;
+  dict: Dictionary;
+  locale: Locale;
+}) {
+  const alleDebaten = await debatenPromise;
+  const items = koppelAgendaAanWetten(alleDebaten, gathered);
+  return (
+    <DezeWeekStrip wkNr={wkNr} items={items} dict={dict} locale={locale} />
+  );
+}
+
+// Skeleton die zichtbaar is terwijl Suspense wacht op de agenda. Houdt dezelfde
+// hoogte en kop als de echte strip zodat de pagina niet "springt" als 'ie laadt.
+function DezeWeekStripSkeleton({
+  wkNr,
+  dict,
+}: {
+  wkNr: number;
+  dict: Dictionary;
+}) {
+  return (
+    <section className="rounded-md border border-line bg-surface">
+      <div className="flex items-baseline justify-between gap-3 px-3 pt-2 pb-1.5 border-b border-line/60">
+        <h2 className="font-medium text-sm text-ink">
+          {dict.home.weekStripTitle}{" "}
+          <span className="text-mute font-normal">
+            {tpl(dict.home.weekStripWeekLabel, { n: wkNr })}
+          </span>
+        </h2>
+        <span className="text-xs text-mute shrink-0">laden…</span>
+      </div>
+      <div className="px-3 py-2.5 flex items-center gap-2 text-xs text-mute">
+        <span className="relative flex h-1.5 w-1.5">
+          <span className="absolute inset-0 rounded-full bg-accent/40 animate-ping" />
+          <span className="relative rounded-full h-1.5 w-1.5 bg-accent" />
+        </span>
+        Agenda wordt opgehaald…
+      </div>
+    </section>
+  );
 }
 
 function DezeWeekStrip({
