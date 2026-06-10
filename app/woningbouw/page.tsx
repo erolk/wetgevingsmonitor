@@ -76,60 +76,107 @@ export default async function WoningbouwPagina() {
             CBS-cijfers zijn nu niet beschikbaar. Probeer het later opnieuw.
           </p>
         ) : (
-          <div className="rounded-lg border border-line bg-surface overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b border-line/70">
-                  <th className="text-left font-medium text-mute px-3 py-2.5">
-                    Provincie
-                  </th>
-                  {data.jaren.map((k) => (
+          <>
+            <div className="mb-3 rounded-md border border-line/70 bg-paper/40 px-3 py-2 text-xs text-mute leading-relaxed">
+              <strong className="text-ink">Twee kolommen per jaar:</strong>{" "}
+              <span className="text-ink">Nieuwbouw</span> = echt nieuw gebouwde
+              woningen. <span className="text-ink">Toegevoegd</span> = totaal
+              positief: nieuwbouw + verbouw + splitsen + functiewijziging (bv.
+              kantoor wordt woning).
+            </div>
+            <div className="rounded-lg border border-line bg-surface overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b border-line/70">
                     <th
-                      key={k.jaar}
-                      className="text-right font-medium text-mute px-3 py-2.5"
+                      className="text-left font-medium text-mute px-3 py-2 align-bottom"
+                      rowSpan={2}
                     >
-                      {k.jaar}
-                      {k.status === "partial" && k.laatsteMaand && (
-                        <span className="block text-[10px] font-normal text-accent">
-                          t/m {maandNaam(k.laatsteMaand)}
-                        </span>
-                      )}
+                      Provincie
                     </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {data.provincies.map((p) => (
-                  <tr key={p.code} className="border-b border-line/40">
-                    <td className="px-3 py-2 text-ink">{p.naam}</td>
                     {data.jaren.map((k) => (
-                      <td
+                      <th
                         key={k.jaar}
-                        className="px-3 py-2 text-right tabular-nums text-ink"
+                        colSpan={2}
+                        className="text-center font-medium text-mute px-3 pt-2 pb-1 border-l border-line/40"
                       >
-                        {fmtGetal(p.perJaar[k.jaar])}
-                      </td>
+                        {k.jaar}
+                        {k.status === "partial" && k.laatsteMaand && (
+                          <span className="block text-[10px] font-normal text-accent">
+                            t/m {maandNaam(k.laatsteMaand)}
+                          </span>
+                        )}
+                      </th>
                     ))}
                   </tr>
-                ))}
-              </tbody>
-              <tfoot>
-                <tr className="bg-paper/60">
-                  <td className="px-3 py-2.5 font-medium text-ink">
-                    Nederland (totaal)
-                  </td>
-                  {data.jaren.map((k) => (
-                    <td
-                      key={k.jaar}
-                      className="px-3 py-2.5 text-right tabular-nums font-medium text-ink"
-                    >
-                      {fmtGetal(data.totalenPerJaar[k.jaar])}
-                    </td>
+                  <tr className="border-b border-line/70">
+                    {data.jaren.flatMap((k) => [
+                      <th
+                        key={`${k.jaar}-nb`}
+                        className="text-right font-normal text-[11px] text-mute px-3 pb-2 pt-0 border-l border-line/40"
+                      >
+                        Nieuwbouw
+                      </th>,
+                      <th
+                        key={`${k.jaar}-tg`}
+                        className="text-right font-normal text-[11px] text-mute px-3 pb-2 pt-0"
+                      >
+                        Toegevoegd
+                      </th>,
+                    ])}
+                  </tr>
+                </thead>
+                <tbody>
+                  {data.provincies.map((p) => (
+                    <tr key={p.code} className="border-b border-line/40">
+                      <td className="px-3 py-2 text-ink">{p.naam}</td>
+                      {data.jaren.flatMap((k) => {
+                        const cijfers = p.perJaar[k.jaar];
+                        return [
+                          <td
+                            key={`${p.code}-${k.jaar}-nb`}
+                            className="px-3 py-2 text-right tabular-nums text-ink border-l border-line/40"
+                          >
+                            {fmtGetal(cijfers.nieuwbouw)}
+                          </td>,
+                          <td
+                            key={`${p.code}-${k.jaar}-tg`}
+                            className="px-3 py-2 text-right tabular-nums text-mute"
+                          >
+                            {fmtGetal(cijfers.toegevoegd)}
+                          </td>,
+                        ];
+                      })}
+                    </tr>
                   ))}
-                </tr>
-              </tfoot>
-            </table>
-          </div>
+                </tbody>
+                <tfoot>
+                  <tr className="bg-paper/60">
+                    <td className="px-3 py-2.5 font-medium text-ink">
+                      Nederland (totaal)
+                    </td>
+                    {data.jaren.flatMap((k) => {
+                      const tot = data.totalenPerJaar[k.jaar];
+                      return [
+                        <td
+                          key={`tot-${k.jaar}-nb`}
+                          className="px-3 py-2.5 text-right tabular-nums font-medium text-ink border-l border-line/40"
+                        >
+                          {fmtGetal(tot.nieuwbouw)}
+                        </td>,
+                        <td
+                          key={`tot-${k.jaar}-tg`}
+                          className="px-3 py-2.5 text-right tabular-nums font-medium text-mute"
+                        >
+                          {fmtGetal(tot.toegevoegd)}
+                        </td>,
+                      ];
+                    })}
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </>
         )}
 
         {data && (

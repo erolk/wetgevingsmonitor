@@ -9,7 +9,11 @@
 
 const BASE = "https://opendata.cbs.nl/ODataApi/OData/86098NED";
 const FUNCTIE_WONING = "A045364";
-const METING = "NieuwbouwTotaal_6";
+// Metingen die we gebruiken. "Totaal toegevoegd" = nieuwbouw + andere
+// toevoegingen (verbouw/splitsen) + functiewijziging die een pand woning maakt.
+const M_NIEUWBOUW = "NieuwbouwTotaal_6";
+const M_TOEVOEGINGEN = "ToevoegingenTotaal_13";
+const M_FUNCTIEWIJZIGING_POS = "WijzigingGebruiksfunctiePositief_9";
 
 // CBS-provinciecodes en hun officiële namen.
 export const PROVINCIES: { code: string; naam: string }[] = [
@@ -31,6 +35,13 @@ type CbsRow = {
   RegioS: string;
   Perioden: string;
   NieuwbouwTotaal_6: number | null;
+  ToevoegingenTotaal_13: number | null;
+  WijzigingGebruiksfunctiePositief_9: number | null;
+};
+
+export type JaarCijfers = {
+  nieuwbouw: number | null;
+  toegevoegd: number | null;
 };
 
 export type JaarColom = {
@@ -44,14 +55,14 @@ export type JaarColom = {
 export type ProvincieRij = {
   code: string;
   naam: string;
-  /** key = jaar, value = aantal nieuwbouwwoningen (of null bij ontbrekend) */
-  perJaar: Record<number, number | null>;
+  /** key = jaar, value = cijfers voor nieuwbouw + totaal toegevoegd */
+  perJaar: Record<number, JaarCijfers>;
 };
 
 export type WoningbouwData = {
   jaren: JaarColom[];
   provincies: ProvincieRij[];
-  totalenPerJaar: Record<number, number | null>;
+  totalenPerJaar: Record<number, JaarCijfers>;
   bijgewerkt: string;
   bron: string;
 };
@@ -71,7 +82,14 @@ export async function getWoningbouw(
   try {
     const filter =
       `startswith(RegioS,'PV') and startswith(Gebruiksfunctie,'${FUNCTIE_WONING}')`;
-    const url = `${BASE}/TypedDataSet?$filter=${encodeURIComponent(filter)}&$select=RegioS,Perioden,${METING}`;
+    const select = [
+      "RegioS",
+      "Perioden",
+      M_NIEUWBOUW,
+      M_TOEVOEGINGEN,
+      M_FUNCTIEWIJZIGING_POS,
+    ].join(",");
+    const url = `${BASE}/TypedDataSet?$filter=${encodeURIComponent(filter)}&$select=${select}`;
     const res = await fetch(url, {
       headers: { Accept: "application/json" },
       next: { revalidate: 60 * 60 * 24 },
@@ -117,42 +135,71 @@ export async function getWoningbouw(
       })),
     ].sort((a, b) => a.jaar - b.jaar);
 
+    function toegevoegdVan(r: CbsRow): number | null {
+      const n = r.NieuwbouwTotaal_6;
+      const t = r.ToevoegingenTotaal_13;
+      const f = r.WijzigingGebruiksfunctiePositief_9;
+      if (n == null && t == null && f == null) return null;
+      return (n ?? 0) + (t ?? 0) + (f ?? 0);
+    }
+
     const provincies: ProvincieRij[] = PROVINCIES.map((p) => {
-      const perJaar: Record<number, number | null> = {};
+      const perJaar: Record<number, JaarCijfers> = {};
       for (const k of kolommen) {
         if (k.status === "definitief") {
           const r = rows.find(
             (x) =>
               x.RegioS.trim() === p.code && x.Perioden === `${k.jaar}JJ00`,
           );
-          perJaar[k.jaar] = r?.NieuwbouwTotaal_6 ?? null;
+          perJaar[k.jaar] = {
+            nieuwbouw: r?.NieuwbouwTotaal_6 ?? null,
+            toegevoegd: r ? toegevoegdVan(r) : null,
+          };
         } else {
-          // som van beschikbare maandcijfers
-          let som = 0;
-          let any = false;
+          // partial: som maandcijfers
+          let sNieuw = 0,
+            sToeg = 0;
+          let anyN = false,
+            anyT = false;
           for (const r of rows) {
             if (r.RegioS.trim() !== p.code) continue;
             const m = r.Perioden.match(/^(\d{4})MM\d{2}$/);
             if (!m || Number(m[1]) !== k.jaar) continue;
             if (r.NieuwbouwTotaal_6 != null) {
-              som += r.NieuwbouwTotaal_6;
-              any = true;
+              sNieuw += r.NieuwbouwTotaal_6;
+              anyN = true;
+            }
+            const tg = toegevoegdVan(r);
+            if (tg != null) {
+              sToeg += tg;
+              anyT = true;
             }
           }
-          perJaar[k.jaar] = any ? som : null;
+          perJaar[k.jaar] = {
+            nieuwbouw: anyN ? sNieuw : null,
+            toegevoegd: anyT ? sToeg : null,
+          };
         }
       }
       return { ...p, perJaar };
     });
 
-    const totalenPerJaar: Record<number, number | null> = {};
+    const totalenPerJaar: Record<number, JaarCijfers> = {};
     for (const k of kolommen) {
-      const som = provincies.reduce(
-        (s, p) => s + (p.perJaar[k.jaar] ?? 0),
+      const sNieuw = provincies.reduce(
+        (s, p) => s + (p.perJaar[k.jaar].nieuwbouw ?? 0),
         0,
       );
-      const heeftData = provincies.some((p) => p.perJaar[k.jaar] != null);
-      totalenPerJaar[k.jaar] = heeftData ? som : null;
+      const sToeg = provincies.reduce(
+        (s, p) => s + (p.perJaar[k.jaar].toegevoegd ?? 0),
+        0,
+      );
+      const heeftN = provincies.some((p) => p.perJaar[k.jaar].nieuwbouw != null);
+      const heeftT = provincies.some((p) => p.perJaar[k.jaar].toegevoegd != null);
+      totalenPerJaar[k.jaar] = {
+        nieuwbouw: heeftN ? sNieuw : null,
+        toegevoegd: heeftT ? sToeg : null,
+      };
     }
 
     return {
