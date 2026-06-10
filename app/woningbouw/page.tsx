@@ -136,12 +136,12 @@ export default async function WoningbouwPagina() {
           <p className="mt-2 text-[11px] text-mute">
             Bron:{" "}
             <a
-              href="https://opendata.cbs.nl/ODataApi/OData/81955NED"
+              href="https://opendata.cbs.nl/ODataApi/OData/86098NED"
               target="_blank"
               rel="noopener noreferrer"
               className="text-accent hover:underline"
             >
-              CBS StatLine 81955NED
+              CBS StatLine 86098NED (Levensloop van woningen)
             </a>{" "}
             · bijgewerkt {fmtDatum(data.bijgewerkt)} · jaren met &laquo;t/m
             maand&raquo; zijn voorlopige tussenstanden, geen vol jaar.
@@ -244,11 +244,13 @@ export default async function WoningbouwPagina() {
       <section className="border-t border-line pt-6 text-xs text-mute space-y-2">
         <p>
           <strong className="text-ink">Verantwoording.</strong> Cijfers komen
-          uit CBS StatLine tabel 81955NED. Cijfers voor 2024 zijn definitief;
-          tussentijdse maandcijfers van 2025 zijn voorlopig en gemarkeerd
-          &laquo;t/m maand X&raquo;. CBS heeft deze tabel in juni 2025
-          stopgezet; we migreren naar de opvolger zodra die via OData
-          beschikbaar is. Geen interpretatie — alleen feitelijke aantallen.
+          uit CBS StatLine tabel 86098NED (&laquo;Levensloop van woningen en
+          niet-woningen&raquo;), de opvolger van het in juni 2025 stopgezette
+          81955NED. Jaarcijfers zijn definitief; lopende jaren tonen we als
+          tussenstand met de aanduiding &laquo;t/m maand X&raquo;. CBS
+          publiceert maandcijfers met ongeveer twee maanden vertraging — een
+          gat tussen vandaag en de laatste maand is dus normaal en is geen
+          fout in onze data. Geen interpretatie — alleen feitelijke aantallen.
         </p>
         <p>Deze website is geen officiële website van de Rijksoverheid.</p>
       </section>

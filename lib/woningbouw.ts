@@ -1,15 +1,15 @@
-// Woningbouwcijfers per provincie uit CBS StatLine, tabel 81955NED
-// ("Voorraad woningen en niet-woningen; mutaties, gebruiksfunctie, regio").
-// Bron: https://opendata.cbs.nl/ODataApi/OData/81955NED
+// Woningbouwcijfers per provincie uit CBS StatLine, tabel 86098NED
+// ("Levensloop van woningen en niet-woningen; gebruiksfunctie, regio").
+// Bron: https://opendata.cbs.nl/ODataApi/OData/86098NED
 //
-// LET OP: CBS heeft 81955NED in juni 2025 stopgezet en vervangt 'm door
-// "Levensloop van woningen en niet-woningen". Tot die opvolger via OData
-// beschikbaar is, gebruiken we 81955NED voor 2024 (definitief jaar) en de
-// gedeeltelijke maand-data van 2025. Zodra de opvolger online staat, hier
-// migreren.
+// 86098NED is per medio 2025 de opvolger van het stopgezette 81955NED.
+// Dezelfde dimensies (RegioS, Gebruiksfunctie, Perioden), maar de meting
+// heet hier "NieuwbouwTotaal_6" i.p.v. "Nieuwbouw_2". Data t/m enkele
+// maanden geleden (CBS publiceert maandcijfers met ~2 maanden vertraging).
 
-const BASE = "https://opendata.cbs.nl/ODataApi/OData/81955NED";
+const BASE = "https://opendata.cbs.nl/ODataApi/OData/86098NED";
 const FUNCTIE_WONING = "A045364";
+const METING = "NieuwbouwTotaal_6";
 
 // CBS-provinciecodes en hun officiële namen.
 export const PROVINCIES: { code: string; naam: string }[] = [
@@ -30,7 +30,7 @@ export const PROVINCIES: { code: string; naam: string }[] = [
 type CbsRow = {
   RegioS: string;
   Perioden: string;
-  Nieuwbouw_2: number | null;
+  NieuwbouwTotaal_6: number | null;
 };
 
 export type JaarColom = {
@@ -71,7 +71,7 @@ export async function getWoningbouw(
   try {
     const filter =
       `startswith(RegioS,'PV') and startswith(Gebruiksfunctie,'${FUNCTIE_WONING}')`;
-    const url = `${BASE}/TypedDataSet?$filter=${encodeURIComponent(filter)}&$select=RegioS,Perioden,Nieuwbouw_2`;
+    const url = `${BASE}/TypedDataSet?$filter=${encodeURIComponent(filter)}&$select=RegioS,Perioden,${METING}`;
     const res = await fetch(url, {
       headers: { Accept: "application/json" },
       next: { revalidate: 60 * 60 * 24 },
@@ -125,7 +125,7 @@ export async function getWoningbouw(
             (x) =>
               x.RegioS.trim() === p.code && x.Perioden === `${k.jaar}JJ00`,
           );
-          perJaar[k.jaar] = r?.Nieuwbouw_2 ?? null;
+          perJaar[k.jaar] = r?.NieuwbouwTotaal_6 ?? null;
         } else {
           // som van beschikbare maandcijfers
           let som = 0;
@@ -134,8 +134,8 @@ export async function getWoningbouw(
             if (r.RegioS.trim() !== p.code) continue;
             const m = r.Perioden.match(/^(\d{4})MM\d{2}$/);
             if (!m || Number(m[1]) !== k.jaar) continue;
-            if (r.Nieuwbouw_2 != null) {
-              som += r.Nieuwbouw_2;
+            if (r.NieuwbouwTotaal_6 != null) {
+              som += r.NieuwbouwTotaal_6;
               any = true;
             }
           }
@@ -160,7 +160,7 @@ export async function getWoningbouw(
       provincies,
       totalenPerJaar,
       bijgewerkt: new Date().toISOString(),
-      bron: "CBS StatLine 81955NED",
+      bron: "CBS StatLine 86098NED",
     };
   } catch {
     return null;
