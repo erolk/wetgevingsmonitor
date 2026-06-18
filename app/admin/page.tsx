@@ -212,6 +212,98 @@ export default async function AdminDashboard() {
         </div>
       </Sectie>
 
+      {/* Audit: dekking lopende wetgeving */}
+      <Sectie
+        titel="Audit: dekking van lopende wetgeving"
+        hint="Vergelijkt onze 'lopend'-lijst met alle Soort='Wetgeving'-zaken in TK Open Data. Draaien met npm run audit-wetgeving."
+      >
+        {!m.audit ? (
+          <p className="text-sm text-mute">
+            Nog niet gedraaid — voer eenmalig{" "}
+            <code className="text-ink">npm run audit-wetgeving</code> uit (of
+            wacht op de wekelijkse maandag-Action).
+          </p>
+        ) : (
+          (() => {
+            const a = m.audit;
+            const onder90 = a.dekking < 90;
+            const onder95 = a.dekking < 95 && !onder90;
+            const toon: "ok" | "mid" | "nok" = onder90
+              ? "nok"
+              : onder95
+                ? "mid"
+                : "ok";
+            return (
+              <div className="space-y-3 text-sm">
+                <div className="flex items-center justify-between gap-3">
+                  <div>
+                    <div className="text-ink">
+                      <span className="font-medium">{a.opMonitor}</span> van{" "}
+                      <span className="font-medium">{a.lopendTk}</span> lopende
+                      wetten zichtbaar
+                    </div>
+                    <div className="text-xs text-mute">
+                      laatst gedraaid {fmtDatumTijd(a.bijgewerkt)} ·{" "}
+                      {a.totaalTk.toLocaleString("nl-NL")} wetgevings-zaken
+                      totaal in TK
+                    </div>
+                  </div>
+                  <Pill ok={toon === "ok"}>
+                    {a.dekking.toFixed(1)}% dekking
+                    {onder90 && " — actie nodig"}
+                  </Pill>
+                </div>
+
+                {(a.missend.geenVoortouw > 0 ||
+                  a.missend.andereCommissie > 0) && (
+                  <div className="border-t border-line/60 pt-3 space-y-2">
+                    {a.missend.geenVoortouw > 0 && (
+                      <div className="flex justify-between gap-3">
+                        <span className="text-ink">
+                          Zonder voortouwcommissie (vroeg stadium)
+                        </span>
+                        <span className="text-mute tabular-nums">
+                          {a.missend.geenVoortouw}
+                        </span>
+                      </div>
+                    )}
+                    {a.missend.andereCommissie > 0 && (
+                      <div>
+                        <div className="flex justify-between gap-3">
+                          <span className="text-ink">
+                            Andere commissie (niet aan ministerie te koppelen)
+                          </span>
+                          <span className="text-mute tabular-nums">
+                            {a.missend.andereCommissie}
+                          </span>
+                        </div>
+                        {a.andereCommissies.length > 0 && (
+                          <ul className="mt-1.5 text-xs text-mute space-y-0.5 pl-4">
+                            {a.andereCommissies.map((c) => (
+                              <li key={c.naam}>
+                                {c.aantal}× {c.naam}
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {onder90 && (
+                  <p className="text-xs text-rose-700">
+                    Dekking onder 90% — controleer of er nieuwe vaste
+                    kamercommissies zijn die we niet aan een ministerie hebben
+                    gekoppeld (lib/ministeries.ts).
+                  </p>
+                )}
+              </div>
+            );
+          })()
+        )}
+      </Sectie>
+
       {/* Abonnees & e-mails */}
       <Sectie
         titel="Abonnees & e-mails"

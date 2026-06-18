@@ -122,7 +122,27 @@ export type AdminMetrics = {
   runStatus: Record<string, RunStatus>;
   apiHealth: ApiHealth[];
   tkBereikbaar: boolean;
+  audit: AuditRapport | null;
 };
+
+export type AuditRapport = {
+  bijgewerkt: string;
+  totaalTk: number;
+  lopendTk: number;
+  opMonitor: number;
+  dekking: number; // percentage
+  missend: { geenVoortouw: number; andereCommissie: number };
+  andereCommissies: { naam: string; aantal: number }[];
+};
+
+function leesAudit(): AuditRapport | null {
+  try {
+    const p = path.join(process.cwd(), "data", "audit-wetgeving.json");
+    return JSON.parse(fs.readFileSync(p, "utf8")) as AuditRapport;
+  } catch {
+    return null;
+  }
+}
 
 export async function verzamelMetrics(): Promise<AdminMetrics> {
   const [alleWetten, abonnees, apiHealth] = await Promise.all([
@@ -214,5 +234,6 @@ export async function verzamelMetrics(): Promise<AdminMetrics> {
     runStatus: getRunStatus(),
     apiHealth,
     tkBereikbaar: alleWetten.length > 0,
+    audit: leesAudit(),
   };
 }

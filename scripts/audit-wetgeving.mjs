@@ -236,6 +236,29 @@ async function main() {
   const outPath = path.join(ROOT, "data", "audit-wetgeving.md");
   await fs.writeFile(outPath, md);
 
+  // Klein JSON-rapport voor het admin-panel. Wordt wél in git gecommit;
+  // de admin-pagina leest 'm en toont een waarschuwing als de dekking zakt.
+  const jsonRapport = {
+    bijgewerkt: new Date().toISOString(),
+    totaalTk: alle.length,
+    lopendTk: lopend.length,
+    opMonitor: opSite.length,
+    dekking: lopend.length > 0
+      ? Math.round((opSite.length / lopend.length) * 1000) / 10
+      : 0,
+    missend: {
+      geenVoortouw: geenVoortouw.length,
+      andereCommissie: andereVoortouw.length,
+    },
+    andereCommissies: [...perAndereCommissie.entries()]
+      .sort((a, b) => b[1] - a[1])
+      .map(([naam, aantal]) => ({ naam, aantal })),
+  };
+  await fs.writeFile(
+    path.join(ROOT, "data", "audit-wetgeving.json"),
+    JSON.stringify(jsonRapport, null, 2),
+  );
+
   console.log("");
   console.log("─".repeat(60));
   console.log(`Op monitor:        ${opSite.length.toLocaleString("nl-NL")}`);

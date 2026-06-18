@@ -1,0 +1,25 @@
+{
+  "bijgewerkt": "2026-06-18T15:28:56.320Z",
+  "totaalTk": 2510,
+  "lopendTk": 153,
+  "opMonitor": 145,
+  "dekking": 94.8,
+  "missend": {
+    "geenVoortouw": 0,
+    "andereCommissie": 8
+  },
+  "andereCommissies": [
+    {
+      "naam": "vaste commissie voor Digitale Zaken",
+      "aantal": 3
+    },
+    {
+      "naam": "vaste commissie voor Koninkrijksrelaties",
+      "aantal": 3
+    },
+    {
+      "naam": "vaste commissie voor Veiligheid en Justitie (2010-2017)",
+      "aantal": 2
+    }
+  ]
+}
