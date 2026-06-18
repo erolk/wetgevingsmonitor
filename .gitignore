@@ -15,4 +15,5 @@ data/subscriptions.json
 data/snapshot.json
 data/status.json
 data/email-log.json
+data/audit-wetgeving.md
 tsconfig.tsbuildinfo

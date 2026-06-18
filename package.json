@@ -10,6 +10,7 @@
     "explain": "node scripts/generate-explanations.mjs",
     "ek-status": "node scripts/fetch-ek-status.mjs",
     "asiel-instroom": "node scripts/fetch-asielinstroom.mjs",
+    "audit-wetgeving": "node scripts/audit-wetgeving.mjs",
     "weekbrief": "node scripts/weekbrief.mjs",
     "check-updates": "node scripts/check-updates.mjs"
   },
