@@ -22,7 +22,7 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:18:50.510Z"
+    "gegenereerdOp": "2026-06-22T11:58:39.172Z"
   },
   "c4aa3ce5-79fb-4b11-93fb-b6b121478d58": {
     "dossiernummer": 36881,
@@ -47,7 +47,7 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:18:52.380Z"
+    "gegenereerdOp": "2026-06-22T11:58:41.592Z"
   },
   "c50aa96c-5ffb-4b18-b0b6-3788513755c9": {
     "dossiernummer": 36831,
@@ -122,7 +122,7 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:18:47.613Z"
+    "gegenereerdOp": "2026-06-22T11:58:36.058Z"
   },
   "40a28216-64b9-4e5a-8a7a-d6cc9f56ce99": {
     "dossiernummer": 36648,
@@ -197,7 +197,7 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:18:46.988Z"
+    "gegenereerdOp": "2026-06-22T11:58:35.302Z"
   },
   "a4a66577-ff79-40cd-bf36-81e1260d3570": {
     "dossiernummer": 36836,
@@ -222,7 +222,7 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:18:41.699Z"
+    "gegenereerdOp": "2026-06-22T11:58:29.651Z"
   },
   "c63c942f-0d27-4178-b283-fec619907bb4": {
     "dossiernummer": 36676,
@@ -253,13 +253,13 @@
     "dossiernummer": 36643,
     "ekUrl": "https://www.eerstekamer.nl/wetsvoorstel/36643_ontvlechting_van_de",
     "gevonden": true,
-    "fase": "in_eerste_kamer",
-    "label": "Plenaire behandeling Eerste Kamer",
+    "fase": "aangenomen_ek",
+    "label": "Aangenomen door Eerste Kamer (in afkondiging)",
     "blokken": [
       "vol",
       "vol",
-      "geblokt",
-      "leeg"
+      "vol",
+      "geblokt"
     ],
     "blokLabels": [
       "",
@@ -272,19 +272,19 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:18:22.655Z"
+    "gegenereerdOp": "2026-06-22T11:58:10.747Z"
   },
   "3b67d6aa-12ed-4718-b15a-4dc5d847fc97": {
     "dossiernummer": 36644,
     "ekUrl": "https://www.eerstekamer.nl/wetsvoorstel/36644_wet_op_de_nederlandse",
     "gevonden": true,
-    "fase": "in_eerste_kamer",
-    "label": "Schriftelijke voorbereiding Eerste Kamer",
+    "fase": "aangenomen_ek",
+    "label": "Aangenomen door Eerste Kamer (in afkondiging)",
     "blokken": [
       "vol",
-      "geblokt",
-      "leeg",
-      "leeg"
+      "vol",
+      "vol",
+      "geblokt"
     ],
     "blokLabels": [
       "",
@@ -297,7 +297,7 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:18:29.760Z"
+    "gegenereerdOp": "2026-06-22T11:58:17.881Z"
   },
   "3f298b7d-a86e-427f-92e3-0d67b8e101c1": {
     "dossiernummer": 36571,
@@ -372,7 +372,7 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:18:51.740Z"
+    "gegenereerdOp": "2026-06-22T11:58:40.790Z"
   },
   "29cf3214-5a6e-4ff2-883b-c15aa1fc007f": {
     "dossiernummer": 36554,
@@ -1497,7 +1497,7 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:18:18.514Z"
+    "gegenereerdOp": "2026-06-22T11:58:06.099Z"
   },
   "3f68c835-c55a-48dd-8115-34c7bacb969d": {
     "dossiernummer": 36764,
@@ -1522,7 +1522,7 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:18:23.888Z"
+    "gegenereerdOp": "2026-06-22T11:58:12.522Z"
   },
   "8492dd9c-f47b-4951-a73f-b6490e802171": {
     "dossiernummer": 36743,
@@ -1572,7 +1572,7 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:18:24.674Z"
+    "gegenereerdOp": "2026-06-22T11:58:13.277Z"
   },
   "bdbd8d6b-fbba-4992-8d40-d620ff1f8489": {
     "dossiernummer": 36638,
@@ -1672,7 +1672,7 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:18:45.315Z"
+    "gegenereerdOp": "2026-06-22T11:58:33.890Z"
   },
   "ba31cd71-3d92-48b3-8d11-073aefcb77a4": {
     "dossiernummer": 36536,
@@ -1772,7 +1772,7 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:18:51.125Z"
+    "gegenereerdOp": "2026-06-22T11:58:39.987Z"
   },
   "c8af78ea-d663-48df-831a-705f4d598a43": {
     "dossiernummer": 36469,
@@ -2172,7 +2172,7 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:18:40.601Z"
+    "gegenereerdOp": "2026-06-22T11:58:28.435Z"
   },
   "3b7bf1ff-8af4-4636-818c-21cd6b83fae6": {
     "dossiernummer": 36327,
@@ -2322,7 +2322,7 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:18:32.890Z"
+    "gegenereerdOp": "2026-06-22T11:58:21.299Z"
   },
   "9f76243f-9cf3-41df-a67b-04741b60b8d2": {
     "dossiernummer": 36232,
@@ -2722,7 +2722,7 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:18:32.062Z"
+    "gegenereerdOp": "2026-06-22T11:58:20.477Z"
   },
   "1ddfaa87-c8be-4c91-b402-1e3ee3ceaf06": {
     "dossiernummer": 36859,
@@ -2922,7 +2922,7 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:18:43.437Z"
+    "gegenereerdOp": "2026-06-22T11:58:31.995Z"
   },
   "64c60f52-374f-4434-a9fc-977f738789eb": {
     "dossiernummer": 36674,
@@ -2954,11 +2954,11 @@
     "ekUrl": "https://www.eerstekamer.nl/wetsvoorstel/36670_verbetering_aansluiting",
     "gevonden": true,
     "fase": "in_eerste_kamer",
-    "label": "Schriftelijke voorbereiding Eerste Kamer",
+    "label": "Plenaire behandeling Eerste Kamer",
     "blokken": [
       "vol",
+      "vol",
       "geblokt",
-      "leeg",
       "leeg"
     ],
     "blokLabels": [
@@ -2972,7 +2972,7 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:18:52.927Z"
+    "gegenereerdOp": "2026-06-22T11:58:42.305Z"
   },
   "149b7929-69d4-410c-b4a1-986e1d8b1354": {
     "dossiernummer": 36667,
@@ -3022,7 +3022,7 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:19:02.806Z"
+    "gegenereerdOp": "2026-06-22T11:58:51.338Z"
   },
   "394182e9-371e-488c-8ccb-aac85cffce8e": {
     "dossiernummer": 36530,
@@ -3426,15 +3426,15 @@
   },
   "0e3fbe72-e4a1-442b-9021-7e55bed8ea2e": {
     "dossiernummer": 35968,
-    "ekUrl": "https://www.eerstekamer.nl/wetsvoorstel/35968_archiefwet_20",
+    "ekUrl": "https://www.eerstekamer.nl/wetsvoorstel/35968_archiefwet_2026",
     "gevonden": true,
-    "fase": "aangenomen_ek",
-    "label": "Aangenomen door Eerste Kamer (in afkondiging)",
+    "fase": "wet",
+    "label": "In Staatsblad gepubliceerd",
     "blokken": [
       "vol",
       "vol",
       "vol",
-      "geblokt"
+      "vol"
     ],
     "blokLabels": [
       "",
@@ -3447,7 +3447,7 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:18:39.959Z"
+    "gegenereerdOp": "2026-06-22T11:58:27.616Z"
   },
   "2020232c-7c30-49ad-a19b-26dff69dc37d": {
     "dossiernummer": 35963,
@@ -4297,7 +4297,7 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:18:42.473Z"
+    "gegenereerdOp": "2026-06-22T11:58:30.410Z"
   },
   "81a7c7ee-d432-401d-9347-02a048359410": {
     "dossiernummer": 36516,
@@ -5378,13 +5378,13 @@
     "dossiernummer": 36783,
     "ekUrl": "https://www.eerstekamer.nl/wetsvoorstel/36783_wet_invoering",
     "gevonden": true,
-    "fase": "in_eerste_kamer",
-    "label": "Plenaire behandeling Eerste Kamer",
+    "fase": "aangenomen_ek",
+    "label": "Aangenomen door Eerste Kamer (in afkondiging)",
     "blokken": [
       "vol",
       "vol",
-      "geblokt",
-      "leeg"
+      "vol",
+      "geblokt"
     ],
     "blokLabels": [
       "",
@@ -5397,7 +5397,7 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:18:44.684Z"
+    "gegenereerdOp": "2026-06-22T11:58:33.264Z"
   },
   "532fff64-6f91-478c-8c9a-72e9eac27e08": {
     "dossiernummer": 36781,
@@ -5447,7 +5447,7 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:18:29.039Z"
+    "gegenereerdOp": "2026-06-22T11:58:17.128Z"
   },
   "af1ccc37-e7cf-4eb9-8b57-2571106296f6": {
     "dossiernummer": 36744,
@@ -5472,7 +5472,7 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:18:21.514Z"
+    "gegenereerdOp": "2026-06-22T11:58:09.717Z"
   },
   "d31d4f3a-935a-4b29-b1e2-6f2fd99e8e53": {
     "dossiernummer": 36684,
@@ -6053,13 +6053,13 @@
     "dossiernummer": 36154,
     "ekUrl": "https://www.eerstekamer.nl/wetsvoorstel/36154_wet_herziening_bedrag_ineens",
     "gevonden": true,
-    "fase": "in_eerste_kamer",
-    "label": "Plenaire behandeling Eerste Kamer",
+    "fase": "aangenomen_ek",
+    "label": "Aangenomen door Eerste Kamer (in afkondiging)",
     "blokken": [
       "vol",
       "vol",
-      "geblokt",
-      "leeg"
+      "vol",
+      "geblokt"
     ],
     "blokLabels": [
       "",
@@ -6072,7 +6072,7 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:18:16.205Z"
+    "gegenereerdOp": "2026-06-22T11:58:02.788Z"
   },
   "b4be2f50-96f6-41f3-8992-4712fef5177b": {
     "dossiernummer": 36078,
@@ -6572,7 +6572,7 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:18:33.607Z"
+    "gegenereerdOp": "2026-06-22T11:58:22.011Z"
   },
   "35b05c3e-95de-4396-93de-e8346500644f": {
     "dossiernummer": 36833,
@@ -6904,11 +6904,11 @@
     "ekUrl": "https://www.eerstekamer.nl/wetsvoorstel/36748_wet_werkelijk_rendement_box",
     "gevonden": true,
     "fase": "in_eerste_kamer",
-    "label": "Schriftelijke voorbereiding Eerste Kamer",
+    "label": "Plenaire behandeling Eerste Kamer",
     "blokken": [
       "vol",
+      "vol",
       "geblokt",
-      "leeg",
       "leeg"
     ],
     "blokLabels": [
@@ -6922,7 +6922,7 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:18:37.276Z"
+    "gegenereerdOp": "2026-06-22T11:58:24.986Z"
   },
   "7c066e5b-8b45-46c9-8193-9088ed3e66ec": {
     "dossiernummer": 36735,
@@ -6972,7 +6972,7 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:18:27.366Z"
+    "gegenereerdOp": "2026-06-22T11:58:15.872Z"
   },
   "3a7a8bd2-2d47-4e54-be91-5e466c67d8b2": {
     "dossiernummer": 36706,
@@ -7822,7 +7822,7 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:18:25.515Z"
+    "gegenereerdOp": "2026-06-22T11:58:13.906Z"
   },
   "87906873-a7fc-4ab8-a6c8-fd6cb93495a6": {
     "dossiernummer": 36810,
@@ -7847,7 +7847,7 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:19:02.187Z"
+    "gegenereerdOp": "2026-06-22T11:58:50.711Z"
   },
   "840932c6-e057-4d9b-bd0e-8aeae04724f5": {
     "dossiernummer": 36671,
@@ -9322,7 +9322,7 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:18:54.221Z"
+    "gegenereerdOp": "2026-06-22T11:58:43.560Z"
   },
   "71a18c04-0d21-4e81-9974-169742f6e411": {
     "dossiernummer": 35674,
@@ -10877,7 +10877,7 @@
   "cc03fd3a-9720-415d-bd8f-7239265ec1a6": {
     "dossiernummer": 20585,
     "gevonden": false,
-    "gegenereerdOp": "2026-06-15T12:18:38.693Z"
+    "gegenereerdOp": "2026-06-22T11:58:25.439Z"
   },
   "86b7a248-01b4-4a07-837d-bddac8e5d56d": {
     "dossiernummer": 36245,
@@ -11127,7 +11127,7 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:18:34.486Z"
+    "gegenereerdOp": "2026-06-22T11:58:22.849Z"
   },
   "cdf7afd9-f639-41a4-8d57-e021b1700a39": {
     "dossiernummer": 35532,
@@ -11152,7 +11152,7 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:18:58.920Z"
+    "gegenereerdOp": "2026-06-22T11:58:48.038Z"
   },
   "76533a79-a5df-4d2c-8930-ad0c0e4d9810": {
     "dossiernummer": 35530,
@@ -16777,7 +16777,7 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:18:49.978Z"
+    "gegenereerdOp": "2026-06-22T11:58:38.445Z"
   },
   "a4c61035-9345-4cad-a041-5345f52608ab": {
     "dossiernummer": 35122,
@@ -17987,7 +17987,7 @@
     "label": "Schriftelijke voorbereiding Eerste Kamer",
     "blokken": [
       "vol",
-      "geblokt",
+      "vol",
       "leeg",
       "leeg"
     ],
@@ -18002,7 +18002,7 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:18:30.380Z"
+    "gegenereerdOp": "2026-06-22T11:58:18.852Z"
   },
   "f25197fa-e6e1-47d1-a3ad-7c0e8f341c77": {
     "dossiernummer": 34126,
@@ -35207,7 +35207,7 @@
   "56da41f3-968c-4e0c-ad35-0a58adb2b362": {
     "dossiernummer": 22159,
     "gevonden": false,
-    "gegenereerdOp": "2026-06-15T12:18:16.743Z"
+    "gegenereerdOp": "2026-06-22T11:58:03.321Z"
   },
   "dc59eec5-dc6d-4f4d-9cb4-0a68441f468e": {
     "dossiernummer": 34219,
@@ -37137,7 +37137,7 @@
   "ec119f3d-3a7e-40a3-a6ad-1bc0433caff0": {
     "dossiernummer": 30048,
     "gevonden": false,
-    "gegenereerdOp": "2026-06-15T12:18:20.378Z"
+    "gegenereerdOp": "2026-06-22T11:58:09.199Z"
   },
   "b6b3da31-ba05-4c6d-ad15-1bf4a9624498": {
     "dossiernummer": 33462,
@@ -38167,7 +38167,7 @@
   "3a71ecac-1305-407b-81aa-25b64983431d": {
     "dossiernummer": 30930,
     "gevonden": false,
-    "gegenereerdOp": "2026-06-15T12:18:21.986Z"
+    "gegenereerdOp": "2026-06-22T11:58:10.076Z"
   },
   "e076bcd0-7474-4f63-b85f-25ecc37be813": {
     "dossiernummer": 34342,
@@ -38397,7 +38397,7 @@
   "2826e028-9783-4e42-82fa-28a42bcdc23a": {
     "dossiernummer": 31992,
     "gevonden": false,
-    "gegenereerdOp": "2026-06-15T12:18:22.238Z"
+    "gegenereerdOp": "2026-06-22T11:58:10.408Z"
   },
   "0d1a6a98-e313-41d2-926e-28ca1da844a4": {
     "dossiernummer": 33365,
@@ -39077,7 +39077,7 @@
   "d0c20fae-c447-4d8f-abaa-2e8e9d754e07": {
     "dossiernummer": 30946,
     "gevonden": false,
-    "gegenereerdOp": "2026-06-15T12:18:23.105Z"
+    "gegenereerdOp": "2026-06-22T11:58:11.848Z"
   },
   "1a317c81-9974-465f-95f6-2ef1b548779e": {
     "dossiernummer": 32168,
@@ -39282,7 +39282,7 @@
   "190147e3-7033-4f6d-8e21-31b78458d530": {
     "dossiernummer": 30926,
     "gevonden": false,
-    "gegenereerdOp": "2026-06-15T12:18:23.390Z"
+    "gegenereerdOp": "2026-06-22T11:58:12.095Z"
   },
   "f9d41b80-e867-44e7-9506-321e64e226ca": {
     "dossiernummer": 32676,
@@ -39832,7 +39832,7 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:18:26.309Z"
+    "gegenereerdOp": "2026-06-22T11:58:14.821Z"
   },
   "9b6d0cdb-e5c8-4d02-a415-383789f20336": {
     "dossiernummer": 35190,
@@ -40362,7 +40362,7 @@
   "b800de1a-9acc-4b1e-9113-3c59631c952e": {
     "dossiernummer": 32379,
     "gevonden": false,
-    "gegenereerdOp": "2026-06-15T12:18:26.864Z"
+    "gegenereerdOp": "2026-06-22T11:58:15.359Z"
   },
   "51ebc462-bbe7-40ec-8657-3ca0de96c359": {
     "dossiernummer": 31124,
@@ -41012,7 +41012,7 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:18:28.245Z"
+    "gegenereerdOp": "2026-06-22T11:58:16.498Z"
   },
   "f621dc9a-8d4b-4738-b84f-45486515bf88": {
     "dossiernummer": 32868,
@@ -41917,7 +41917,7 @@
   "84439926-4484-4124-9018-4ff4b944d1c7": {
     "dossiernummer": 31584,
     "gevonden": false,
-    "gegenereerdOp": "2026-06-15T12:18:30.843Z"
+    "gegenereerdOp": "2026-06-22T11:58:19.385Z"
   },
   "6da17e2a-9e11-4b7c-b457-4ffa83025def": {
     "dossiernummer": 32339,
@@ -43222,7 +43222,7 @@
   "8f6774f5-c599-4ff9-9214-5fb935868b9b": {
     "dossiernummer": 30615,
     "gevonden": false,
-    "gegenereerdOp": "2026-06-15T12:18:34.946Z"
+    "gegenereerdOp": "2026-06-22T11:58:23.295Z"
   },
   "57ccdd5d-94e5-4053-bb98-5fc10911feb4": {
     "dossiernummer": 34237,
@@ -44772,7 +44772,7 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:18:36.467Z"
+    "gegenereerdOp": "2026-06-22T11:58:24.346Z"
   },
   "a11eb9e3-f881-45af-bda0-6cc1370cf2c0": {
     "dossiernummer": 31769,
@@ -45277,7 +45277,7 @@
   "cbd2bd9b-c6f0-415b-af9b-724a8f45d3b8": {
     "dossiernummer": 22139,
     "gevonden": false,
-    "gegenereerdOp": "2026-06-15T12:18:38.928Z"
+    "gegenereerdOp": "2026-06-22T11:58:25.684Z"
   },
   "5c94ee5e-80df-4fec-9d76-727c4790ceff": {
     "dossiernummer": 31955,
@@ -46307,7 +46307,7 @@
   "c2421439-4677-4c93-a655-81da93288369": {
     "dossiernummer": 22594,
     "gevonden": false,
-    "gegenereerdOp": "2026-06-15T12:18:41.062Z"
+    "gegenereerdOp": "2026-06-22T11:58:28.969Z"
   },
   "27233528-b2b9-4822-b57c-8208b8970106": {
     "dossiernummer": 32323,
@@ -47262,7 +47262,7 @@
   "045bc068-6f7c-441c-947b-8a6b9f3defb4": {
     "dossiernummer": 25759,
     "gevonden": false,
-    "gegenereerdOp": "2026-06-15T12:18:42.931Z"
+    "gegenereerdOp": "2026-06-22T11:58:31.482Z"
   },
   "e574a9b4-1b3c-4134-9688-8a91920235f0": {
     "dossiernummer": 32220,
@@ -49342,7 +49342,7 @@
   "27ca75e4-385e-4d4a-ab29-9fe08618cee2": {
     "dossiernummer": 32288,
     "gevonden": false,
-    "gegenereerdOp": "2026-06-15T12:18:45.763Z"
+    "gegenereerdOp": "2026-06-22T11:58:34.337Z"
   },
   "d887d5f6-99ac-4141-a6c1-a014c010e95c": {
     "dossiernummer": 33441,
@@ -52647,7 +52647,7 @@
   "da29ed50-9b93-4671-8e6f-c1ba5e7b7514": {
     "dossiernummer": 32025,
     "gevonden": false,
-    "gegenereerdOp": "2026-06-15T12:18:53.395Z"
+    "gegenereerdOp": "2026-06-22T11:58:42.748Z"
   },
   "d8902600-b5a4-411a-9643-c1bae3a4db50": {
     "dossiernummer": 30424,
@@ -52677,7 +52677,7 @@
   "e5843c10-9772-4c48-8df9-c28562cd0a20": {
     "dossiernummer": 32240,
     "gevonden": false,
-    "gegenereerdOp": "2026-06-15T12:18:53.630Z"
+    "gegenereerdOp": "2026-06-22T11:58:42.995Z"
   },
   "8fcd6023-4dd3-4f44-90dc-c2866fe5f087": {
     "dossiernummer": 34049,
@@ -53832,7 +53832,7 @@
   "659a510e-dd82-4fff-82e8-cc8412b63caa": {
     "dossiernummer": 32241,
     "gevonden": false,
-    "gegenereerdOp": "2026-06-15T12:18:54.667Z"
+    "gegenereerdOp": "2026-06-22T11:58:44.004Z"
   },
   "1f97475c-f8f9-4903-8fa7-cd2116a855ad": {
     "dossiernummer": 32427,
@@ -55907,7 +55907,7 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:18:56.834Z"
+    "gegenereerdOp": "2026-06-22T11:58:46.008Z"
   },
   "db8faac5-d488-46dc-abaf-de32388aaef6": {
     "dossiernummer": 33944,
@@ -56012,7 +56012,7 @@
   "157e34e5-330f-4617-9599-e007cce8bde5": {
     "dossiernummer": 32303,
     "gevonden": false,
-    "gegenereerdOp": "2026-06-15T12:18:58.236Z"
+    "gegenereerdOp": "2026-06-22T11:58:47.395Z"
   },
   "64429ddd-6488-456d-a64d-e035671a21a5": {
     "dossiernummer": 33429,
@@ -57092,7 +57092,7 @@
   "92e44eb2-d56d-43bc-bdf2-e78938080cc4": {
     "dossiernummer": 31993,
     "gevonden": false,
-    "gegenereerdOp": "2026-06-15T12:18:59.286Z"
+    "gegenereerdOp": "2026-06-22T11:58:48.401Z"
   },
   "18199fb1-69b1-46b9-aee9-e7c3def7c271": {
     "dossiernummer": 34304,
@@ -58442,7 +58442,7 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:19:01.214Z"
+    "gegenereerdOp": "2026-06-22T11:58:49.732Z"
   },
   "c97aa301-c14f-4a2f-bfc2-f58165f98299": {
     "dossiernummer": 31556,
@@ -58597,7 +58597,7 @@
   "6133b490-78ba-40a8-a296-f729d4e34170": {
     "dossiernummer": 30435,
     "gevonden": false,
-    "gegenereerdOp": "2026-06-15T12:19:01.770Z"
+    "gegenereerdOp": "2026-06-22T11:58:50.177Z"
   },
   "28975c45-82e0-4e73-bd00-f73bc000dfcc": {
     "dossiernummer": 34058,
@@ -59278,13 +59278,13 @@
     "dossiernummer": 36885,
     "ekUrl": "https://www.eerstekamer.nl/wetsvoorstel/36885_implementatiewet",
     "gevonden": true,
-    "fase": "in_eerste_kamer",
-    "label": "Plenaire behandeling Eerste Kamer",
+    "fase": "aangenomen_ek",
+    "label": "Aangenomen door Eerste Kamer (in afkondiging)",
     "blokken": [
       "vol",
       "vol",
-      "geblokt",
-      "leeg"
+      "vol",
+      "geblokt"
     ],
     "blokLabels": [
       "",
@@ -59297,7 +59297,7 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:18:17.890Z"
+    "gegenereerdOp": "2026-06-22T11:58:04.482Z"
   },
   "500a4c70-e114-44d0-b60d-a54d792d3a75": {
     "dossiernummer": 36745,
@@ -59322,7 +59322,7 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:18:48.387Z"
+    "gegenereerdOp": "2026-06-22T11:58:36.859Z"
   },
   "e71a00d9-c5ab-4028-8b20-aba66d8bf742": {
     "dossiernummer": 36865,
@@ -59347,18 +59347,18 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:18:49.090Z"
+    "gegenereerdOp": "2026-06-22T11:58:37.570Z"
   },
   "d9181f69-b075-4247-9caa-0a9cd7709f82": {
     "dossiernummer": 36900,
     "ekUrl": "https://www.eerstekamer.nl/wetsvoorstel/36900_implementatiewet",
     "gevonden": true,
     "fase": "in_eerste_kamer",
-    "label": "Schriftelijke voorbereiding Eerste Kamer",
+    "label": "Plenaire behandeling Eerste Kamer",
     "blokken": [
       "vol",
+      "vol",
       "geblokt",
-      "leeg",
       "leeg"
     ],
     "blokLabels": [
@@ -59372,7 +59372,7 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:18:17.273Z"
+    "gegenereerdOp": "2026-06-22T11:58:03.855Z"
   },
   "54f2d4ed-7fa1-4178-bcff-1972e587f5f2": {
     "dossiernummer": 36677,
@@ -59397,7 +59397,7 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:18:19.912Z"
+    "gegenereerdOp": "2026-06-22T11:58:08.665Z"
   },
   "80744d89-c954-47e1-be97-556010506067": {
     "dossiernummer": 36036,
@@ -59422,18 +59422,18 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:18:31.437Z"
+    "gegenereerdOp": "2026-06-22T11:58:19.815Z"
   },
   "9351a37f-dbc1-4106-aad4-a144e016b9c3": {
     "dossiernummer": 36882,
     "ekUrl": "https://www.eerstekamer.nl/wetsvoorstel/36882_wijziging_van_de_wet",
     "gevonden": true,
     "fase": "in_eerste_kamer",
-    "label": "Schriftelijke voorbereiding Eerste Kamer",
+    "label": "Plenaire behandeling Eerste Kamer",
     "blokken": [
       "vol",
+      "vol",
       "geblokt",
-      "leeg",
       "leeg"
     ],
     "blokLabels": [
@@ -59447,7 +59447,7 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:18:46.287Z"
+    "gegenereerdOp": "2026-06-22T11:58:34.674Z"
   },
   "ffcbf9f6-aa24-4033-80aa-d915026371aa": {
     "dossiernummer": 35501,
@@ -59472,7 +59472,7 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:18:55.183Z"
+    "gegenereerdOp": "2026-06-22T11:58:44.525Z"
   },
   "263e9e33-447f-4820-a582-18e7716355f3": {
     "dossiernummer": 36867,
@@ -59497,7 +59497,7 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:18:19.277Z"
+    "gegenereerdOp": "2026-06-22T11:58:07.864Z"
   },
   "abf901b1-464a-41f2-8f1c-62b00481875e": {
     "dossiernummer": 36846,
@@ -59522,18 +59522,18 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:18:35.507Z"
+    "gegenereerdOp": "2026-06-22T11:58:23.720Z"
   },
   "99b00660-c7da-4e22-9377-7317d52a0d19": {
     "dossiernummer": 36621,
     "ekUrl": "https://www.eerstekamer.nl/wetsvoorstel/36621_verzamelwet",
     "gevonden": true,
     "fase": "in_eerste_kamer",
-    "label": "Schriftelijke voorbereiding Eerste Kamer",
+    "label": "Plenaire behandeling Eerste Kamer",
     "blokken": [
       "vol",
+      "vol",
       "geblokt",
-      "leeg",
       "leeg"
     ],
     "blokLabels": [
@@ -59547,7 +59547,7 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:18:39.343Z"
+    "gegenereerdOp": "2026-06-22T11:58:26.127Z"
   },
   "0d270222-ec60-4e8b-a649-8ef5fd8b7f1e": {
     "dossiernummer": 36688,
@@ -59572,7 +59572,7 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:18:44.065Z"
+    "gegenereerdOp": "2026-06-22T11:58:32.621Z"
   },
   "09bbccab-52bd-48cb-8894-dc8f8bf852ba": {
     "dossiernummer": 36911,
@@ -59597,7 +59597,7 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:18:55.931Z"
+    "gegenereerdOp": "2026-06-22T11:58:45.155Z"
   },
   "a9aa7f87-4671-44ee-8ca9-dea945955afa": {
     "dossiernummer": 36843,
@@ -59622,7 +59622,7 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:18:57.692Z"
+    "gegenereerdOp": "2026-06-22T11:58:46.849Z"
   },
   "250c0324-c18e-46f3-a31d-f41b2ffe7db1": {
     "dossiernummer": 36857,
@@ -59647,6 +59647,131 @@
       "inEK": true,
       "inStaatsblad": true
     },
-    "gegenereerdOp": "2026-06-15T12:19:00.513Z"
+    "gegenereerdOp": "2026-06-22T11:58:49.015Z"
+  },
+  "9fd5c65c-ee62-4723-9733-0d45714eceec": {
+    "dossiernummer": 36904,
+    "ekUrl": "https://www.eerstekamer.nl/wetsvoorstel/36904_uitvoering_eu_verordening",
+    "gevonden": true,
+    "fase": "in_eerste_kamer",
+    "label": "Ontvangen door Eerste Kamer",
+    "blokken": [
+      "geblokt",
+      "leeg",
+      "leeg",
+      "leeg"
+    ],
+    "blokLabels": [
+      "",
+      "Schriftelijke voorbereiding",
+      "Plenair",
+      "Afkondiging"
+    ],
+    "indicators": {
+      "inTK": true,
+      "inEK": true,
+      "inStaatsblad": true
+    },
+    "gegenereerdOp": "2026-06-22T11:58:05.294Z"
+  },
+  "00393a26-6b6b-4440-bcf9-18514f179143": {
+    "dossiernummer": 36921,
+    "ekUrl": "https://www.eerstekamer.nl/wetsvoorstel/36921_goedkeuring_van_het_op_16",
+    "gevonden": true,
+    "fase": "in_eerste_kamer",
+    "label": "Schriftelijke voorbereiding Eerste Kamer",
+    "blokken": [
+      "vol",
+      "geblokt",
+      "leeg",
+      "leeg"
+    ],
+    "blokLabels": [
+      "",
+      "Schriftelijke voorbereiding",
+      "Plenair",
+      "Afkondiging"
+    ],
+    "indicators": {
+      "inTK": true,
+      "inEK": true,
+      "inStaatsblad": true
+    },
+    "gegenereerdOp": "2026-06-22T11:58:06.918Z"
+  },
+  "61370af5-21d1-4b76-883b-2d04da66db47": {
+    "dossiernummer": 36864,
+    "ekUrl": "https://www.eerstekamer.nl/wetsvoorstel/36864_implementatie_herziening",
+    "gevonden": true,
+    "fase": "in_eerste_kamer",
+    "label": "Schriftelijke voorbereiding Eerste Kamer",
+    "blokken": [
+      "vol",
+      "geblokt",
+      "leeg",
+      "leeg"
+    ],
+    "blokLabels": [
+      "",
+      "Schriftelijke voorbereiding",
+      "Plenair",
+      "Afkondiging"
+    ],
+    "indicators": {
+      "inTK": true,
+      "inEK": true,
+      "inStaatsblad": true
+    },
+    "gegenereerdOp": "2026-06-22T11:58:11.398Z"
+  },
+  "7b4fcce5-5d44-4de8-b3e7-7d9df9a89784": {
+    "dossiernummer": 36847,
+    "ekUrl": "https://www.eerstekamer.nl/wetsvoorstel/36847_bedrijfsduurverlenging",
+    "gevonden": true,
+    "fase": "in_eerste_kamer",
+    "label": "Schriftelijke voorbereiding Eerste Kamer",
+    "blokken": [
+      "vol",
+      "geblokt",
+      "leeg",
+      "leeg"
+    ],
+    "blokLabels": [
+      "",
+      "Schriftelijke voorbereiding",
+      "Plenair",
+      "Afkondiging"
+    ],
+    "indicators": {
+      "inTK": true,
+      "inEK": true,
+      "inStaatsblad": true
+    },
+    "gegenereerdOp": "2026-06-22T11:58:26.981Z"
+  },
+  "72425a38-d5c3-4b10-9d34-8a3796b03564": {
+    "dossiernummer": 36872,
+    "ekUrl": "https://www.eerstekamer.nl/wetsvoorstel/36872_verzamelwet_kgg_2026",
+    "gevonden": true,
+    "fase": "in_eerste_kamer",
+    "label": "Schriftelijke voorbereiding Eerste Kamer",
+    "blokken": [
+      "vol",
+      "geblokt",
+      "leeg",
+      "leeg"
+    ],
+    "blokLabels": [
+      "",
+      "Schriftelijke voorbereiding",
+      "Plenair",
+      "Afkondiging"
+    ],
+    "indicators": {
+      "inTK": true,
+      "inEK": true,
+      "inStaatsblad": true
+    },
+    "gegenereerdOp": "2026-06-22T11:58:31.034Z"
   }
 }
