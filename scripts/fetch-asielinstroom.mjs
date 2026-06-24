@@ -48,23 +48,25 @@ function parseAantal(tekst) {
 }
 
 function parseWeken(html) {
+  // Parse alles uit de URL-slug zelf (jaar/maand/dag/weeknummer/cijfer).
+  // Onafhankelijk van de omringende HTML-structuur, dus robuust tegen
+  // Rijksoverheid-template-wijzigingen.
   const weken = [];
   const gezien = new Set();
   const re =
-    /href="(\/actueel\/nieuws\/(\d{4})\/(\d{2})\/(\d{2})\/de-asielinstroom-van-week-(\d{1,2})[^"]*)"[^>]*>\s*<h3>([^<]*)<\/h3>/gi;
+    /\/actueel\/nieuws\/(\d{4})\/(\d{2})\/(\d{2})\/de-asielinstroom-van-week-(\d{1,2})[a-z-]*?-([\d.]+)/gi;
   let m;
   while ((m = re.exec(html)) !== null) {
-    const [, hrefPad, jaar, maand, dag, week, kop] = m;
-    const datum = `${jaar}-${maand}-${dag}`;
-    const aantal = parseAantal(kop) ?? parseAantal(hrefPad);
-    if (aantal == null) continue;
+    const [, jaar, maand, dag, week, ruwAantal] = m;
+    const aantal = Number(ruwAantal.replace(/\./g, ""));
+    if (!Number.isFinite(aantal)) continue;
     const sleutel = `${jaar}-${week}`;
     if (gezien.has(sleutel)) continue;
     gezien.add(sleutel);
     weken.push({
       jaar: Number(jaar),
       week: Number(week),
-      datum,
+      datum: `${jaar}-${maand}-${dag}`,
       aantal,
     });
   }
@@ -73,32 +75,49 @@ function parseWeken(html) {
 }
 
 async function main() {
-  const jaar = Number(process.argv[2]) || new Date().getFullYear();
-  const index = await haalIndexPagina(jaar);
-  if (!index) {
-    throw new Error(`geen overzichtspagina gevonden voor ${jaar}`);
+  // Rijksoverheid publiceert per kalenderjaar één indexpagina met alle
+  // weekberichten. Oudere jaren (2025 en eerder) lijken offline gehaald te
+  // zijn — alleen het huidige jaar is betrouwbaar te scrapen. Voor
+  // jaar-op-jaar-vergelijking gebruiken we daarom CBS-maandcijfers
+  // (lib/asielcijfers.ts), niet deze week-scrape.
+  const args = process.argv.slice(2).filter((a) => /^\d{4}$/.test(a));
+  const jaren = args.length > 0 ? args.map(Number) : [new Date().getFullYear()];
+
+  const alleWeken = [];
+  const bronnen = [];
+  for (const jaar of jaren) {
+    const index = await haalIndexPagina(jaar);
+    if (!index) {
+      console.warn(`  ${jaar}: geen overzichtspagina gevonden — overslaan`);
+      continue;
+    }
+    const weken = parseWeken(index.html);
+    console.log(`  ${jaar}: ${weken.length} weken`);
+    bronnen.push({ jaar, url: index.url });
+    alleWeken.push(...weken);
   }
-  const weken = parseWeken(index.html);
-  if (weken.length === 0) {
-    throw new Error("overzichtspagina gevonden maar 0 weken geparset");
+  if (alleWeken.length === 0) {
+    throw new Error("geen weken geparsed uit alle gevraagde jaren");
   }
+  alleWeken.sort((a, b) => a.jaar - b.jaar || a.week - b.week);
 
   const data = {
     bijgewerkt: new Date().toISOString(),
-    jaar,
-    bron: index.url,
-    weken,
+    jaren,
+    bronnen,
+    weken: alleWeken,
   };
   await fs.mkdir(path.dirname(OUT), { recursive: true });
   await fs.writeFile(OUT, JSON.stringify(data, null, 2));
+  const laatste = alleWeken[alleWeken.length - 1];
   console.log(
-    `klaar. ${weken.length} weken (laatste: week ${weken[weken.length - 1].week} = ${weken[weken.length - 1].aantal}).`,
+    `klaar. ${alleWeken.length} weken over ${jaren.length} jaar (laatste: ${laatste.jaar} week ${laatste.week} = ${laatste.aantal}).`,
   );
 
   await schrijfRunStatus(ROOT, "asiel-instroom", {
     ok: true,
-    message: `${weken.length} weken (t/m week ${weken[weken.length - 1].week})`,
-    aantal: weken.length,
+    message: `${alleWeken.length} weken (t/m ${laatste.jaar} wk ${laatste.week})`,
+    aantal: alleWeken.length,
   });
 }
 

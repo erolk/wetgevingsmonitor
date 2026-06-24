@@ -118,6 +118,78 @@ export async function getMaandInstroom(
   }
 }
 
+/**
+ * Vergelijk de cumulatieve instroom sinds een referentiemaand met dezelfde
+ * periode een jaar eerder. Bedoeld voor de pact-tegel op /migratiepact:
+ * "sinds pact-start (12 juni 2026) is X% minder/meer asiel ingestroomd t.o.v.
+ * dezelfde periode in 2025".
+ *
+ * We gebruiken hele maanden (CBS publiceert per maand). De referentiemaand is
+ * de eerste volle maand na de pact-start. Bijv. pact-start 12 juni → eerste
+ * volle maand = juli.
+ *
+ * Geeft `null` terug als er nog geen CBS-data is voor de referentieperiode.
+ */
+export type JaarOpJaarVergelijking = {
+  startMaand: string; // "yyyy-mm" — eerste maand van de vergelijking
+  totaalNu: number;
+  totaalVorig: number;
+  verschilAbsoluut: number;
+  verschilProcent: number; // positief = stijging
+  maanden: { iso: string; label: string; nu: number | null; vorig: number | null }[];
+};
+
+export async function getJaarOpJaarSinds(
+  startMaandIso: string, // "yyyy-mm"
+): Promise<JaarOpJaarVergelijking | null> {
+  const data = await getMaandInstroom(120); // tot 10 jaar terug
+  if (!data || data.maanden.length === 0) return null;
+
+  const [startJaarStr, startMaandStr] = startMaandIso.split("-");
+  const startJaar = Number(startJaarStr);
+  const startMaand = Number(startMaandStr);
+
+  // Lijst beschikbare maanden in jaar X vanaf de startmaand.
+  const huidigJaar = data.maanden.filter(
+    (m) => m.jaar === startJaar && m.maand >= startMaand,
+  );
+  if (huidigJaar.length === 0) return null;
+
+  const punten: JaarOpJaarVergelijking["maanden"] = [];
+  let totaalNu = 0;
+  let totaalVorig = 0;
+  let heeftBeideMinstensEen = false;
+
+  for (const m of huidigJaar) {
+    const vorig = data.maanden.find(
+      (x) => x.jaar === startJaar - 1 && x.maand === m.maand,
+    );
+    const nu = m.totaal;
+    const vr = vorig?.totaal ?? null;
+    if (nu != null && vr != null) {
+      totaalNu += nu;
+      totaalVorig += vr;
+      heeftBeideMinstensEen = true;
+    }
+    punten.push({ iso: m.iso, label: m.label, nu: nu, vorig: vr });
+  }
+
+  if (!heeftBeideMinstensEen) return null;
+
+  const verschil = totaalNu - totaalVorig;
+  const procent =
+    totaalVorig === 0 ? 0 : Math.round((verschil / totaalVorig) * 1000) / 10;
+
+  return {
+    startMaand: startMaandIso,
+    totaalNu,
+    totaalVorig,
+    verschilAbsoluut: verschil,
+    verschilProcent: procent,
+    maanden: punten,
+  };
+}
+
 export type NationaliteitRij = {
   nationaliteit: string;
   eerste: number | null;

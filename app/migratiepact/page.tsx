@@ -10,7 +10,9 @@ import { getWeekInstroom, type InstroomWeek } from "@/lib/asielinstroom";
 import {
   getMaandInstroom,
   getNationaliteitenPerJaar,
+  getJaarOpJaarSinds,
   type MaandInstroom,
+  type JaarOpJaarVergelijking,
 } from "@/lib/asielcijfers";
 import type { StemUitslag } from "@/lib/stemming";
 import { SITE_URL } from "@/lib/site";
@@ -368,11 +370,124 @@ function weekLabel(w: InstroomWeek): string {
   return `w${w.week}`;
 }
 
+function PactEffectTegel({ data }: { data: JaarOpJaarVergelijking }) {
+  const isDaling = data.verschilProcent < 0;
+  const isStijging = data.verschilProcent > 0;
+  const kleur = isDaling
+    ? "text-emerald-700"
+    : isStijging
+      ? "text-rose-700"
+      : "text-mute";
+  const pijl = isDaling ? "↓" : isStijging ? "↑" : "→";
+  const omschrijving = isDaling
+    ? "minder asielaanvragen dan dezelfde periode in 2025"
+    : isStijging
+      ? "meer asielaanvragen dan dezelfde periode in 2025"
+      : "gelijk aan dezelfde periode in 2025";
+
+  const eersteMaandLabel =
+    data.maanden.find((m) => m.nu != null)?.label ?? data.startMaand;
+  const laatsteMaandLabel =
+    [...data.maanden].reverse().find((m) => m.nu != null)?.label ??
+    eersteMaandLabel;
+
+  return (
+    <section className="rounded-lg border border-line bg-surface px-5 py-6 sm:px-8 sm:py-8">
+      <p className="text-xs font-mono uppercase tracking-wider text-mute">
+        Sinds pact-start (12 juni 2026) — t/m {laatsteMaandLabel}
+      </p>
+      <div className="mt-3 flex flex-wrap items-baseline gap-x-5 gap-y-1">
+        <span
+          className={`font-serif text-5xl sm:text-6xl leading-none ${kleur}`}
+        >
+          {pijl} {Math.abs(data.verschilProcent).toFixed(1)}%
+        </span>
+        <span className="text-ink text-sm sm:text-base max-w-md">
+          {omschrijving}
+        </span>
+      </div>
+      <p className="mt-3 text-sm text-mute">
+        {data.totaalNu.toLocaleString("nl-NL")} aanvragen sinds{" "}
+        {eersteMaandLabel} · {data.totaalVorig.toLocaleString("nl-NL")} in
+        dezelfde periode een jaar eerder · verschil{" "}
+        {data.verschilAbsoluut >= 0 ? "+" : ""}
+        {data.verschilAbsoluut.toLocaleString("nl-NL")}.
+      </p>
+
+      <details className="mt-4 group">
+        <summary className="cursor-pointer text-sm text-accent hover:underline list-none flex items-center gap-1.5">
+          <svg
+            width="10"
+            height="10"
+            viewBox="0 0 12 12"
+            aria-hidden="true"
+            className="transition-transform group-open:rotate-180"
+          >
+            <path
+              d="M2 4.5l4 4 4-4"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+          Hoe lees ik dit cijfer? Welke vergelijking is gebruikt?
+        </summary>
+        <div className="mt-3 text-xs text-mute leading-relaxed space-y-2 max-w-2xl">
+          <p>
+            <strong className="text-ink">Wat staat hier?</strong> Het aantal
+            asielaanvragen vanaf {eersteMaandLabel} (de eerste volle maand
+            ná de pact-startdatum) opgeteld, vergeleken met dezelfde
+            maanden vorig jaar.
+          </p>
+          <p>
+            <strong className="text-ink">Waarom jaar-op-jaar?</strong>{" "}
+            Asielinstroom is sterk seizoensgebonden — zomer is altijd
+            hoger dan voorjaar. Door dezelfde maanden te vergelijken
+            (juli&apos;26 vs juli&apos;25 enzovoort) valt dat seizoenseffect
+            weg en zie je echt de verandering ten opzichte van het
+            voorgaande jaar. Vergelijken met een maandgemiddelde of een
+            andere maand binnen hetzelfde jaar geeft een misleidend
+            beeld.
+          </p>
+          <p>
+            <strong className="text-ink">Belangrijk:</strong> Een daling
+            betekent <em>niet</em> dat het pact &ldquo;werkt&rdquo;; een
+            stijging niet dat het mislukt. Andere factoren spelen mee —
+            conflicten elders (Oekraïne, Syrië, Soedan), grensbeleid van
+            buurlanden, economische situatie in herkomstlanden. Dit
+            cijfer toont <em>wat er gebeurt</em>, niet <em>waarom</em>.
+          </p>
+          <p>
+            <strong className="text-ink">Bron:</strong>{" "}
+            <a
+              href="https://www.cbs.nl/nl-nl/cijfers/detail/83102NED"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-accent hover:underline"
+            >
+              CBS StatLine 83102NED
+            </a>{" "}
+            (maandelijkse, definitieve cijfers; ~2 maanden vertraging).
+          </p>
+        </div>
+      </details>
+    </section>
+  );
+}
+
+// Eerste volle kalendermaand na de pact-startdatum. Het pact gaat in op
+// 12 juni 2026, dus juli 2026 is de eerste maand die we volledig kunnen
+// vergelijken met het jaar ervoor.
+const PACT_EFFECT_VANAF_MAAND = "2026-07";
+
 export default async function MigratiepactPagina() {
-  const [dossiers, maand, nationaliteiten] = await Promise.all([
+  const [dossiers, maand, nationaliteiten, jaarOpJaar] = await Promise.all([
     getPactDossiers(),
     getMaandInstroom(24),
     getNationaliteitenPerJaar(15),
+    getJaarOpJaarSinds(PACT_EFFECT_VANAF_MAAND),
   ]);
   const week = getWeekInstroom();
   const dagen = dagenTotPactStart();
@@ -437,6 +552,11 @@ export default async function MigratiepactPagina() {
           </p>
         )}
       </section>
+
+      {/* Pact-effect tegel: jaar-op-jaar vergelijking sinds de eerste volle
+          maand na pact-start. Toont zich pas zodra CBS data heeft voor die
+          maand (~2 maanden na de feitelijke maand). */}
+      {jaarOpJaar && <PactEffectTegel data={jaarOpJaar} />}
 
       {/* Nieuwsbrief-CTA */}
       <section className="rounded-lg border border-accent/40 bg-accent/5 px-4 py-4 sm:px-6 sm:py-5">
