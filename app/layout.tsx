@@ -123,6 +123,10 @@ export default async function RootLayout({
               ·{" "}
               <Link href="/steun" className="underline hover:text-ink">
                 Steun de monitor
+              </Link>{" "}
+              ·{" "}
+              <Link href="/audit" className="underline hover:text-ink">
+                Audit
               </Link>
             </p>
             <div className="flex items-center gap-3">

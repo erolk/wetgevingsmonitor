@@ -8,7 +8,11 @@ import { getAlleUitleg } from "./explanations";
 import { getAbonneeStats, type AbonneeStats } from "./subscriptions";
 import { getEmailLog, type EmailLogOverzicht } from "./email-log";
 import { getRunStatus, type RunStatus } from "./run-status";
+import { getAuditRapport as leesAudit, type AuditRapport } from "./audit";
 import { emailMode } from "./email";
+
+// Re-export voor backwards compat: admin-page importeert AuditRapport van hier.
+export type { AuditRapport } from "./audit";
 
 const ZES_MAANDEN_MS = 1000 * 60 * 60 * 24 * 183;
 const SCRAPE_VEROUDERD_DAGEN = 10;
@@ -124,25 +128,6 @@ export type AdminMetrics = {
   tkBereikbaar: boolean;
   audit: AuditRapport | null;
 };
-
-export type AuditRapport = {
-  bijgewerkt: string;
-  totaalTk: number;
-  lopendTk: number;
-  opMonitor: number;
-  dekking: number; // percentage
-  missend: { geenVoortouw: number; andereCommissie: number };
-  andereCommissies: { naam: string; aantal: number }[];
-};
-
-function leesAudit(): AuditRapport | null {
-  try {
-    const p = path.join(process.cwd(), "data", "audit-wetgeving.json");
-    return JSON.parse(fs.readFileSync(p, "utf8")) as AuditRapport;
-  } catch {
-    return null;
-  }
-}
 
 export async function verzamelMetrics(): Promise<AdminMetrics> {
   const [alleWetten, abonnees, apiHealth] = await Promise.all([

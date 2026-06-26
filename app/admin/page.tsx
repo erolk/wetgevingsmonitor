@@ -225,7 +225,7 @@ export default async function AdminDashboard() {
           </p>
         ) : (
           (() => {
-            const a = m.audit;
+            const a = m.audit!;
             const onder90 = a.dekking < 90;
             const onder95 = a.dekking < 95 && !onder90;
             const toon: "ok" | "mid" | "nok" = onder90

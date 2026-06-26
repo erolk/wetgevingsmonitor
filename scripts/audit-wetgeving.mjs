@@ -114,7 +114,9 @@ async function main() {
 
   console.log("Stap 2/3: alle Wetgeving-zaken uit TK Open Data ophalen…");
   const filter = "Verwijderd eq false and Soort eq 'Wetgeving'";
-  const expand = "ZaakActor($select=ActorNaam,Relatie)";
+  const expand =
+    "ZaakActor($select=ActorNaam,Relatie)," +
+    "Besluit($select=BesluitSoort,BesluitTekst,GewijzigdOp,Status)";
   const select = "Id,Nummer,Titel,Soort,Status,Afgedaan,GestartOp";
   const url = `${TK_BASE}/Zaak?$filter=${enc(filter)}&$expand=${enc(expand)}&$select=${select}&$top=250`;
   const alle = await fetchAllPaged(url);
@@ -147,12 +149,24 @@ async function main() {
     perAndereCommissie.set(commissie, (perAndereCommissie.get(commissie) ?? 0) + 1);
   }
 
-  // Status-consistentie check (voor wetten op de site)
-  // We controleren dat geen enkele wet die wij "lopend" tonen, eigenlijk
-  // afgerond zou moeten zijn — en omgekeerd.
-  // Omdat we hier al `lopend = alle.filter(!isAfgerond)` hanteren, kunnen
-  // afgeronde wetten hier niet binnenglippen. We rapporteren wel
-  // hoeveel van `opSite` geen EK-info heeft (mogelijk relevant).
+  // Status-consistentie: voor lopende wetten op de site controleren we of de
+  // bron (TK) intern consistent is. Mismatches die we vlaggen:
+  //   - Eind-besluit "Aangenomen" of "Verworpen" maar Afgedaan=false
+  //   - Afgedaan=true maar geen EK-status in onze scrape (conservatief)
+  const mismatches = [];
+  for (const z of opSite) {
+    const besluiten = z.Besluit ?? [];
+    const eindBesluit = besluiten.find((b) => {
+      const s = (b.BesluitSoort ?? "").toLowerCase();
+      return s.includes("aangenomen") || s.includes("verworpen") || s.includes("ingetrokken");
+    });
+    if (eindBesluit && !z.Afgedaan) {
+      mismatches.push({
+        zaak: z,
+        reden: `Eindbesluit "${eindBesluit.BesluitSoort}" maar zaak nog niet Afgedaan`,
+      });
+    }
+  }
   const opSiteZonderEk = opSite.filter((z) => z.Afgedaan && !ekMap[z.Id]?.gevonden);
 
   // Rapport
@@ -236,8 +250,17 @@ async function main() {
   const outPath = path.join(ROOT, "data", "audit-wetgeving.md");
   await fs.writeFile(outPath, md);
 
-  // Klein JSON-rapport voor het admin-panel. Wordt wél in git gecommit;
-  // de admin-pagina leest 'm en toont een waarschuwing als de dekking zakt.
+  // Compact JSON-rapport voor het admin-panel én voor de publieke /audit-
+  // pagina. Bevat de kerncijfers + per-wet lijsten zodat we de namen kunnen
+  // tonen zonder runtime TK-fetches.
+  const compact = (z, extra = {}) => ({
+    id: z.Id,
+    nummer: z.Nummer,
+    titel: schoonTitel(z.Titel),
+    korteNaam: korteTitel(z.Titel),
+    gestartOp: z.GestartOp ?? null,
+    ...extra,
+  });
   const jsonRapport = {
     bijgewerkt: new Date().toISOString(),
     totaalTk: alle.length,
@@ -253,6 +276,18 @@ async function main() {
     andereCommissies: [...perAndereCommissie.entries()]
       .sort((a, b) => b[1] - a[1])
       .map(([naam, aantal]) => ({ naam, aantal })),
+    mismatchesAantal: mismatches.length,
+    mismatches: mismatches.map((m) => compact(m.zaak, { reden: m.reden })),
+    missendeWetten: [
+      ...geenVoortouw.map((z) =>
+        compact(z, { reden: "Nog geen voortouwcommissie (vroeg stadium)" }),
+      ),
+      ...andereVoortouw.map(({ zaak, commissie }) =>
+        compact(zaak, {
+          reden: `Voortouw: ${commissie} (niet aan een ministerie gekoppeld)`,
+        }),
+      ),
+    ],
   };
   await fs.writeFile(
     path.join(ROOT, "data", "audit-wetgeving.json"),

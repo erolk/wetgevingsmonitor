@@ -1,9 +1,9 @@
 {
-  "bijgewerkt": "2026-06-22T11:58:57.221Z",
-  "totaalTk": 2510,
-  "lopendTk": 151,
-  "opMonitor": 143,
-  "dekking": 94.7,
+  "bijgewerkt": "2026-06-24T15:36:45.203Z",
+  "totaalTk": 2513,
+  "lopendTk": 154,
+  "opMonitor": 146,
+  "dekking": 94.8,
   "missend": {
     "geenVoortouw": 0,
     "andereCommissie": 8
@@ -20,6 +20,74 @@
     {
       "naam": "vaste commissie voor Veiligheid en Justitie (2010-2017)",
       "aantal": 2
+    }
+  ],
+  "mismatchesAantal": 0,
+  "mismatches": [],
+  "missendeWetten": [
+    {
+      "id": "c3aa396a-710f-4729-a636-038713d5e1cf",
+      "nummer": "2026Z09519",
+      "titel": "Wijziging van de Telecommunicatiewet, de Wet informatie-uitwisseling bovengrondse en ondergrondse netten en netwerken, en andere wetten in verband met de uitvoering vanverordening (EU) 2024/1309 van het Europees Parlement en de Raad van 29 april 2024 inzake maatregelen om de kosten van de uitrol van elektronischecommunicatienetwerken met gigabitsnelheden te verlagen, tot wijziging van Verordening (EU) 2015/2120 en tot intrekking van Richtlijn 2014/61/EU",
+      "korteNaam": "Wijziging van de Telecommunicatiewet, de Wet informatie-uitwisseling bovengronds…",
+      "gestartOp": "2026-05-11T00:00:00+02:00",
+      "reden": "Voortouw: vaste commissie voor Digitale Zaken (niet aan een ministerie gekoppeld)"
+    },
+    {
+      "id": "263e9e33-447f-4820-a582-18e7716355f3",
+      "nummer": "2025Z21682",
+      "titel": "Wijziging van de Wet openbare lichamen Bonaire, Sint Eustatius en Saba in verband met de verhoging van het aantal eilandsraadsleden en eilandgedeputeerden (Wet verhoging aantal eilandsraadsleden en eilandgedeputeerden)",
+      "korteNaam": "Wet verhoging aantal eilandsraadsleden en eilandgedeputeerden",
+      "gestartOp": "2025-12-09T00:00:00+01:00",
+      "reden": "Voortouw: vaste commissie voor Koninkrijksrelaties (niet aan een ministerie gekoppeld)"
+    },
+    {
+      "id": "34f73819-1ec6-4f81-a0eb-45406fd83935",
+      "nummer": "2015Z10491",
+      "titel": "Wijziging van de Faillissementswet in verband met de aanwijzing door de rechtbank van een beoogd curator ter bevordering van de afwikkeling van een eventueel faillissement en vergroting van de kansen op voorzetting van een onderneming of van een doorstart van rendabele bedrijfsonderdelen (Wet continuïteit ondernemingen I)",
+      "korteNaam": "Wet continuïteit ondernemingen I",
+      "gestartOp": "2015-06-04T00:00:00+02:00",
+      "reden": "Voortouw: vaste commissie voor Veiligheid en Justitie (2010-2017) (niet aan een ministerie gekoppeld)"
+    },
+    {
+      "id": "8ffffe17-8797-47b1-9635-6cb34146c595",
+      "nummer": "2014Z03888",
+      "titel": "Wijziging van de Wet regulering prostitutie en bestrijding misstanden seksbranche",
+      "korteNaam": "Wijziging van de Wet regulering prostitutie en bestrijding misstanden seksbranch…",
+      "gestartOp": "2014-03-03T00:00:00+01:00",
+      "reden": "Voortouw: vaste commissie voor Veiligheid en Justitie (2010-2017) (niet aan een ministerie gekoppeld)"
+    },
+    {
+      "id": "41534976-d6b2-424f-95c4-6e868496ff17",
+      "nummer": "2026Z07373",
+      "titel": "Regels met betrekking tot de uitlevering voor Aruba, Curaçao en Sint Maarten (Rijkswet uitlevering voor Aruba, Curaçao en Sint Maarten)",
+      "korteNaam": "Rijkswet uitlevering voor Aruba, Curaçao en Sint Maarten",
+      "gestartOp": "2026-04-08T00:00:00+02:00",
+      "reden": "Voortouw: vaste commissie voor Koninkrijksrelaties (niet aan een ministerie gekoppeld)"
+    },
+    {
+      "id": "1a020f23-a081-4b14-bf45-ddfafb885a24",
+      "nummer": "2023Z18184",
+      "titel": "Goedkeuring van het op 28 januari 1981 te Straatsburg tot stand gekomen Verdrag tot bescherming van personen met betrekking tot de geautomatiseerde verwerking van persoonsgegevens (Trb. 1988, 7); van het op 10 oktober 2018 te Straatsburg tot stand gekomen Protocol tot wijziging van het Verdrag tot bescherming van personen met betrekking tot de geautomatiseerde verwerking van persoonsgegevens (Trb. 2018, 201 en Trb. 2023, 54)",
+      "korteNaam": "Trb. 2018, 201 en Trb. 2023, 54",
+      "gestartOp": "2023-10-23T00:00:00+02:00",
+      "reden": "Voortouw: vaste commissie voor Digitale Zaken (niet aan een ministerie gekoppeld)"
+    },
+    {
+      "id": "09620add-6144-4273-9d44-f0c0206b903c",
+      "nummer": "2025Z22654",
+      "titel": "Uitvoering van Verordening (EU) 2024/2847 van het Europees Parlement en de Raad van 23 oktober 2024 betreffende horizontale cyberbeveiligingsvereisten voor producten met digitale elementen en tot wijziging van Verordeningen (EU) nr. 168/2013 en (EU) 2019/1020 en Richtlijn (EU) 2020/1828 (Uitvoeringswet verordening cyberweerbaarheid)",
+      "korteNaam": "Uitvoeringswet verordening cyberweerbaarheid",
+      "gestartOp": "2025-12-22T00:00:00+01:00",
+      "reden": "Voortouw: vaste commissie voor Digitale Zaken (niet aan een ministerie gekoppeld)"
+    },
+    {
+      "id": "201dc6df-b49e-41c0-840c-f1f4bcd19f97",
+      "nummer": "2026Z05206",
+      "titel": "Regeling van grondslagen voor zelfstandige algemene maatregelen van rijksbestuur die hun gelding dienen te behouden (Rijkswet delegatiegrondslagen artikel 38, tweede lid, Statuut voor het Koninkrijk)",
+      "korteNaam": "Rijkswet delegatiegrondslagen artikel 38, tweede lid, Statuut voor het Koninkrijk",
+      "gestartOp": "2026-03-16T00:00:00+01:00",
+      "reden": "Voortouw: vaste commissie voor Koninkrijksrelaties (niet aan een ministerie gekoppeld)"
     }
   ]
 }
