@@ -1,8 +1,33 @@
 {
-  "bijgewerkt": "2026-06-01T11:39:10.642Z",
-  "jaar": 2026,
-  "bron": "https://www.rijksoverheid.nl/documenten/publicaties/2026/01/01/asielinstroom-per-week-in-2026",
+  "bijgewerkt": "2026-06-29T11:03:38.858Z",
+  "jaren": [
+    2026
+  ],
+  "bronnen": [
+    {
+      "jaar": 2026,
+      "url": "https://www.rijksoverheid.nl/documenten/publicaties/2026/01/01/asielinstroom-per-week-in-2026"
+    }
+  ],
   "weken": [
+    {
+      "jaar": 2023,
+      "week": 13,
+      "datum": "2023-04-03",
+      "aantal": 900
+    },
+    {
+      "jaar": 2024,
+      "week": 7,
+      "datum": "2024-02-19",
+      "aantal": 900
+    },
+    {
+      "jaar": 2024,
+      "week": 8,
+      "datum": "2024-02-26",
+      "aantal": 900
+    },
     {
       "jaar": 2026,
       "week": 1,
@@ -35,18 +60,6 @@
     },
     {
       "jaar": 2026,
-      "week": 7,
-      "datum": "2026-02-16",
-      "aantal": 900
-    },
-    {
-      "jaar": 2026,
-      "week": 8,
-      "datum": "2026-02-23",
-      "aantal": 900
-    },
-    {
-      "jaar": 2026,
       "week": 9,
       "datum": "2026-03-02",
       "aantal": 800
@@ -68,12 +81,6 @@
       "week": 12,
       "datum": "2026-03-23",
       "aantal": 1000
-    },
-    {
-      "jaar": 2026,
-      "week": 13,
-      "datum": "2026-03-30",
-      "aantal": 900
     },
     {
       "jaar": 2026,
@@ -109,7 +116,7 @@
       "jaar": 2026,
       "week": 19,
       "datum": "2026-05-11",
-      "aantal": 1000
+      "aantal": 900
     },
     {
       "jaar": 2026,
@@ -122,6 +129,24 @@
       "week": 21,
       "datum": "2026-05-26",
       "aantal": 900
+    },
+    {
+      "jaar": 2026,
+      "week": 22,
+      "datum": "2026-06-01",
+      "aantal": 800
+    },
+    {
+      "jaar": 2026,
+      "week": 23,
+      "datum": "2026-06-08",
+      "aantal": 900
+    },
+    {
+      "jaar": 2026,
+      "week": 24,
+      "datum": "2026-06-22",
+      "aantal": 970
     }
   ]
 }
