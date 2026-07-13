@@ -1,12 +1,12 @@
 {
-  "bijgewerkt": "2026-07-06T10:26:21.427Z",
-  "totaalTk": 2523,
-  "lopendTk": 154,
-  "opMonitor": 146,
-  "dekking": 94.8,
+  "bijgewerkt": "2026-07-13T09:30:50.092Z",
+  "totaalTk": 2532,
+  "lopendTk": 146,
+  "opMonitor": 139,
+  "dekking": 95.2,
   "missend": {
     "geenVoortouw": 0,
-    "andereCommissie": 8
+    "andereCommissie": 7
   },
   "andereCommissies": [
     {
@@ -14,11 +14,11 @@
       "aantal": 3
     },
     {
-      "naam": "vaste commissie voor Koninkrijksrelaties",
-      "aantal": 3
+      "naam": "vaste commissie voor Veiligheid en Justitie (2010-2017)",
+      "aantal": 2
     },
     {
-      "naam": "vaste commissie voor Veiligheid en Justitie (2010-2017)",
+      "naam": "vaste commissie voor Koninkrijksrelaties",
       "aantal": 2
     }
   ],
@@ -32,14 +32,6 @@
       "korteNaam": "Wijziging van de Telecommunicatiewet, de Wet informatie-uitwisseling bovengronds…",
       "gestartOp": "2026-05-11T00:00:00+02:00",
       "reden": "Voortouw: vaste commissie voor Digitale Zaken (niet aan een ministerie gekoppeld)"
-    },
-    {
-      "id": "263e9e33-447f-4820-a582-18e7716355f3",
-      "nummer": "2025Z21682",
-      "titel": "Wijziging van de Wet openbare lichamen Bonaire, Sint Eustatius en Saba in verband met de verhoging van het aantal eilandsraadsleden en eilandgedeputeerden (Wet verhoging aantal eilandsraadsleden en eilandgedeputeerden)",
-      "korteNaam": "Wet verhoging aantal eilandsraadsleden en eilandgedeputeerden",
-      "gestartOp": "2025-12-09T00:00:00+01:00",
-      "reden": "Voortouw: vaste commissie voor Koninkrijksrelaties (niet aan een ministerie gekoppeld)"
     },
     {
       "id": "34f73819-1ec6-4f81-a0eb-45406fd83935",
