@@ -1,11 +1,5 @@
-import Link from "next/link";
 import type { Metadata } from "next";
-import {
-  getPactDossiers,
-  dagenTotPactStart,
-  PACT_START_ISO,
-  type PactDossier,
-} from "@/lib/migratiepact";
+import { dagenTotPactStart, PACT_START_ISO } from "@/lib/migratiepact";
 import { getWeekInstroom, type InstroomWeek } from "@/lib/asielinstroom";
 import {
   getMaandInstroom,
@@ -14,7 +8,6 @@ import {
   type MaandInstroom,
   type JaarOpJaarVergelijking,
 } from "@/lib/asielcijfers";
-import type { StemUitslag } from "@/lib/stemming";
 import { SITE_URL } from "@/lib/site";
 import { NieuwsbriefForm } from "@/components/NieuwsbriefForm";
 
@@ -182,192 +175,161 @@ function StaafGrafiek({
   );
 }
 
-function splitFracties(uitslag: StemUitslag) {
-  const voor = uitslag.perFractie
-    .filter((f) => f.voor > f.tegen)
-    .map((f) => f.fractie);
-  const tegen = uitslag.perFractie
-    .filter((f) => f.tegen > f.voor)
-    .map((f) => f.fractie);
-  const anders = uitslag.perFractie
-    .filter((f) => f.voor === f.tegen)
-    .map((f) => f.fractie);
-  return { voor, tegen, anders };
-}
+type PactUitlegItem = {
+  vraag: string;
+  kortAntwoord: string;
+  detail: string;
+  bronnen: { label: string; url: string }[];
+  laag: "EU-pact" | "Nederlandse wet" | "EU-pact + Nederlandse wet";
+};
 
-function StemBalk({ uitslag }: { uitslag: StemUitslag }) {
-  const totaal = Math.max(1, uitslag.voor + uitslag.tegen + uitslag.onthouden);
-  const pct = (n: number) => `${(n / totaal) * 100}%`;
-  const { voor, tegen, anders } = splitFracties(uitslag);
-  return (
-    <div className="mt-2">
-      <div className="flex h-2.5 w-full overflow-hidden rounded-full bg-line">
-        <div className="bg-emerald-500" style={{ width: pct(uitslag.voor) }} />
-        <div className="bg-rose-500" style={{ width: pct(uitslag.tegen) }} />
-        <div
-          className="bg-zinc-400"
-          style={{ width: pct(uitslag.onthouden) }}
-        />
-      </div>
-      <div className="mt-1.5 flex flex-wrap gap-x-4 gap-y-0.5 text-xs">
-        <span className="text-emerald-700 font-medium">
-          Voor {uitslag.voor}
-        </span>
-        <span className="text-rose-700 font-medium">Tegen {uitslag.tegen}</span>
-        {uitslag.onthouden > 0 && (
-          <span className="text-mute">Onthouden {uitslag.onthouden}</span>
-        )}
-        <span className="text-mute">
-          {uitslag.isHoofdelijk ? "hoofdelijke stemming" : "stemming per fractie"}
-        </span>
-      </div>
-      <div className="mt-2 space-y-1 text-xs">
-        {voor.length > 0 && (
-          <p>
-            <span className="text-emerald-700 font-medium">Voor:</span>{" "}
-            <span className="text-ink">{voor.join(", ")}</span>
-          </p>
-        )}
-        {tegen.length > 0 && (
-          <p>
-            <span className="text-rose-700 font-medium">Tegen:</span>{" "}
-            <span className="text-ink">{tegen.join(", ")}</span>
-          </p>
-        )}
-        {anders.length > 0 && (
-          <p className="text-mute">
-            Overig/onbeslist: {anders.join(", ")}
-          </p>
-        )}
-      </div>
-    </div>
-  );
-}
+const PACT_UITLEG: PactUitlegItem[] = [
+  {
+    vraag: "Heeft Nederland asielzoekers “afgekocht”?",
+    laag: "EU-pact",
+    kortAntwoord:
+      "Voor de solidariteitscyclus van 12 juni t/m 31 december 2026 was Nederlands aandeel 1.095 overnames uit landen als Italië en Griekenland. Nederland koos ervoor daarvoor te betalen: €21,9 miljoen — zo'n €20.000 per persoon, de vaste omrekenkoers uit de EU-verordening.",
+    detail:
+      "Het pact verplicht elke lidstaat jaarlijks solidair te zijn met landen aan de EU-buitengrens, via drie gelijkwaardige opties: (1) asielzoekers overnemen, (2) een financiële bijdrage betalen, of (3) capaciteit/personeel leveren. De EU-verordening zet de omrekenkoers vast op €20.000 per plek (€600 miljoen gedeeld door 30.000 relocaties). Voor de eerste cyclus (2026) kwam de EU-brede pool uit op 21.000 plekken oftewel €420 miljoen — lager dan het wettelijke minimum, omdat minder landen relocatie nodig hadden. Nederland koos voor de financiële optie; het bedrag was aanvankelijk €33 miljoen maar kwam na verrekening met eerdere Dublin-zaken uit op €21,9 miljoen. Dat geld gaat naar opvang- en grenscapaciteit in landen als Italië en Griekenland, niet naar een algemene 'afkoopsom' voor alle asielzoekers. Het mechanisme loopt overigens achter: begin 2026 was pas 8.921 van de 21.000 toegezegde plekken echt gerealiseerd en ongeveer €116 miljoen van de €420 miljoen daadwerkelijk overgemaakt. Hongarije en Slowakije weigeren volledig mee te doen.",
+    bronnen: [
+      {
+        label: "Kamerstuk 32317 — verslag schriftelijk overleg JBZ-Raad",
+        url: "https://open.overheid.nl/documenten/6e5d71d4-25d7-4abc-b798-59b29c170a7c/file",
+      },
+      {
+        label: "Kamerstuk 19637, nr. 3503 — verslag commissiedebat (9 jan 2026)",
+        url: "https://www.tweedekamer.nl/downloads/document?id=2025D51506",
+      },
+      {
+        label: "Verordening (EU) 2024/1351, art. 12 en 56",
+        url: "https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:32024R1351",
+      },
+    ],
+  },
+  {
+    vraag: "Krijgen asielzoekers nu sneller een verblijfsvergunning?",
+    laag: "EU-pact",
+    kortAntwoord:
+      "Niet per se — het is vooral een snellere procedure réchting afwijzing en terugkeer, niet richting een vergunning. De versnelde grensprocedure geldt verplicht voor mensen uit landen waar EU-breed 20% of minder van de aanvragen wordt ingewilligd.",
+    detail:
+      "Voor die groep moet de beslissing én het beroep samen binnen 12 weken zijn afgerond (16 weken bij overplaatsing naar een andere lidstaat). Lukt de daadwerkelijke terugkeer daarna niet, dan loopt de gewone terugkeerprocedure door. Dit is dus bedoeld om snel en definitief 'nee' te kunnen zeggen tegen aanvragen die statistisch gezien weinig kans maken — niet om vergunningen sneller te verstrekken. Alleenstaande minderjarigen mogen niet in de grensprocedure worden geplaatst, behalve bij een risico voor de nationale veiligheid; ook medische redenen of een tekort aan opvangcapaciteit sluiten de grensprocedure uit. Nederland voert dit uit via de Uitvoerings- en implementatiewet Asiel- en migratiepact (dossier 36871, sinds 10 juni 2026 in werking); de Koninklijke Marechaussee doet de controle aan de grens.",
+    bronnen: [
+      {
+        label: "Verordening (EU) 2024/1348, art. 42, 45, 51 en 53",
+        url: "https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:32024R1348",
+      },
+      {
+        label: "Kamerstukdossier 36871 — Uitvoerings- en implementatiewet",
+        url: "https://www.eerstekamer.nl/wetsvoorstel/36871_uitvoerings_en",
+      },
+    ],
+  },
+  {
+    vraag:
+      "Kunnen asielzoekers minder snel gezinsleden (nareizigers) naar Nederland halen?",
+    laag: "Nederlandse wet",
+    kortAntwoord:
+      "Dat zit niet in het EU-migratiepact zelf — de minister zei dat letterlijk in de Tweede Kamer. Wel is er een aparte, Nederlandse wet die nareis beperkt: de Wet invoering tweestatusstelsel, al sinds 9 juni 2026 van kracht (drie dagen vóór het EU-pact zelf inging).",
+    detail:
+      "Die wet maakt onderscheid tussen een a-status (vluchtelingen) en een b-status (subsidiaire bescherming, bijvoorbeeld mensen die vluchten voor algemeen oorlogsgeweld zonder persoonlijke vervolging). Mensen met b-status moeten voortaan 2 jaar wachten, over voldoende eigen inkomen beschikken en eigen woonruimte hebben (geen opvanglocatie) voordat gezinsleden mogen overkomen. Ook wordt de kring van 'gezinsleden' smaller: vooral de getrouwde partner en minderjarige kinderen tellen nog mee, ongehuwde partners en meerderjarige kinderen in principe niet meer. Los daarvan verkort dezelfde wet de tijdelijke asielvergunning van 5 naar 3 jaar en schaft de permanente asielvergunning af. Dit is dus nadrukkelijk Nederlands beleid bovenop het pact, geen EU-verplichting.",
+    bronnen: [
+      {
+        label: "Kamerstuk 19637, nr. 3503 — minister: “nareis-voorwaarden zitten niet in het pact”",
+        url: "https://www.tweedekamer.nl/downloads/document?id=2025D51506",
+      },
+      {
+        label: "Kamerstukdossier 36703 — Wet invoering tweestatusstelsel",
+        url: "https://www.eerstekamer.nl/wetsvoorstel/36703_wet_invoering",
+      },
+    ],
+  },
+  {
+    vraag:
+      "Kunnen asielzoekers geen rechtszaak meer aanspannen als de procedure te lang duurt?",
+    laag: "EU-pact + Nederlandse wet",
+    kortAntwoord:
+      "Twee verschillende dingen lopen hier vaak door elkaar. Beroep aantekenen blijft altijd mogelijk — wat verandert, is hoe snel dat moet en of het de uitzetting automatisch opschort.",
+    detail:
+      "(1) EU-pact: beroepstermijnen worden korter — 5 tot 10 dagen bij een versnelde procedure, anders 2 weken tot 1 maand. Bij versnelde of grensprocedures schort een beroep de uitzetting niet meer automatisch op; je moet dan apart vragen om te mogen blijven tot de rechter heeft beslist. Bij een beroep zonder reële kans op succes mag gratis rechtsbijstand bovendien worden geweigerd. (2) Los daarvan bestaat er in Nederland al sinds 2025 — dus vóór het pact en er los van — geen dwangsom (boete) meer die de IND moest betalen bij een te trage beslissing. Het recht om zelf naar de rechter te stappen wegens 'niet tijdig beslissen' bestaat echter gewoon nog; alleen de automatische geldboete voor de IND is geschrapt, met kwartaalrapportages als vervanging.",
+    bronnen: [
+      {
+        label: "Verordening (EU) 2024/1348, art. 17 en 67–69",
+        url: "https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:32024R1348",
+      },
+      {
+        label: "Kamerstukdossier 35749 — Wet herziening regels niet tijdig beslissen",
+        url: "https://www.eerstekamer.nl/wetsvoorstel/35749_wet_herziening_regels_niet",
+      },
+    ],
+  },
+];
 
-function tkUitkomst(besluitSoort: string | null): {
-  label: string;
-  ok: boolean | null;
-} {
-  if (!besluitSoort) return { label: "nog niet gestemd", ok: null };
-  if (/aangenomen/i.test(besluitSoort)) return { label: "aangenomen", ok: true };
-  if (/verworpen/i.test(besluitSoort)) return { label: "verworpen", ok: false };
-  return { label: besluitSoort, ok: null };
-}
-
-function ekUitkomst(d: PactDossier): { label: string; toon: "ok" | "nok" | "mid" } {
-  switch (d.fase) {
-    case "aangenomen_ek":
-    case "wet":
-      return { label: d.ekLabel ?? "aangenomen", toon: "ok" };
-    case "verworpen":
-      return { label: "verworpen", toon: "nok" };
-    case "ingetrokken":
-      return { label: "ingetrokken", toon: "nok" };
-    case "in_eerste_kamer":
-      return { label: d.ekLabel ?? "in behandeling", toon: "mid" };
-    default:
-      return { label: "nog niet in de Eerste Kamer", toon: "mid" };
-  }
-}
-
-function Chip({
-  children,
-  toon,
-}: {
-  children: React.ReactNode;
-  toon: "ok" | "nok" | "mid";
-}) {
+function LaagBadge({ laag }: { laag: PactUitlegItem["laag"] }) {
   const kleur =
-    toon === "ok"
-      ? "bg-emerald-100 text-emerald-900"
-      : toon === "nok"
-        ? "bg-rose-100 text-rose-900"
-        : "bg-amber-100 text-amber-900";
+    laag === "EU-pact"
+      ? "bg-indigo-100 text-indigo-900"
+      : laag === "Nederlandse wet"
+        ? "bg-amber-100 text-amber-900"
+        : "bg-zinc-200 text-zinc-800";
   return (
     <span
-      className={`inline-block rounded-full px-2 py-0.5 text-xs font-medium ${kleur}`}
+      className={`inline-block shrink-0 rounded-full px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide ${kleur}`}
     >
-      {children}
+      {laag}
     </span>
   );
 }
 
-function DossierKaart({ d }: { d: PactDossier }) {
-  const tk = tkUitkomst(d.tkBesluitSoort);
-  const ek = ekUitkomst(d);
+function PactUitlegKaart({ item }: { item: PactUitlegItem }) {
   return (
-    <div className="rounded-lg border border-line bg-surface px-4 py-4">
-      <div className="flex items-start justify-between gap-3">
-        <div className="min-w-0">
-          <h3 className="font-serif text-base sm:text-lg text-ink leading-tight">
-            {d.korteNaam}
+    <details className="group rounded-lg border border-line bg-surface px-4 py-4">
+      <summary className="cursor-pointer list-none">
+        <div className="flex items-start justify-between gap-3">
+          <h3 className="font-serif text-base sm:text-lg text-ink leading-snug">
+            {item.vraag}
           </h3>
-          <p className="text-xs text-mute mt-0.5">
-            Dossier {d.nummer} · {d.titel}
-          </p>
+          <svg
+            width="12"
+            height="12"
+            viewBox="0 0 12 12"
+            aria-hidden="true"
+            className="mt-1.5 shrink-0 text-mute transition-transform group-open:rotate-180"
+          >
+            <path
+              d="M2 4.5l4 4 4-4"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
         </div>
-        <span className="text-[10px] font-mono uppercase tracking-wider text-mute shrink-0 pt-1">
-          {d.rol === "Uitvoeringswet pact" ? "PACT" : "context"}
-        </span>
+        <div className="mt-1.5">
+          <LaagBadge laag={item.laag} />
+        </div>
+        <p className="mt-2 text-sm text-ink leading-relaxed">
+          {item.kortAntwoord}
+        </p>
+      </summary>
+      <div className="mt-3 border-t border-line/70 pt-3">
+        <p className="text-sm text-mute leading-relaxed">{item.detail}</p>
+        <ul className="mt-3 space-y-1">
+          {item.bronnen.map((b) => (
+            <li key={b.url}>
+              <a
+                href={b.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[11px] text-accent hover:underline"
+              >
+                Bron: {b.label} →
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
-
-      <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-3">
-        {/* Tweede Kamer */}
-        <div className="rounded-md border border-line/70 bg-paper px-3 py-2.5">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-medium text-ink">Tweede Kamer</span>
-            {tk.ok !== null ? (
-              <Chip toon={tk.ok ? "ok" : "nok"}>{tk.label}</Chip>
-            ) : (
-              <span className="text-xs text-mute">{tk.label}</span>
-            )}
-          </div>
-          {d.tkStemming ? (
-            <StemBalk uitslag={d.tkStemming} />
-          ) : (
-            <p className="mt-2 text-xs text-mute">
-              Nog geen eindstemming in de Tweede Kamer.
-            </p>
-          )}
-          {d.tkDatum && (
-            <p className="mt-2 text-[11px] text-mute">
-              Stemming: {fmtDatum(d.tkDatum)}
-            </p>
-          )}
-        </div>
-
-        {/* Eerste Kamer */}
-        <div className="rounded-md border border-line/70 bg-paper px-3 py-2.5">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-medium text-ink">Eerste Kamer</span>
-            <Chip toon={ek.toon}>{ek.label}</Chip>
-          </div>
-          <p className="mt-2 text-xs text-mute">
-            Uitkomst per Kamer. Stemmen per partij in de Eerste Kamer staan
-            (nog) niet in open data; daarom tonen we hier de uitkomst.
-          </p>
-          {d.ekUrl && (
-            <a
-              href={d.ekUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-1.5 inline-block text-[11px] text-accent hover:underline"
-            >
-              Bron: eerstekamer.nl →
-            </a>
-          )}
-        </div>
-      </div>
-
-      {d.zaakId && (
-        <Link
-          href={`/wet/${d.zaakId}`}
-          className="mt-3 inline-block text-xs text-accent hover:underline"
-        >
-          Volledige tijdlijn en stemmingen →
-        </Link>
-      )}
-    </div>
+    </details>
   );
 }
 
@@ -488,19 +450,13 @@ function PactEffectTegel({ data }: { data: JaarOpJaarVergelijking }) {
 const PACT_EFFECT_VANAF_MAAND = "2026-07";
 
 export default async function MigratiepactPagina() {
-  const [dossiers, maand, nationaliteiten, jaarOpJaar] = await Promise.all([
-    getPactDossiers(),
+  const [maand, nationaliteiten, jaarOpJaar] = await Promise.all([
     getMaandInstroom(24),
     getNationaliteitenPerJaar(15),
     getJaarOpJaarSinds(PACT_EFFECT_VANAF_MAAND),
   ]);
   const week = getWeekInstroom();
   const dagen = dagenTotPactStart();
-
-  const pactDossier = dossiers.find((d) => d.rol === "Uitvoeringswet pact");
-  const contextDossiers = dossiers.filter(
-    (d) => d.rol === "Nationaal asielpakket",
-  );
 
   // Week-trend
   const weken = week?.weken ?? [];
@@ -691,35 +647,22 @@ export default async function MigratiepactPagina() {
         </div>
       </section>
 
-      {/* Wetgeving */}
+      {/* Wat betekent het pact voor Nederland */}
       <section>
         <h2 className="font-serif text-2xl mb-1">
-          Wetgeving & stemmingen
+          Wat betekent het pact voor Nederland?
         </h2>
         <p className="text-sm text-mute mb-4 max-w-2xl">
-          De Nederlandse uitvoeringswet van het pact en het bijbehorende
-          asielpakket: waar het ligt in het proces en wie er voor en tegen
-          stemde.
+          Vier vragen die vaak door elkaar lopen in het publieke debat — met
+          telkens het onderscheid tussen wat het <strong>EU-pact zelf</strong>{" "}
+          regelt en wat een <strong>losse Nederlandse wet</strong> ernaast
+          doet. Klik een vraag open voor de details en bronnen.
         </p>
-
-        {pactDossier && (
-          <div className="mb-4">
-            <DossierKaart d={pactDossier} />
-          </div>
-        )}
-
-        {contextDossiers.length > 0 && (
-          <>
-            <h3 className="text-sm font-medium text-mute mb-2">
-              Nationaal asielpakket (context)
-            </h3>
-            <div className="grid grid-cols-1 gap-3">
-              {contextDossiers.map((d) => (
-                <DossierKaart key={d.nummer} d={d} />
-              ))}
-            </div>
-          </>
-        )}
+        <div className="space-y-3">
+          {PACT_UITLEG.map((item) => (
+            <PactUitlegKaart key={item.vraag} item={item} />
+          ))}
+        </div>
       </section>
 
       {/* Nationaliteiten */}
