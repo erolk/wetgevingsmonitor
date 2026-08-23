@@ -59,12 +59,17 @@ const FAQ: { vraag: string; antwoord: string }[] = [
   {
     vraag: "Wanneer gaat het EU-migratiepact in?",
     antwoord:
-      "De hoofdonderdelen van het EU-migratiepact zijn van toepassing vanaf 12 juni 2026. De verordeningen traden in werking op 11 juni 2024, met een overgangstermijn van twee jaar.",
+      "De hoofdonderdelen van het EU-migratiepact zijn van toepassing vanaf 12 juni 2026 — dat viel in week 24 van 2026. De verordeningen traden in werking op 11 juni 2024, met een overgangstermijn van twee jaar.",
   },
   {
     vraag: "Welke Nederlandse wet hoort bij het migratiepact?",
     antwoord:
       "Het hoofddossier is de Uitvoerings- en implementatiewet Asiel- en migratiepact (Kamerstukdossier 36871). Daarnaast loopt een nationaal asielpakket: de Wet invoering tweestatusstelsel (36703), de Asielnoodmaatregelenwet (36704) en een novelle (36855).",
+  },
+  {
+    vraag: "Wat telt mee in het wekelijkse asielinstroom-cijfer?",
+    antwoord:
+      "Het weekcijfer van de Rijksoverheid is een optelsom van vijf categorieën: eerste asielaanvragen, herhaalde asielaanvragen, hervestiging, herplaatsing én nareizigers (gezinsleden die achteraf overkomen naar iemand met een verblijfsvergunning). Het is dus geen zuiver cijfer van 'nieuwe asielzoekers die net zijn aangekomen' — nareizigers en herhaalde aanvragen tellen gewoon mee. Het CBS-maandcijfer hieronder telt fijnmaziger per categorie en is de betrouwbaardere bron voor uitsplitsingen.",
   },
   {
     vraag: "Waar komen de cijfers vandaan?",
@@ -581,8 +586,10 @@ export default async function MigratiepactPagina() {
         <h2 className="font-serif text-2xl mb-1">Asielinstroom</h2>
         <p className="text-sm text-mute mb-4 max-w-2xl">
           Per week (indicatief, afgeronde cijfers van de Rijksoverheid) en per
-          maand (CBS, definitiever). Staven vanaf {PACT_START_LABEL} zijn
-          gemarkeerd zodra het pact loopt.
+          maand (CBS, definitiever). Staven vanaf {PACT_START_LABEL} (week 24)
+          zijn gemarkeerd zodra het pact loopt. Het weekcijfer telt eerste én
+          herhaalde asielaanvragen, hervestiging, herplaatsing en nareizigers
+          bij elkaar op — zie de veelgestelde vragen hieronder voor details.
         </p>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
