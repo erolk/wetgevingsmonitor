@@ -69,6 +69,28 @@ export default async function WetDetail({ params }: Params) {
         new Date(a.Datum as string).getTime(),
     );
 
+  // De indiening (Zaak.GestartOp) is geen Activiteit maar wél de eerste stap in
+  // de wetgevingsprocedure (zoals tweedekamer.nl die toont). We voegen 'm als
+  // synthetische entry toe zodat de tijdlijn met de indieningsdatum begint.
+  type ActiviteitEntry = ActiviteitType;
+  const indieningEntry: ActiviteitEntry | null = zaak.GestartOp
+    ? {
+        Id: `indiening-${zaak.Id}`,
+        Datum: zaak.GestartOp,
+        Soort: t.timelineIndiening,
+        Onderwerp: null,
+        Status: null,
+        Aanvangstijd: null,
+        Eindtijd: null,
+        Locatie: null,
+      }
+    : null;
+  const tijdlijn: ActiviteitEntry[] =
+    indieningEntry &&
+    !activiteiten.some((a) => a.Datum?.slice(0, 10) === zaak.GestartOp?.slice(0, 10) && (a.Soort ?? "").toLowerCase().includes("indien"))
+      ? [...activiteiten, indieningEntry]
+      : activiteiten;
+
   const besluiten = (zaak.Besluit ?? []).sort(
     (a, b) =>
       new Date(b.GewijzigdOp ?? 0).getTime() -
@@ -314,11 +336,11 @@ export default async function WetDetail({ params }: Params) {
 
       <section>
         <h2 className="font-serif text-xl mb-3">{t.timelineTitle}</h2>
-        {activiteiten.length === 0 ? (
+        {tijdlijn.length === 0 ? (
           <p className="text-sm text-mute">{t.timelineEmpty}</p>
         ) : (
           <ol className="border-l border-line ml-2 space-y-5">
-            {activiteiten.map((a) => {
+            {tijdlijn.map((a) => {
               const dbm = debatMatches.get(a.Id);
               return (
                 <li key={a.Id} className="relative pl-5">
