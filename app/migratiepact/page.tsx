@@ -180,7 +180,11 @@ type PactUitlegItem = {
   kortAntwoord: string;
   detail: string;
   bronnen: { label: string; url: string }[];
-  laag: "EU-pact" | "Nederlandse wet" | "EU-pact + Nederlandse wet";
+  laag:
+    | "EU-pact"
+    | "Nederlandse wet"
+    | "EU-pact + Nederlandse wet"
+    | "Nederlands besluit";
 };
 
 const PACT_UITLEG: PactUitlegItem[] = [
@@ -262,6 +266,128 @@ const PACT_UITLEG: PactUitlegItem[] = [
       },
     ],
   },
+  {
+    vraag: "Wat checkt de grenswacht bij aankomst? (screening)",
+    laag: "EU-pact",
+    kortAntwoord:
+      "Iedereen die illegaal de EU-buitengrens oversteekt of aan de grens asiel aanvraagt, moet eerst een screening ondergaan: identiteit, een check in veiligheidsdatabanken, een gezondheidscheck en een kwetsbaarheidscheck (vooral voor minderjarigen). Aan de grens moet dat binnen 7 dagen; op het grondgebied — zoals in Nederland meestal het geval is — binnen 3 dagen.",
+    detail:
+      "Nederland heeft nauwelijks een landgrens waar mensen de EU binnenkomen, dus in de praktijk gaat het vooral om aankomst via Schiphol en om screening op het grondgebied. Nederland heeft de Koninklijke Marechaussee aangewezen als screeningsautoriteit aan de grens (locatie: Schiphol), en de IND als screeningsautoriteit op het grondgebied (locatie: Ter Apel). Screening is nieuw als uniform, aan een wettelijke termijn gebonden EU-proces; Nederland deed al vergelijkbare checks (de zogeheten OVA-fase), maar niet volgens deze vaste Europese regels.",
+    bronnen: [
+      {
+        label: "Verordening (EU) 2024/1356 — Screeningsverordening",
+        url: "https://eur-lex.europa.eu/eli/reg/2024/1356/oj",
+      },
+      {
+        label: "Staatscourant 2026, 17856 — aanwijzing KMar/IND als screeningsautoriteit",
+        url: "https://zoek.officielebekendmakingen.nl/stcrt-2026-17856.html",
+      },
+    ],
+  },
+  {
+    vraag: "Worden er nu meer vingerafdrukken en gezichtsfoto's opgeslagen?",
+    laag: "EU-pact",
+    kortAntwoord:
+      "Ja. De minimumleeftijd voor verplichte vingerafdrukken gaat omlaag van 14 naar 6 jaar, en naast vingerafdrukken wordt nu ook een gezichtsopname vastgelegd. Ook worden meer categorieën mensen geregistreerd, zoals hervestigde personen en mensen die via het solidariteitsmechanisme naar een ander land zijn overgebracht.",
+    detail:
+      "Dit gaat over Eurodac, de centrale Europese databank waarin lidstaten elkaars asielaanvragen en biometrische gegevens kunnen inzien — zo is te controleren of iemand al in een ander EU-land een aanvraag deed. Kinderen vanaf 6 jaar moeten voortaan door speciaal getraind personeel en onder begeleiding vingerafdrukken laten afnemen. Hoe lang de verschillende categorieën gegevens precies bewaard blijven, verschilt per situatie; dat konden we niet met genoeg zekerheid vaststellen om hier een hard getal te noemen.",
+    bronnen: [
+      {
+        label: "Verordening (EU) 2024/1358 — Eurodac",
+        url: "https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:32024R1358",
+      },
+      {
+        label: "EUR-Lex samenvatting Eurodac (nieuwe vs. oude regels)",
+        url: "https://eur-lex.europa.eu/EN/legal-content/summary/eurodac-database-for-asylum-and-migration-management-from-2026.html",
+      },
+    ],
+  },
+  {
+    vraag: "Verandert er iets aan werken, school en opvang tijdens de procedure?",
+    laag: "EU-pact + Nederlandse wet",
+    kortAntwoord:
+      "Ja, en dat is deels een Nederlandse keuze bovenop het EU-minimum. Kinderen moeten voortaan binnen 2 maanden (was 3) naar school. Nederland verkort bovendien de wachttijd voordat asielzoekers mogen werken van 6 naar 3 maanden voor kansrijke aanvragen — maar mensen uit veilige landen van herkomst mogen straks juist helemaal niet meer werken tijdens hun procedure. Nederland moet daarnaast 211 mensen tegelijk door de versnelde grensprocedure kunnen laten gaan.",
+    detail:
+      "De EU-richtlijn stelt als ondergrens dat asielzoekers uiterlijk 6 maanden na registratie van hun aanvraag toegang tot de arbeidsmarkt moeten krijgen (dat was 9 maanden). Nederland gaat daar dus verder in dan verplicht is: de wachttijd wordt 3 maanden voor mensen met een kansrijke aanvraag, terwijl mensen wier aanvraag onder de versnelde grensprocedure valt niet mogen werken. Ook de eerdere '24-weken-eis' (maximaal 24 weken werken per jaar) verdwijnt — uitvoeringsinstantie UWV paste die regel na een rechterlijke uitspraak eind 2023 al niet meer toe, dus dit is vooral het officieel vastleggen van bestaande praktijk. De school- en capaciteitscijfers komen rechtstreeks van de Rijksoverheid.",
+    bronnen: [
+      {
+        label: "Richtlijn (EU) 2024/1346 — Opvangrichtlijn (herschikking)",
+        url: "https://eur-lex.europa.eu/eli/dir/2024/1346/oj/eng",
+      },
+      {
+        label: "Rijksoverheid — Nieuwe Europese regels voor asiel",
+        url: "https://www.rijksoverheid.nl/onderwerpen/asielbeleid/nieuwe-europese-regels-voor-asiel",
+      },
+      {
+        label: "Internetconsultatie BuWav/RuWav — 3-maandentermijn werk",
+        url: "https://www.internetconsultatie.nl/aanpassinglagereregelgevingtoegangtotdearbeidsmarktvoorasielzoekers/b1",
+      },
+    ],
+  },
+  {
+    vraag: "Bepaalt de EU nu ook precies wie bescherming krijgt?",
+    laag: "EU-pact",
+    kortAntwoord:
+      "De EU-regels over wie recht heeft op vluchtelingenstatus of op subsidiaire bescherming worden verder geharmoniseerd. Nieuw is ook een Europees geregelde toets of iemand net zo goed veilig kan zijn in een ander deel van zijn eigen land (het 'binnenlands vestigingsalternatief') voordat bescherming wordt toegekend.",
+    detail:
+      "Deze verordening legt vooral vast en verduidelijkt wat via rechtspraak van het Europees Hof van Justitie en de bestaande IND-praktijk al gangbaar was, eerder dan dat het de uitkomst van een gemiddelde Nederlandse asielbeoordeling verandert. Het binnenlands vestigingsalternatief is wel een concreet nieuw element: bescherming kan worden geweigerd als iemand elders in het eigen land aantoonbaar, blijvend en effectief veilig zou zijn, en het gezag dat dat gebied beheerst daar daadwerkelijk controle over heeft.",
+    bronnen: [
+      {
+        label: "Verordening (EU) 2024/1347 — Kwalificatieverordening",
+        url: "https://eur-lex.europa.eu/eli/reg/2024/1347/oj/eng",
+      },
+    ],
+  },
+  {
+    vraag: "Wat gebeurt er bij een 'asielcrisis'?",
+    laag: "EU-pact",
+    kortAntwoord:
+      "Als de Raad van de EU een asielcrisis erkent (bijvoorbeeld een plotselinge, grote toestroom), mag een lidstaat tijdelijk van de gewone regels afwijken: de grensprocedure mag tot 6 weken langer duren, en de termijn om een aanvraag te registreren gaat van 5 dagen naar maximaal 4 weken. Dit mechanisme is, voor zover bekend, nog door geen enkel land ingeroepen.",
+    detail:
+      "Een lidstaat moet dit eerst aanvragen bij de Europese Commissie, die de situatie beoordeelt; de Raad van de EU beslist vervolgens welke afwijkingen en welke extra EU-solidariteit (herplaatsing, geld, capaciteit) worden toegekend. Dit is dus een noodklep die alleen bij een formeel erkende crisis in werking treedt, niet een regel die nu al standaard geldt.",
+    bronnen: [
+      {
+        label: "Verordening (EU) 2024/1359 — Crisis- en overmachtverordening",
+        url: "https://eur-lex.europa.eu/EN/legal-content/summary/eu-migration-and-asylum-policy-situations-of-crisis-and-force-majeure.html",
+      },
+    ],
+  },
+  {
+    vraag: "Heeft Nederland nog een eigen lijst met veilige landen?",
+    laag: "EU-pact",
+    kortAntwoord:
+      "Nee. Nederland had een eigen nationale lijst met veilige landen van herkomst; die is afgeschaft. Sinds 12 juni 2026 geldt in plaats daarvan één Europese lijst, met onder andere Bangladesh, Colombia, Egypte, Kosovo, India, Marokko en Tunesië, plus de EU-kandidaat-lidstaten (Oekraïne uitgezonderd).",
+    detail:
+      "Aanvragen van mensen uit een land op deze lijst kunnen versneld worden behandeld (zie de vraag hierboven over de grensprocedure), omdat het land in de regel als veilig geldt. De EU-lijst zelf komt niet uit het oorspronkelijke migratiepact-pakket van mei 2024, maar uit een aparte politieke afspraak tussen de Raad en het Europees Parlement van 18 december 2025.",
+    bronnen: [
+      {
+        label: "Rijksoverheid — lijst van veilige landen van herkomst",
+        url: "https://www.rijksoverheid.nl/vraag-en-antwoord/asielbeleid/lijst-van-veilige-landen-van-herkomst",
+      },
+      {
+        label: "Raad van de EU — persbericht EU-lijst veilige landen (18 dec 2025)",
+        url: "https://www.consilium.europa.eu/en/press/press-releases/2025/12/18/asylum-policy-council-and-european-parliament-agree-on-eu-list-of-safe-countries-of-origin/",
+      },
+    ],
+  },
+  {
+    vraag: "Neemt Nederland nu meer of minder vluchtelingen via hervestiging?",
+    laag: "Nederlands besluit",
+    kortAntwoord:
+      "Het pact zelf verplicht hier niets — hervestiging blijft vrijwillig, lidstaten doen om de twee jaar een eigen toezegging. Nederland heeft zijn eigen hervestigingsquotum wél verlaagd, van 500 naar 200 plekken per jaar. Dat is een zelfstandig kabinetsbesluit over het migratiebudget, geen verplichting uit het pact.",
+    detail:
+      "Voor zover te achterhalen is deze verlaging niet expliciet gekoppeld aan het EU-hervestigingskader in officiële stukken — in de berichtgeving wordt het gepresenteerd als een op zichzelf staande bezuiniging. We nemen het toch op omdat het in het publieke debat vaak in één adem met het pact wordt genoemd, terwijl het dus eigenlijk een aparte Nederlandse keuze is.",
+    bronnen: [
+      {
+        label: "VluchtelingenWerk — kabinet schrapt hervestigingsplekken",
+        url: "https://www.vluchtelingenwerk.nl/nieuws-en-kennis/artikelen/kabinet-schrapt-300-hervestigingsplekken-kwetsbare-vluchtelingen-de-dupe",
+      },
+      {
+        label: "Verordening (EU) 2024/1350 — EU-hervestigingskader",
+        url: "https://eur-lex.europa.eu/EN/legal-content/summary/eu-resettlement-and-humanitarian-admission-framework-regulation.html",
+      },
+    ],
+  },
 ];
 
 function LaagBadge({ laag }: { laag: PactUitlegItem["laag"] }) {
@@ -270,7 +396,9 @@ function LaagBadge({ laag }: { laag: PactUitlegItem["laag"] }) {
       ? "bg-indigo-100 text-indigo-900"
       : laag === "Nederlandse wet"
         ? "bg-amber-100 text-amber-900"
-        : "bg-zinc-200 text-zinc-800";
+        : laag === "Nederlands besluit"
+          ? "bg-orange-100 text-orange-900"
+          : "bg-zinc-200 text-zinc-800";
   return (
     <span
       className={`inline-block shrink-0 rounded-full px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide ${kleur}`}
