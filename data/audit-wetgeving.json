@@ -1,17 +1,17 @@
 {
-  "bijgewerkt": "2026-09-28T13:10:45.805Z",
+  "bijgewerkt": "2026-10-05T13:53:07.727Z",
   "totaalTk": 2545,
-  "lopendTk": 154,
-  "opMonitor": 147,
-  "dekking": 95.5,
+  "lopendTk": 149,
+  "opMonitor": 143,
+  "dekking": 96,
   "missend": {
     "geenVoortouw": 0,
-    "andereCommissie": 7
+    "andereCommissie": 6
   },
   "andereCommissies": [
     {
       "naam": "vaste commissie voor Digitale Zaken",
-      "aantal": 3
+      "aantal": 2
     },
     {
       "naam": "vaste commissie voor Veiligheid en Justitie (2010-2017)",
@@ -56,14 +56,6 @@
       "korteNaam": "Rijkswet uitlevering voor Aruba, Curaçao en Sint Maarten",
       "gestartOp": "2026-04-08T00:00:00+02:00",
       "reden": "Voortouw: vaste commissie voor Koninkrijksrelaties (niet aan een ministerie gekoppeld)"
-    },
-    {
-      "id": "1a020f23-a081-4b14-bf45-ddfafb885a24",
-      "nummer": "2023Z18184",
-      "titel": "Goedkeuring van het op 28 januari 1981 te Straatsburg tot stand gekomen Verdrag tot bescherming van personen met betrekking tot de geautomatiseerde verwerking van persoonsgegevens (Trb. 1988, 7); van het op 10 oktober 2018 te Straatsburg tot stand gekomen Protocol tot wijziging van het Verdrag tot bescherming van personen met betrekking tot de geautomatiseerde verwerking van persoonsgegevens (Trb. 2018, 201 en Trb. 2023, 54)",
-      "korteNaam": "Trb. 2018, 201 en Trb. 2023, 54",
-      "gestartOp": "2023-10-23T00:00:00+02:00",
-      "reden": "Voortouw: vaste commissie voor Digitale Zaken (niet aan een ministerie gekoppeld)"
     },
     {
       "id": "09620add-6144-4273-9d44-f0c0206b903c",
